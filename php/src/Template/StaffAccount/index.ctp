@@ -49,26 +49,24 @@
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td><img src="dist/img/avatar5.png" class="img-circle" alt="User Image" width="80px" height="80px" /></td>
-                      <td>[Staff name]</td>
-                      <td>[Email address]</td>
-                      <td>[Mobile phone]</td>
-                      <td>[Administrator / Call Operator]</td>
-                      <td><span class="label label-success">Active</span></td>
-                      <td><a href="#"> Edit </a> | <a href="#">Delete</a></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td><img src="dist/img/avatar2.png" class="img-circle" alt="User Image" width="80px" height="80px" /></td>
-                      <td>[Staff name]</td>
-                      <td>[Email address]</td>
-                      <td>[Mobile phone]</td>
-                      <td>[Administrator / Call Operator]</td>
-                      <td><span class="label label-danger">Inactive</span></td>
-                      <td><a href="#"> Edit </a> | <a href="#">Delete</a></td>
-                    </tr>
+                    <?php 
+                      foreach ($staffs as $i) {               
+                          $gender = $i->get('gender');
+                          $status = $i->get('status');
+                          echo $this->Html->tableCells(
+                              array(
+                                  $i->get('staffID'),
+                                  '<td><img src="dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" /></td>',
+                                  $i->get('name'),
+                                  $i->get('email'),
+                                  $i->get('phone'),
+                                  $i->get('role'),
+                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
+                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->
