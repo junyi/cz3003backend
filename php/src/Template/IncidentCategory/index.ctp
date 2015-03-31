@@ -46,12 +46,18 @@
                       <th>Description</th>
                       <th>Action</th>
                     </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Fire Incident</td>
-                      <td>[Description of incident category , who to report to if this happened]</td>
-                      <td><a href="#"> Edit </a> | <a href="#">Delete</a></td>
-                    </tr>
+                    <?php 
+                      foreach ($categories as $i) {               
+                          echo $this->Html->tableCells(
+                              array(
+                                  $i->incidentCategoryID,
+                                  $i->incidentCategoryTitle,
+                                  $i->incidentCategoryDescription,
+                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->

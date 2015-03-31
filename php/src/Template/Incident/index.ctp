@@ -1,3 +1,9 @@
+<?php
+
+use Cake\Error\Debugger;
+
+?>
+
       <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
       <script src="script/incidents.js"></script>
 
@@ -50,14 +56,14 @@
                     </tr>
                     <?php 
                       foreach ($incidents as $i) {               
-                          $status = $i->get('incidentStatus');
+                          $status = $i->incidentStatus;
                           echo $this->Html->tableCells(
                               array(
-                                  $i->get('incidentID'),
-                                  $i->get('incidentTitle'),
-                                  $i->get('incidentDateTime'),
-                                  $i->get('address'),
-                                  $i->get('incidentCategoryID'),
+                                  $i->incidentID,
+                                  $i->incidentTitle,
+                                  $i->incidentDateTime,
+                                  $i->address,
+                                  $i->incidentCategory->incidentCategoryTitle,
                                   "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
                                   '<a href="#"> Edit </a> | <a href="#">Delete</a>'
                               )

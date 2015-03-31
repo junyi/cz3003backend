@@ -30,6 +30,24 @@ class AgencyController extends AppController
 
     public function index()
     {
-        $this->set('page', 'incident_category');
+        $this->set('page', 'agency');
+
+        $query = $this->Agency->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('agencies', $results);
     }
 }

@@ -32,6 +32,9 @@ class StaffAccountController extends AppController
     {
         $this->set('page', 'staff_account');
 
+        // Needs to load model explicitly due to different naming, TODO: rename
+    	$this->loadModel('Staff');
+
         $query = $this->Staff->find('all');
 
         // Iteration will execute the query.

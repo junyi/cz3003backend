@@ -51,16 +51,16 @@
                     </tr>
                     <?php 
                       foreach ($staffs as $i) {               
-                          $gender = $i->get('gender');
-                          $status = $i->get('status');
+                          $gender = $i->gender;
+                          $status = $i->status;
                           echo $this->Html->tableCells(
                               array(
-                                  $i->get('staffID'),
-                                  '<td><img src="dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" /></td>',
-                                  $i->get('name'),
-                                  $i->get('email'),
-                                  $i->get('phone'),
-                                  $i->get('role'),
+                                  $i->staffID,
+                                  '<img src="dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" />',
+                                  $i->name,
+                                  $i->email,
+                                  $i->phone,
+                                  $i->role,
                                   "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
                                   '<a href="#"> Edit </a> | <a href="#">Delete</a>'
                               )

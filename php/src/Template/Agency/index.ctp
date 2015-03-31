@@ -46,13 +46,20 @@
                       <th>Type of Incident</th>
                       <th>Action</th>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td>[Agency Name]</td>
-                      <td>[Contact]</td>
-                      <td>[Incident Category]</td>
-                      <td><a href="#"> Edit </a> | <a href="#">Delete</a></td>
-                    </tr>
+                    <?php 
+                      foreach ($agencies as $i) {               
+                          $status = $i->incidentStatus;
+                          echo $this->Html->tableCells(
+                              array(
+                                  $i->agencyID,
+                                  $i->agencyName,
+                                  $i->agencyContact,
+                                  '',
+                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->

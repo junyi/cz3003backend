@@ -31,7 +31,9 @@ class IncidentController extends AppController
 
     public function index()
     {
-        $query = $this->Incident->find('all');
+        $this->set('page', 'incident');
+
+        $query = $this->Incident->find('all')->contain(['IncidentCategory']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
@@ -48,6 +50,5 @@ class IncidentController extends AppController
         $results = $query->toArray();
 
         $this->set('incidents', $results);
-        $this->set('page', 'incident');
     }
 }

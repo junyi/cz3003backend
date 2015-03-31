@@ -42,12 +42,18 @@
                       <th>Subscribe Date/Time</th>
                       <th>Action</th>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td>[Email address]</td>
-                      <td>[Date / Time]</td>
-                      <td><a href="#"> Edit </a> | <a href="#">Delete</a></td>
-                    </tr>
+                    <?php 
+                      foreach ($subscribers as $i) {               
+                          echo $this->Html->tableCells(
+                              array(
+                                  $i->subscriberID,
+                                  $i->email,
+                                  $i->subscribeDateTime,
+                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->
