@@ -30,6 +30,8 @@ class IncidentReportController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'incident_report');
     }
 }

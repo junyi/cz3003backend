@@ -30,6 +30,8 @@ class HazeController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'haze');
     }
 }

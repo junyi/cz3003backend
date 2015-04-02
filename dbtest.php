@@ -17,4 +17,6 @@ while ($row = mysql_fetch_assoc($rs)) {
   echo $row['staffID'] . " " . $row['name'] . "\n";
 }
 mysql_close();
+
+	
 ?>

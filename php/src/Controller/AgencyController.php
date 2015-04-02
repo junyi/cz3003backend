@@ -30,6 +30,8 @@ class AgencyController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'agency');
 
         $query = $this->Agency->find('all');

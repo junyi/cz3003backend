@@ -30,6 +30,8 @@ class EventReportController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'event_report');
     }
 }

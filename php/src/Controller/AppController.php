@@ -15,6 +15,8 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Controller\Component\AuthComponent;
+use Cake\Event\Event;
 
 /**
  * Application Controller
@@ -26,6 +28,13 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+    public function index()
+    {
+        $session = $this->request->session();
+        $user = $session->read('Auth.User');
+
+        $this->set('user', $user);
+    }
 
     /**
      * Initialization hook method.
@@ -34,8 +43,48 @@ class AppController extends Controller
      *
      * @return void
      */
+
     public function initialize()
     {
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Staff',
+                'action' => 'login',
+            ],
+            'authError' => 'Did you really think you are allowed to see that?',
+            'loginRedirect' => '/Dashboard',
+            'logoutRedirect' => '/login'
+        ]);
+    }
+
+    // only allow the login controllers only
+    public function beforeFilter(Event $event) {
+        $this->Auth->config('authenticate', [
+            AuthComponent::ALL => [
+                'userModel' => 'Staff', 
+                'passwordHasher' => [
+                    'className' => 'Legacy'
+                ],
+                'fields' => [
+                    'username' => 'email',
+                    'password' => 'password'
+                ]
+            ],
+            'Form'
+        ]);
+        $this->Auth->allow(['login']);
+    }
+
+    public function isAuthorized($user)
+    {   
+        return true;
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'Administrator') {
+            return true;
+        }
+
+        // Default deny
+        return false;
     }
 }

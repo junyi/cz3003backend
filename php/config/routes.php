@@ -47,7 +47,8 @@ Router::scope('/', function ($routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'homepage']);
+    $routes->connect('/', ['controller' => 'Staff', 'action' => 'login']);
+    $routes->connect('/login', ['controller' => 'Staff', 'action' => 'login']);
 
     $routes->connect('/Agency', ['controller' => 'Agency']);
     $routes->connect('/Dengue', ['controller' => 'Dengue']);
@@ -57,7 +58,7 @@ Router::scope('/', function ($routes) {
     $routes->connect('/Incident', ['controller' => 'Incident']);
     $routes->connect('/IncidentReport', ['controller' => 'IncidentReport']);
     $routes->connect('/ReportIncident', ['controller' => 'ReportIncident']);
-    $routes->connect('/StaffAccount', ['controller' => 'StaffAccount']);
+    $routes->connect('/StaffAccount', ['controller' => 'Staff']);
     $routes->connect('/Subscriber', ['controller' => 'Subscriber']);
 
 

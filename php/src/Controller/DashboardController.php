@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -25,32 +26,14 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class StaffAccountController extends AppController
+class DashboardController extends AppController
 {
 
     public function index()
     {
-        $this->set('page', 'staff_account');
+        parent::index();
+        
+        $this->set('page', 'dashboard');
 
-        // Needs to load model explicitly due to different naming, TODO: rename
-    	$this->loadModel('Staff');
-
-        $query = $this->Staff->find('all');
-
-        // Iteration will execute the query.
-        foreach ($query as $row) {
-        }
-
-        // Calling execute will execute the query
-        // and return the result set.
-        $results = $query->all();
-
-        // Once we have a result set we can get all the rows
-        $data = $results->toArray();
-
-        // Converting the query to an array will execute it.
-        $results = $query->toArray();
-
-        $this->set('staffs', $results);
     }
 }

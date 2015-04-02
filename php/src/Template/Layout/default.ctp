@@ -84,15 +84,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/avatar5.png" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs"><?= $user['name'] ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/avatar5.png" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce 
-                      <small>[Job Role]</small>
+                      <?= $user['name'] ?>
+                      <small><?= $user['role'] ?></small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -123,8 +123,8 @@
               <img src="dist/img/avatar5.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
-              <small>[Job Role]</small>
+              <p><?= $user['name'] ?></p>
+              <small><?= $user['role'] ?></small>
             </div>
           </div>
           
@@ -132,7 +132,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <?php if ($page == "dashboard"){ ?>  <li class= "active treeview"> <?php }else{ ?> <li class= "treeview"> <?php }?>
-              <a href="/">
+              <a href="/Dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
               </a>
             </li>

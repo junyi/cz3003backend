@@ -30,6 +30,8 @@ class SubscriberController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'subscriber');
 
         $query = $this->Subscriber->find('all');

@@ -30,6 +30,8 @@ class IncidentCategoryController extends AppController
 
     public function index()
     {
+        parent::index();
+        
         $this->set('page', 'incident_category');
 
         $query = $this->IncidentCategory->find('all');
