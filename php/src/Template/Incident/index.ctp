@@ -64,7 +64,8 @@ use Cake\Error\Debugger;
                                   $incidentDateTime,
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
-                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
+                                  "<span class=\"label ".($status == 'On-Going' ? "label-success\">" : "label-danger\">").$status."</span>",
+
                                   '<a href="#" data-toggle="modal" data-remote="/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
