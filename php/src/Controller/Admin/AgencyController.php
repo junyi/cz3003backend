@@ -31,7 +31,7 @@ class AgencyController extends AppController
     public function index()
     {
         parent::index();
-
+        
         $this->set('page', 'agency');
 
         $query = $this->Agency->find('all');
@@ -53,5 +53,85 @@ class AgencyController extends AppController
         $this->set('agencies', $results);
     }
 
-    
+    private function getAgency($id)
+    {
+        $agency = $this->Agency->get($id);
+
+        return $agency;
+    }
+
+    public function form()
+    {
+        if ($this->request->is('get')) {
+            $action = $this->request->query['action'];
+
+            $this->set('agency', false);
+
+            if ($action === 'add') {
+                $this->set('header', "Add Agency");
+                $this->set('action', '/admin/agency/'.$action);
+
+            } else if ($action === 'edit') {
+                $id = $this->request->query['id'];
+
+                $this->set('header', "Edit Agency");
+                $this->set('action', '/admin/agency/'.$action.'?id='.$id);
+                $agency = $this->getAgency($id);
+                $this->set('agency', $agency);
+
+            }
+        }
+    }
+
+    public function add()
+    {
+        $this->autoRender = false;
+        $agency = $this->Agency->newEntity();
+        if ($this->request->is('post')) {
+            $agency = $this->Agency->patchEntity($agency, $this->request->data);
+            if ($this->Agency->save($agency)) {
+                $this->Flash->success(__('The agency has been added.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to add the agency.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function edit()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('post')) {
+            $id = $this->request->query['id'];
+            $agency = $this->getAgency($id);
+            $agency = $this->Agency->patchEntity($agency, $this->request->data);
+            if ($this->Agency->save($agency)) {
+                $this->Flash->success(__('The agency has been edited.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to edit the agency.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function delete()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('get')) {
+            $id = $this->request->query['id'];
+            $agency = $this->getAgency($id);
+            if ($this->Agency->delete($agency)) {
+                $this->Flash->success(__('The agency has been deleted.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to delete the agency.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
 }

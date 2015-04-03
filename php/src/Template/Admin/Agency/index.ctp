@@ -10,7 +10,7 @@
             <small> to manage email and contacts of agencies for dispatching of notifications</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Contacts</a></li>
             <li class="active">Agencies</li>
           </ol>
@@ -19,14 +19,14 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_agency_btn">Add Agency Contact</button>
+            <button class="btn btn-block btn-success" data-remote="/admin/agency/form?action=add" id="add_agency_btn" data-toggle="modal" data-target="#agency_modal">Add Agency</button>
           </div>
 
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Agencies</h3>
+                  <h3 class="box-title">Agency</h3>
                   <div class="box-tools">
                     <div class="input-group">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
@@ -47,14 +47,14 @@
                     </tr>
                     <?php 
                       foreach ($agencies as $i) {               
-                          $status = $i->incidentStatus;
+                          //$status = $i->incidentStatus;
                           echo $this->Html->tableCells(
                               array(
                                   $i->agencyID,
                                   $i->agencyName,
                                   $i->agencyContact,
                                   '',
-                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                                  '<a href="#" data-toggle="modal" data-remote="/admin/agency/form?action=edit&id='.$i->agencyID.'" data-target="#agency_modal"> Edit </a> | <a href="/admin/agency/delete?id='.$i->agencyID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
                       }
@@ -79,36 +79,15 @@
       </div><!-- /.content-wrapper -->
 
 
-      <!-- Add Agency Form -->
-    <div id="add_agency_field">
-        <form role="form" id="add_agency_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add Agency</h4>
-            <div class="box-body">
-            <!-- Agency -->
-            <div class="form-group">
-                <label>Agency</label>
-                <input type="text" class="form-control" id="agency_input" placeholder="Enter agency">
+   <!-- Modal -->
+    <div class="modal fade" id="agency_modal" tabindex="-1" role="dialog" aria-labelledby="Agency modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="progress progress-popup">
+              <div class="progress-bar progress-bar-striped active" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
             </div>
-            <!-- Contact -->
-            <div class="form-group">
-                <label>Contact</label>
-                <div class="input-group">
-                  <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                  <input type="text" class="form-control" id="contact_input" placeholder="Enter contact no"/>
-                </div>
-            </div>
-            <!-- Incident Category -->
-            <div class="form-group">
-               <label>Type of Incident</label>
-                <select class="form-control" id="incident_category_id">
-                   <option value="1">[Incident Category 1]</option>
-                   <option value="2">[Incident Category 2]</option>
-                </select>
-            </div>
-            </div> <!--./box-body-->
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+          </div>
+        </div>
+      </div>
     </div>

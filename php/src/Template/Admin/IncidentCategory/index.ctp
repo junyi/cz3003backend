@@ -76,8 +76,8 @@
      
       </div><!-- /.content-wrapper -->
 
-      <!-- Modal -->
-    <div class="modal fade" id="incident_category_modal" tabindex="-1" role="dialog" aria-labelledby="IncidentCate modal" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="incident_category_modal" tabindex="-1" role="dialog" aria-labelledby="IncidentCategory modal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">

@@ -28,7 +28,7 @@ $('#staff_modal').on('loaded.bs.modal', function (e) {
 	            contact: {
 	                validators: {
 	                    notEmpty: {
-	                        message: 'The location is required'
+	                        message: 'The contact is required'
 	                    },
 	                    digits: {
 	                        message: 'The value must consists of only digits'
