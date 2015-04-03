@@ -66,9 +66,9 @@ use Cake\Error\Debugger;
                                   $i->incidentCategory->incidentCategoryTitle,
                                   if($status == "On-Going"){
                                      ?><span class="label label-success">On-going</span><?
-                                  }else if ($status == "Danger")
+                                  }else if ($status == "Closed")
                                      ?><span class="label label-danger">Closed</span><?
-                                  }else{
+                                  }else if ($status == "Pending"){
                                      ?><span class="label label-warning">Pending</span><?
                                   }
                                   /*"<span class=\"label ".($status == 'On-Going' ? "label-success">" : "label-danger\">").$status."</span>"*/,
