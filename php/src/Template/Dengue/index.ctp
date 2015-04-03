@@ -1,6 +1,3 @@
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src="script/dengue.js"></script>
-
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -11,7 +8,7 @@
             <small> List of all dengue records</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Events</a></li>
             <li class="active">Dengue</li>
           </ol>
