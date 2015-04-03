@@ -12,12 +12,11 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -26,14 +25,24 @@ use Cake\Error\Debugger;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class DashboardController extends AppController
+class HazeController extends AppController
 {
 
     public function index()
     {
         parent::index();
+        
+        $this->set('page', 'haze');
+    }
 
-        $this->set('page', 'dashboard');
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access
+        if (isset($user['role'])) {
+            return true;
+        }
 
+        // Default deny
+        return false;
     }
 }

@@ -12,12 +12,11 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -26,14 +25,33 @@ use Cake\Error\Debugger;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class DashboardController extends AppController
+class AgencyController extends AppController
 {
 
     public function index()
     {
         parent::index();
 
-        $this->set('page', 'dashboard');
+        $this->set('page', 'agency');
 
+        $query = $this->Agency->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('agencies', $results);
     }
+
+    
 }

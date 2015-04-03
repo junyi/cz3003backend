@@ -17,7 +17,6 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -26,14 +25,14 @@ use Cake\Error\Debugger;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class DashboardController extends AppController
+class SubscribeController extends AppController
 {
 
     public function index()
     {
         parent::index();
 
-        $this->set('page', 'dashboard');
+        $this->set('page', 'subscribe');
 
     }
 }

@@ -42,6 +42,20 @@ use Cake\Routing\Router;
 Router::defaultRouteClass('Route');
 
 Router::scope('/', function ($routes) {
+    $routes->connect('/', ['controller' => 'Dashboard']);
+    $routes->connect('/about', ['controller' => 'About']);
+    $routes->connect('/subscribe', ['controller' => 'Subscribe']);
+    $routes->connect('/incident', ['controller' => 'Incident']);
+    $routes->connect('/report', ['controller' => 'Incident', 'action' => 'report']);
+    $routes->connect('/incident', ['controller' => 'Incident']);
+    $routes->connect('/dengue', ['controller' => 'Dengue']);
+    $routes->connect('/haze', ['controller' => 'Haze']);
+    $routes->connect('/contact', ['controller' => 'Contact']);
+
+});
+
+
+Router::prefix('admin', function ($routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file

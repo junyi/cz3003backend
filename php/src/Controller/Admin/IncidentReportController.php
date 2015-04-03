@@ -12,7 +12,7 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
@@ -25,13 +25,13 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class EventReportController extends AppController
+class IncidentReportController extends AppController
 {
 
     public function index()
     {
         parent::index();
         
-        $this->set('page', 'event_report');
+        $this->set('page', 'incident_report');
     }
 }

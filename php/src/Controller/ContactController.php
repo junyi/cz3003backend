@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -25,24 +26,14 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class ReportIncidentController extends AppController
+class ContactController extends AppController
 {
 
     public function index()
     {
         parent::index();
-        
-        $this->set('page', 'report_incident');
-    }
 
-    public function isAuthorized($user)
-    {   
-        // Logged in users can access
-        if (isset($user['role'])) {
-            return true;
-        }
+        $this->set('page', 'contact');
 
-        // Default deny
-        return false;
     }
 }

@@ -12,11 +12,12 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -25,31 +26,25 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class SubscriberController extends AppController
+class DashboardController extends AppController
 {
 
     public function index()
     {
         parent::index();
-        
-        $this->set('page', 'subscriber');
 
-        $query = $this->Subscriber->find('all');
+        $this->set('page', 'dashboard');
 
-        // Iteration will execute the query.
-        foreach ($query as $row) {
+    }
+
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access dashboard
+        if (isset($user['role'])) {
+            return true;
         }
 
-        // Calling execute will execute the query
-        // and return the result set.
-        $results = $query->all();
-
-        // Once we have a result set we can get all the rows
-        $data = $results->toArray();
-
-        // Converting the query to an array will execute it.
-        $results = $query->toArray();
-
-        $this->set('subscribers', $results);
+        // Default deny
+        return false;
     }
 }

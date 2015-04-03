@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Error\Debugger;
 
 /**
  * Static content controller
@@ -31,18 +32,8 @@ class DengueController extends AppController
     public function index()
     {
         parent::index();
-        
+
         $this->set('page', 'dengue');
-    }
 
-    public function isAuthorized($user)
-    {   
-        // Logged in users can access
-        if (isset($user['role'])) {
-            return true;
-        }
-
-        // Default deny
-        return false;
     }
 }

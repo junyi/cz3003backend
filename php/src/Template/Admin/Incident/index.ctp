@@ -1,5 +1,9 @@
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src="script/incidents.js"></script>
+<?php
+
+use Cake\Error\Debugger;
+
+?>
+
 
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
@@ -8,10 +12,10 @@
         <section class="content-header">
           <h1>
             Incident
-            <small> List of all reported incidents</small>
+            <small> to add, edit, or remove incident</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incidents</li>
           </ol>
@@ -20,7 +24,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_incident_btn">Report An Incident</button>
+            <button class="btn btn-block btn-success" data-remote="/incident/form?action=add" id="add_incident_btn" data-toggle="modal" data-target="#incident_modal">Add Incident</button>
           </div>
 
           <div class="row">
@@ -46,21 +50,22 @@
                       <th>Location</th>
                       <th>Category</th>
                       <th>Status</th>
+                      <th>Action</th>
                     </tr>
                     <?php 
-                      $num = 1;
                       foreach ($incidents as $i) {               
                           $status = $i->incidentStatus;
                           $incidentDateTime = $i['incidentDateTime']->format('d-m-Y h:i A');
                           $incidentDateTime = str_replace('-', '/', $incidentDateTime);
                           echo $this->Html->tableCells(
                               array(
-                                  $num++,
+                                  $i->incidentID,
                                   $i->incidentTitle,
                                   $incidentDateTime,
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
-                                  "<span class=\"label ".($status === 'On-going' ? "label-success\">" : "label-danger\">").$status."</span>"
+                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
+                                  '<a href="#" data-toggle="modal" data-remote="/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
                       }
@@ -83,4 +88,17 @@
           </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="incident_modal" tabindex="-1" role="dialog" aria-labelledby="Incident modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="progress progress-popup">
+              <div class="progress-bar progress-bar-striped active" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
  
