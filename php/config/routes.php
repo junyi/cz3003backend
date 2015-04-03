@@ -65,6 +65,7 @@ Router::prefix('admin', function ($routes) {
     $routes->connect('/login', ['controller' => 'Staff', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Staff', 'action' => 'logout']);
 
+    $routes->connect('/dashboard', ['controller' => 'Dashboard']);
     $routes->connect('/agency', ['controller' => 'Agency']);
     $routes->connect('/dengue', ['controller' => 'Dengue']);
     $routes->connect('/haze', ['controller' => 'Haze']);

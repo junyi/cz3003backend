@@ -80,21 +80,21 @@
                   <h3 class="box-title">Reset Password</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" id="change_password_form" action="/admin/staff/changePwd" method="post">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputPassword1">Old Password</label>
-                      <input type="password" class="form-control" id="old_password_input" placeholder="Enter old password">
+                      <input type="password" class="form-control" id="old_password_input" name="old_password" placeholder="Enter old password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">New Password</label>
-                      <input type="password" class="form-control" id="new_password_input" placeholder="Enter new password">
+                      <input type="password" class="form-control" id="new_password_input" name="new_password" placeholder="Enter new password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Confirm Password</label>
-                      <input type="password" class="form-control" id="confirm_password_input" placeholder="Enter confirm password">
+                      <input type="password" class="form-control" id="confirm_password_input" name="confirm_password" placeholder="Enter confirm password">
                     </div>
                     
                   

@@ -41,3 +41,40 @@ $('#edit_profile_form')
             }
         }
     });
+
+$('#change_password_form')
+    .formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            old_password: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    }
+                }
+            },
+            new_password: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    }
+                }
+            },
+            confirm_password: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },
+                    identical: {
+                        field: 'new_password',
+                        message: 'The password and its confirmation are not the same'
+                    }
+                }
+            }
+        }
+    });

@@ -79,9 +79,11 @@ class StaffController extends AppController
                     break;
                 }
             }
-            
+
+            $sizeOK = $file['size'] < 500 * 1024;
+
             // if file type ok upload the file
-            if($typeOK) {
+            if($typeOK && $sizeOK) {
                 // switch based on error code
                 switch($file['error']) {
                     case 0:
@@ -103,7 +105,7 @@ class StaffController extends AppController
                         // if upload was successful
                         if($success) {
                             // save the url of the file
-                            $result['urls'][] = $url;
+                            $result['urls'][] = $filename;
                         } else {
                             $result['errors'][] = "Error uploaded $filename. Please try again.";
                         }
@@ -120,7 +122,9 @@ class StaffController extends AppController
             } elseif($file['error'] == 4) {
                 // no file was selected for upload
                 $result['nofiles'][] = "No file Selected";
-            } else {
+            } elseif (!$sizeOK) {
+                $result['errors'][] = "File size is too big. It should be < 500KB";
+            }else {
                 // unacceptable file type
                 $result['errors'][] = "$filename cannot be uploaded. Acceptable file types: gif, jpg, png.";
             }
@@ -216,25 +220,113 @@ class StaffController extends AppController
             $user = $this->Staff->get($id);
             $user = $this->Staff->patchEntity($user, $this->request->data);
 
-            $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
+            if (array_key_exists('file', $this->request->data)){
+                $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
+                $oldFilePath = $user['photo'];
 
-            if (array_key_exists('urls', $filePath)) {
-                $user->set('photo', $filePath['urls'][0]);
-            } else {
-                $this->Flash->error(__('Unable to upload your photo.'));
-                return $this->redirect(['action' => 'index']);
+                if (array_key_exists('urls', $filePath)) {
+                    $user->set('photo', $filePath['urls'][0]);
+                } else {
+                    $this->Flash->error(__('Unable to upload your photo.'));
+                    return $this->redirect(['action' => 'index']);
+                }
             }
-
+            
             if ($this->Staff->save($user)) {
-                $this->Flash->success(__('Your profile has been updated.'.$filePath['urls'][0]));
+
+                // Delete old profile photo is exists
+
+                if ($oldFilePath && file_exists(WWW_ROOT.'uploads/'.$oldFilePath)) {
+                    unlink(WWW_ROOT.'uploads/'.$oldFilePath);
+                }
+
+                $this->Flash->success(__('Your profile has been updated.'));
                 return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('Unable to edit your profile.'));
                 return $this->redirect(['action' => 'index']);
             }
         } 
-        // else {
-        //     return $this->redirect(['action' => 'index']);
-        // }
+    }
+
+    public function add()
+    {
+        $this->autoRender = false;
+
+        $session = $this->request->session();
+        $sessionUser = $session->read('Auth.User');
+        $id = $sessionUser['staffID'];
+
+        if ($this->request->is('post') && $id) {
+            
+            $user = $this->Staff->newEntity();
+            $user = $this->Staff->patchEntity($user, $this->request->data);
+
+            if (array_key_exists('file', $this->request->data)){
+                $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
+                $oldFilePath = $user['photo'];
+
+                if (array_key_exists('urls', $filePath)) {
+                    $user->set('photo', $filePath['urls'][0]);
+                } else {
+                    $this->Flash->error(__('Unable to upload your photo.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+            }
+
+            if ($this->Staff->save($user)) {
+                $this->Flash->success(__('The account has been created'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to create the account.'));
+                return $this->redirect(['action' => 'index']);
+            }
+        } 
+    }
+
+    public function changePwd()
+    {
+        $this->autoRender = false;
+
+        $session = $this->request->session();
+        $sessionUser = $session->read('Auth.User');
+        $id = $sessionUser['staffID'];
+
+        if ($this->request->is('post') && $id) {
+
+            $user = $this->Staff->get($id);
+
+            $required = ['old_password', 'new_password', 'confirm_password'];
+
+            foreach ($required as $r) {
+                if (!array_key_exists($r, $this->request->data)){
+                    $this->Flash->error(__('Missing field detected, unable to change password.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+            }
+
+            $password = $user['password'];
+            $old_password = $this->request->data['old_password'];
+            $new_password = $this->request->data['new_password'];
+            $confirm_password = $this->request->data['confirm_password'];
+
+            if ($password === $old_password) {
+                if ($new_password === $confirm_password) {
+                    $user->set('password', $confirm_password);
+
+                    if ($this->Staff->save($user)) {
+                        $this->Flash->success(__('Password changed successfully.'));
+                    }else{
+                        $this->Flash->error(__('Unable to change password.'));
+                    }
+                } else {
+                    $this->Flash->error(__('New passwords do not match'));
+                }
+            } else {
+                $this->Flash->error(__('Provided password does not match existing password.'));
+            }
+
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }

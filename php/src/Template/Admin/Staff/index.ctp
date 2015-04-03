@@ -44,22 +44,25 @@
                       <th>Contact</th>
                       <th>Role</th>
                       <th>Status</th>
-                      <th>Action</th>
                     </tr>
                     <?php 
                       foreach ($staffs as $i) {               
                           $gender = $i->gender;
                           $status = $i->status;
+                          if ($i->photo) {
+                            $avatar = "../uploads/$i->photo";
+                          } else {
+                            $avatar = '../dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png"';
+                          }
                           echo $this->Html->tableCells(
                               array(
                                   $i->staffID,
-                                  '<img src="../dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" />',
+                                  '<img src="'.$avatar.'" class="img-circle" alt="User Image" width="80px" height="80px" />',
                                   $i->name,
                                   $i->email,
-                                  $i->phone,
+                                  $i->contact,
                                   $i->role,
-                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
-                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>"
                               )
                           );
                       }
@@ -95,7 +98,7 @@
               <h4 class="modal-title" id="modal_title"><?= $header ?></h4>
             </div>
             <div class="modal-body">
-              <form role="form" id="add_staff_accounts_form">
+              <form role="form" id="add_staff_accounts_form" action="/admin/staff/add" method="post">
                 <!-- Profile Picture -->
                 <div class="form-group">
                     <label>Profile Picture</label>
@@ -148,10 +151,7 @@
                     <label>Remarks</label>
                     <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
                 </div>
-                </div> <!--./box-body-->
-                <div class="box-footer">
-                     <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
