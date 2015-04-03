@@ -91,14 +91,14 @@ class StaffController extends AppController
                             $full_url = $folder_url.'/'.$filename;
                             $url = $rel_url.'/'.$filename;
                             // upload the file
-                            $success = move_uploaded_file($file['tmp_name'], $url);
+                            $success = move_uploaded_file($file['tmp_name'], $full_url);
                         } else {
                             // create unique filename and upload file
                             ini_set('date.timezone', 'Asia/Singapore');
                             $now = date('Y-m-d-His');
                             $full_url = $folder_url.'/'.$now.$filename;
                             $url = $rel_url.'/'.$now.$filename;
-                            $success = move_uploaded_file($file['tmp_name'], $url);
+                            $success = move_uploaded_file($file['tmp_name'], $full_url);
                         }
                         // if upload was successful
                         if($success) {
