@@ -21,7 +21,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_incident_categories_btn">Add Incident Category</button>
+            <button class="btn btn-block btn-success" data-remote="/incidentCategory/form?action=add" id="add_incident_category_btn" data-toggle="modal" data-target="#incident_category_modal">Add Incident Category</button>
           </div>
 
           <div class="row">
@@ -47,13 +47,14 @@
                       <th>Action</th>
                     </tr>
                     <?php 
+                      $num = 1;
                       foreach ($categories as $i) {               
                           echo $this->Html->tableCells(
                               array(
-                                  $i->incidentCategoryID,
+                                  $num++,
                                   $i->incidentCategoryTitle,
                                   $i->incidentCategoryDescription,
-                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                                  '<a href="#" data-toggle="modal" data-remote="/incidentCategory/form?action=edit&id='.$i->incidentCategoryID.'" data-target="#incident_category_modal"> Edit </a> | <a href="/incidentCategory/delete?id='.$i->incidentCategoryID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
                       }
@@ -79,29 +80,7 @@
       </div><!-- /.content-wrapper -->
 
     
-    <!-- Add Categories Form -->
-    <div id="add_incident_categories_field">
-        <form role="form" id="add_incident_categories_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add Incident Categories</h4>
-            <div class="box-body">
-            <!-- Incident Category -->
-            <div class="form-group">
-                <label>Incident Category</label>
-                <input type="text" class="form-control" id="incident_category_input" placeholder="Enter incident categories">
-            </div>
-            <!-- Incident Category Description -->
-            <div class="form-group">
-                <label>Description</label>
-                <textarea id="incident_category_description_input" class="form-control" rows="3" placeholder="Enter incident category description" style="resize:vertical"></textarea>
-            </div>
-            </div><!-- /.box-body -->
-
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-    </div>
+    
 
 
 
