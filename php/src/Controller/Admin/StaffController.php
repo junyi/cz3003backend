@@ -218,15 +218,15 @@ class StaffController extends AppController
 
             $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
 
-            if ($filePath) {
-                $user->set('photo', $filePath);
+            if (array_key_exists('urls', $filePath)) {
+                $user->set('photo', $filePath['urls'][0]);
             } else {
                 $this->Flash->error(__('Unable to upload your photo.'));
                 return $this->redirect(['action' => 'index']);
             }
 
             if ($this->Staff->save($user)) {
-                $this->Flash->success(__('Your profile has been updated.'.$filePath));
+                $this->Flash->success(__('Your profile has been updated.'.$filePath['urls'][0]));
                 return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('Unable to edit your profile.'));
