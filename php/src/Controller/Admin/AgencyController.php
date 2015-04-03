@@ -50,7 +50,7 @@ class AgencyController extends AppController
         // Converting the query to an array will execute it.
         $results = $query->toArray();
 
-        $this->set('categories', $results);
+        $this->set('agencies', $results);
     }
 
     private function getAgency($id)
