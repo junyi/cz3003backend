@@ -60,6 +60,29 @@ class IncidentCategoryController extends AppController
         return $incidentCategory;
     }
 
+    public function form()
+    {
+        if ($this->request->is('get')) {
+            $action = $this->request->query['action'];
+
+            $this->set('incidentCategory', false);
+
+            if ($action === 'add') {
+                $this->set('header', "Add Incident Category");
+                $this->set('action', '/incidentCategory/'.$action);
+
+            } else if ($action === 'edit') {
+                $id = $this->request->query['id'];
+
+                $this->set('header', "Edit Incident Category");
+                $this->set('action', '/incidentCategory/'.$action.'?id='.$id);
+                $incidentCategory = $this->getIncidentCategory($id);
+                $this->set('incidentCategory', $incidentCategory);
+
+            }
+        }
+    }
+
     public function add()
     {
         $this->autoRender = false;

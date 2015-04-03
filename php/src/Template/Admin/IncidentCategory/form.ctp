@@ -22,7 +22,7 @@
           <!-- Incident Category -->
           <div class="form-group">
               <label>Incident Category</label>
-              <input type="text" class="form-control" name="incidentCategoryTitle" id="incident_category_title_input" placeholder="Enter incident title" value="<?= $incidentTitle ?>">
+              <input type="text" class="form-control" name="incidentCategoryTitle" id="incident_category_title_input" placeholder="Enter incident title" value="<?= $incidentCategoryTitle ?>">
           </div>
          
           <!-- Description -->
@@ -32,17 +32,4 @@
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="incidentCategory_modal" tabindex="-1" role="dialog" aria-labelledby="IncidentCate modal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="progress progress-popup">
-              <div class="progress-bar progress-bar-striped active" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>

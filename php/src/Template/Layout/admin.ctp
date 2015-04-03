@@ -289,6 +289,9 @@
           <script src="../dist/js/jquery.geocomplete.min.js"></script>
           <script src="../script/incidents.js"></script><?php
           break;
+        case 'incident_category':
+          ?><script src="../script/incident_categories.js"></script><?php
+          break;
         case 'haze':
           ?><script src="../script/haze.js"></script><?php
           break;

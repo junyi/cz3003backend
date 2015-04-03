@@ -1,7 +1,4 @@
      
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src='script/incident_categories.js'></script>
-      
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -12,7 +9,7 @@
             <small> to add, edit, or remove incident category</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incident Category</li>
           </ol>
@@ -21,7 +18,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" data-remote="/incidentCategory/form?action=add" id="add_incident_category_btn" data-toggle="modal" data-target="#incident_category_modal">Add Incident Category</button>
+            <button class="btn btn-block btn-success" data-remote="/admin/incidentCategory/form?action=add" id="add_incident_category_btn" data-toggle="modal" data-target="#incident_category_modal">Add Incident Category</button>
           </div>
 
           <div class="row">
@@ -80,7 +77,7 @@
       </div><!-- /.content-wrapper -->
 
       <!-- Modal -->
-    <div class="modal fade" id="incidentCategory_modal" tabindex="-1" role="dialog" aria-labelledby="IncidentCate modal" aria-hidden="true">
+    <div class="modal fade" id="incident_category_modal" tabindex="-1" role="dialog" aria-labelledby="IncidentCate modal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
