@@ -67,7 +67,7 @@
              
                <!-- VISIT SITE LINK-->
               <li class="#">
-                <a href="/report" target="_blank">
+                <a href="/report">
                   <span class="hidden-xs">Report an incident</span>
                 </a>
               </li>

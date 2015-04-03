@@ -53,7 +53,7 @@
                           echo $this->Html->tableCells(
                               array(
                                   $i->staffID,
-                                  '<img src="dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" />',
+                                  '<img src="../dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png" class="img-circle" alt="User Image" width="80px" height="80px" />',
                                   $i->name,
                                   $i->email,
                                   $i->phone,
