@@ -88,7 +88,7 @@ class AgencyController extends AppController
         $this->autoRender = false;
         $agency = $this->Agency->newEntity();
         if ($this->request->is('post')) {
-            $agency = $this->IncidentCategory->patchEntity($agency, $this->request->data);
+            $agency = $this->Agency->patchEntity($agency, $this->request->data);
             if ($this->Agency->save($agency)) {
                 $this->Flash->success(__('The agency has been added.'));
                 return $this->redirect(['action' => 'index']);
