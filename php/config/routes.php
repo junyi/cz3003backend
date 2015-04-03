@@ -67,12 +67,10 @@ Router::prefix('admin', function ($routes) {
 
     $routes->connect('/agency', ['controller' => 'Agency']);
     $routes->connect('/dengue', ['controller' => 'Dengue']);
-    $routes->connect('/eventReport', ['controller' => 'EventReport']);
     $routes->connect('/haze', ['controller' => 'Haze']);
     $routes->connect('/incidentCategory', ['controller' => 'IncidentCategory']);
     $routes->connect('/incident', ['controller' => 'Incident']);
     $routes->connect('/incident/add', ['controller' => 'Incident', 'action' => 'add']);
-    $routes->connect('/incidentReport', ['controller' => 'IncidentReport']);
     $routes->connect('/reportIncident', ['controller' => 'ReportIncident']);
 
     $routes->connect('/staff', ['controller' => 'Staff']);

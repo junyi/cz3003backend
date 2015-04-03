@@ -55,7 +55,7 @@
              
                <!-- VISIT SITE LINK-->
               <li class="#">
-                <a href="#">
+                <a href="../">
                   <span class="hidden-xs">Visit Site</span>
                 </a>
               </li>
@@ -142,16 +142,13 @@
             </li>
 
             <!-- MANAGE INCIDENTS-->
-            <?php if ($page == "report_incident" || $page == "incidents" || $page == "incident_category"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+            <?php if ($page == "incidents" || $page == "incident_category"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Incidents</span>
                 <span class="label label-primary pull-right">3</span>
               </a>
               <ul class="treeview-menu">
-                <?php if ($page == "report_incident"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                    <a href="reportIncident"><i class="fa fa-circle-o"></i>Report Incidents <span class="label label-primary pull-right">3</span></a>
-                </li>
                 <?php if ($page == "incidents"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
                     <a href="incident"><i class="fa fa-circle-o"></i>Incidents</a>
                 </li>
@@ -216,25 +213,6 @@
             </li>
             <?php }?>
 
-            <!-- GENERATE REPORTS -->
-            <?php if ($user['role'] === 'Administrator') {
-              if ($page == "incident_report" || $page == "event_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Reports</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <?php if ($page == "incident_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="incidentReport"><i class="fa fa-circle-o"></i>Incident Report</a>
-                </li>
-                <?php if ($page == "event_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="eventReport"><i class="fa fa-circle-o"></i>Event Report</a>
-                </li>
-              </ul>
-            </li>
-            <?php }?>
-            
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -242,7 +220,6 @@
       <!-- .............................................END OF NAVIGATION............................................. -->
       
       <?= $this->fetch('content') ?>
-
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">

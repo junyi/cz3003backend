@@ -54,8 +54,8 @@ class AppController extends Controller
             ],
             'authorize' => 'Controller',
             'authError' => 'You are not authorized to access this area',
-            'loginRedirect' => '/dashboard',
-            'logoutRedirect' => '/login'
+            'loginRedirect' => '/admin/dashboard',
+            'logoutRedirect' => '/admin/login'
         ]);
     }
 

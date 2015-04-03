@@ -92,7 +92,7 @@ class IncidentController extends AppController
     {
         parent::index();
 
-        $this->set('page', 'incident');
+        $this->set('page', 'incidents');
 
         $this->getIncidents();
 

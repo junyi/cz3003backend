@@ -80,7 +80,7 @@ class StaffController extends AppController
         $session = $this->request->session();
         $user = $session->read('Auth.User');
 
-        $url = Router::url(array('controller'=>'Dashboard', 'action'=>'index'));
+        $url = Router::url(array('admin'=>true, 'controller'=>'Dashboard', 'action'=>'index'));
 
         if ($user) {
             return $this->redirect($url);
