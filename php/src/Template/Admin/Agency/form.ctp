@@ -28,7 +28,7 @@
           <!-- Contact -->
           <div class="form-group">
               <label>Contact</label>
-              <input type="text" class="form-control" id="contact_input" maxlength="8" name="agencyContact" placeholder="Enter contact no"/>
+              <input type="text" class="form-control" id="contact_input" maxlength="8" name="agencyContact" placeholder="Enter contact no" value="<?= $agencyContact ?>"/>
           </div>
 
           <!-- Multiple select of incident categories -->
