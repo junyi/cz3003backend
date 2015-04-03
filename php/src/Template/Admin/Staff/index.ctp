@@ -17,7 +17,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_staff_accounts_btn">Add Account</button>
+            <button class="btn btn-block btn-success" id="add_staff_accounts_btn" data-remote="/staff/form?action=add" data-toggle="modal" data-target="#staff_modal">Add Account</button>
           </div>
 
           <div class="row">
@@ -85,58 +85,69 @@
 
 
     <!-- Add Staff Accounts Form -->
-    <div id="add_staff_accounts_field">
-        <form role="form" id="add_staff_accounts_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add Staff Accounts</h4>
-            <div class="box-body">
-            <!-- Profile Picture -->
-            <div class="form-group">
-                <label>Profile Picture</label>
-                <input type="file" id="profile_picture_inputfile">
+    <!-- Modal -->
+    <div class="modal fade" id="staff_modal" tabindex="-1" role="dialog" aria-labelledby="Staff modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="modal_title"><?= $header ?></h4>
             </div>
-            <!-- Full Name -->
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control" id="full_name_input" placeholder="Enter full name">
-            </div>
-            <!-- Email -->
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" id="email_input" placeholder="Enter email">
-            </div>
-            <!-- Contact -->
-            <div class="form-group">
-                <label>Contact</label>
-                <div class="input-group">
-                  <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                  <input type="text" class="form-control" id="contact_input" placeholder="Enter contact no"/>
+            <div class="modal-body">
+              <form role="form" id="add_staff_accounts_form">
+                <!-- Profile Picture -->
+                <div class="form-group">
+                    <label>Profile Picture</label>
+                    <input type="file" id="profile_picture_inputfile">
                 </div>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" id="full_name_input" placeholder="Enter full name">
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" id="email_input" placeholder="Enter email">
+                </div>
+                <!-- Contact -->
+                <div class="form-group">
+                    <label>Contact</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                      <input type="text" class="form-control" id="contact_input" placeholder="Enter contact no"/>
+                    </div>
+                </div>
+                <!-- Role : Administrator, Call Operator -->
+                <div class="form-group">
+                   <label>Role</label>
+                    <select class="form-control" id="role_input">
+                       <option value="Administrator">Administrator</option>
+                       <option value="Call Operator">Call Operator</option>
+                    </select>
+                </div>
+                <!-- Status : Active, Inactive -->
+                <div class="form-group">
+                   <label>Status</label>
+                    <select class="form-control" id="status_input">
+                       <option value="Active">Active</option>
+                       <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <!-- Remarks -->
+                <div class="form-group">
+                    <label>Remarks</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
+                </div>
+                </div> <!--./box-body-->
+                <div class="box-footer">
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
             </div>
-            <!-- Role : Administrator, Call Operator -->
-            <div class="form-group">
-               <label>Role</label>
-                <select class="form-control" id="role_input">
-                   <option value="Administrator">Administrator</option>
-                   <option value="Call Operator">Call Operator</option>
-                </select>
-            </div>
-            <!-- Status : Active, Inactive -->
-            <div class="form-group">
-               <label>Status</label>
-                <select class="form-control" id="status_input">
-                   <option value="Active">Active</option>
-                   <option value="Inactive">Inactive</option>
-                </select>
-            </div>
-            <!-- Remarks -->
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
-            </div>
-            </div> <!--./box-body-->
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+          </div>
+        </div>
+      </div>
+       
     </div>

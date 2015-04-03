@@ -60,6 +60,7 @@ class StaffController extends AppController
         $results = $query->toArray();
 
         $this->set('staffs', $results);
+        $this->set('header', "Add Account");
     }
 
     public function isAuthorized($user) {

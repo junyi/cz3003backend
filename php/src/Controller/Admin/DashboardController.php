@@ -40,7 +40,7 @@ class DashboardController extends AppController
     public function isAuthorized($user)
     {   
         // Logged in users can access dashboard
-        if (isset($user['role'])) {
+        if (isset($user['role']) && isset($user['status']) && $user['status'] === 'active') {
             return true;
         }
 

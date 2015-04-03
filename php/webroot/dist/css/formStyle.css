@@ -15,7 +15,7 @@
 
 /*FORM*/
 #add_incident_categories_form{background-color:#FFF; border-radius:10px; width:25%; margin: 5% auto 0 auto; padding:0.3% 2% 4.5% 2%;}
-#add_dengue_form, #add_haze_form, #add_agency_form, #add_staff_accounts_form{
+#add_dengue_form, #add_haze_form, #add_agency_form {
 	background-color:#FFF; border-radius:10px; width:45%; margin: 5% auto 0 auto; padding:0.3% 2% 4.5% 2%; overflow: auto; max-height:500px;
 }
 
