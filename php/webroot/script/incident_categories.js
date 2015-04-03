@@ -1,7 +1,7 @@
-$("#incidentCategory_modal").on('hidden.bs.modal', function () {
-	$('#incidentCategory_modal').removeData('bs.modal');
-	$('#incidentCategory_modal .modal-content').empty();
-	$('#incidentCategory_modal .modal-content').html(
+$("#incident_category_modal").on('hidden.bs.modal', function () {
+	$('#incident_category_modal').removeData('bs.modal');
+	$('#incident_category_modal .modal-content').empty();
+	$('#incident_category_modal .modal-content').html(
 		$('<div class="modal-body"></div>').html(
 	            $('<div class="progress progress-popup"></div>').html(
 	              '<div class="progress-bar progress-bar-striped active" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>'
@@ -10,10 +10,10 @@ $("#incidentCategory_modal").on('hidden.bs.modal', function () {
 	);
 });
 
-$('#incidentCategory_modal').on('loaded.bs.modal', function (e) {
+$('#incident_category_modal').on('loaded.bs.modal', function (e) {
 
 
-	$('#add_incident_form')
+	$('#add_incident_category_form')
 	    .formValidation({
 	        framework: 'bootstrap',
 	        icon: {
@@ -22,40 +22,13 @@ $('#incidentCategory_modal').on('loaded.bs.modal', function (e) {
 	            validating: 'glyphicon glyphicon-refresh'
 	        },
 	        fields: {
-	            incidentTitle: {
+	            incidentCategoryTitle: {
 	                validators: {
 	                    notEmpty: {
-	                        message: 'The title is required'
-	                    }
-	                }
-	            },
-	            incidentDateTime: {
-	                validators: {
-	                    date: {
-	                        format: 'DD/MM/YYYY hh:mm A',
-	                        message: 'The value is not a valid date'
-	                    },
-	                    notEmpty: {
-	                        message: 'The location is required'
-	                    }
-	                }
-	            },
-	            address: {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'The location is required'
+	                        message: 'The incident category is required'
 	                    }
 	                }
 	            }
 	        }
 	    });
-
-	$('#incident_datetime_input').on('dp.change dp.show', function(e) {
-	    $('#add_incident_form').formValidation('revalidateField', 'incident_datetime');
-	});
 })
-
-
-// $('#incident_modal').on('shown.bs.modal', function() {
-//     $('#incident_modal').formValidation('resetForm', true);
-// });
