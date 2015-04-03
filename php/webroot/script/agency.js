@@ -22,13 +22,31 @@ $('#agency_modal').on('loaded.bs.modal', function (e) {
 	            validating: 'glyphicon glyphicon-refresh'
 	        },
 	        fields: {
-	            incidentCategoryTitle: {
+	            agencyName: {
 	                validators: {
 	                    notEmpty: {
-	                        message: 'The incident category is required'
+	                        message: 'The agency name is required'
+	                    }
+	                }
+	            },
+
+	            agencyContact: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The agency contact is required'
+	                    },
+	                    digits: {
+	                        message: 'The value must consists of only digits'
+	                    },
+	                    stringLength: {
+	                        message: 'The value must be exactly 8 digits',
+	                        max: 8,
+	                        min: 8
 	                    }
 	                }
 	            }
+
 	        }
+
 	    });
 })
