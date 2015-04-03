@@ -52,4 +52,63 @@ class IncidentCategoryController extends AppController
 
         $this->set('categories', $results);
     }
+
+    private function getIncidentCategory($id)
+    {
+        $incidentCategory = $this->IncidentCategory->get($id);
+
+        return $incidentCategory;
+    }
+
+    public function add()
+    {
+        $this->autoRender = false;
+        $incidentCategory = $this->IncidentCategory->newEntity();
+        if ($this->request->is('post')) {
+            $incidentCategory = $this->IncidentCategory->patchEntity($incidentCategory, $this->request->data);
+            if ($this->IncidentCategory->save($incidentCategory)) {
+                $this->Flash->success(__('The incident category has been added.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to add your incident category.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function edit()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('post')) {
+            $id = $this->request->query['id'];
+            $incidentCategory = $this->getIncidentCategory($id);
+            $incidentCategory = $this->IncidentCategory->patchEntity($incidentCategory, $this->request->data);
+            if ($this->IncidentCategory->save($incidentCategory)) {
+                $this->Flash->success(__('The incident category has been edited.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to edit your incident category.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function delete()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('get')) {
+            $id = $this->request->query['id'];
+            $incidentCategory = $this->getIncidentCategory($id);
+            if ($this->IncidentCategory->delete($incidentCategory)) {
+                $this->Flash->success(__('The incident category has been deleted.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to delete your incident category.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
 }
