@@ -24,7 +24,7 @@ use Cake\Error\Debugger;
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" data-remote="/incident/form?action=add" id="add_incident_btn" data-toggle="modal" data-target="#incident_modal">Add Incident</button>
+            <button class="btn btn-block btn-success" data-remote="/admin/incident/form?action=add" id="add_incident_btn" data-toggle="modal" data-target="#incident_modal">Add Incident</button>
           </div>
 
           <div class="row">

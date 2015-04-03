@@ -283,7 +283,7 @@
         case 'agency':
           ?><script src="../script/agency.js"></script><?php
           break;
-        case 'incident':
+        case 'incidents':
           ?>
           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
           <script src="../dist/js/jquery.geocomplete.min.js"></script>

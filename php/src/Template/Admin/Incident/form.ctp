@@ -1,18 +1,30 @@
 <?php
   use Cake\Error\Debugger;
 
-  if($incidentCategory){
-    $incidentCategoryTitle = $incidentCategory['incidentCategoryTitle'];
-    $incidentDetails = $incidentCategory['incidentCategoryDescription'];
+  if($incident){
+    $incidentTitle = $incident['incidentTitle'];
+    $incidentDateTime = $incident['incidentDateTime']->format('d-m-Y h:i A');
+    $incidentDateTime = str_replace('-', '/', $incidentDateTime);
+    // $incidentDateTime = $incident['incidentDateTime']->nice();
+    $address = $incident['address'];
+    $latitude = $incident['latitude'];
+    $longitude = $incident['incidentTitle'];
+    $incidentCategoryID = $incident['incidentCategoryID'];
+    $incidentStatus = $incident['incidentStatus'];
+    $incidentDetails = $incident['incidentDetails'];
   } else {
-    $incidentCategoryTitle = "";
-    $incidentCategoryDetails = "";
+    $incidentTitle = "";
+    $incidentDateTime = "";
+    $address = "";
+    $latitude = "";
+    $longitude = "";
+    $incidentCategoryID = "";
+    $incidentStatus = "";
+    $incidentDetails = "";
   }
 
   $this->layout = false;
 ?>
-
-
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -20,17 +32,50 @@
       </div>
       <div class="modal-body">
 
-        <form id="add_incident_categories_form" action="<?= $action ?>" method="post">
+        <form id="add_incident_form" action="<?= $action ?>" method="post">
           <!-- Incident Title -->
           <div class="form-group">
-              <label>Incident Category</label>
-              <input type="text" class="form-control" name="incidentCategoryTitle" id="incident_category_title_input" placeholder="Enter incident title" value="<?= $incidentCategoryTitle ?>">
+              <label>Incident Title</label>
+              <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title" value="<?= $incidentTitle ?>">
           </div>
-  
-          <!-- Description -->
+          <!-- Date / Time -->
           <div class="form-group">
-              <label>Description</label>
-              <textarea class="form-control" name="incident_category_description_input" rows="3" placeholder="Enter remarks" style="resize:vertical"><?= $incidentCategoryDetails ?></textarea>
+              <label>Date/Time</label>
+              <div class="input-group date">
+                <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
+                <input type="text" class="form-control" name="incidentDateTime" placeholder="DD/MM/YYYY hh:mm A" id="incident_datetime_input" value="<?= $incidentDateTime ?>"/>
+              </div><!-- /.input group -->
+          </div><!-- /.form group -->
+          <!-- Location -->
+          <div class="form-group">
+              <label>Location</label>
+              <input type="text" class="form-control" value="<?= $address ?>" name="address" id="incident_location_input" placeholder="Enter the location where the incident happened">
+              <div class="details">
+                <input type="hidden" data-geo="lat" name="latitude" value="<?= $latitude ?>"/>
+                <input type="hidden" data-geo="lng" name="longitude" value="<?= $longitude ?>"/>
+              </div>
+          </div>
+          <!-- Incident Category -->
+          <div class="form-group">
+              <label>Incident Category</label>
+              <select class="form-control" name="incidentCategoryID" id="incident_category_id">
+                <?php foreach($incident_category_options as $k => $v) {?>
+                <option <?php if($incidentCategoryID == ($k+1)){echo "selected";} ?> value=<?='"'. ($k+1) . '"'?>><?=$v?></option>
+                <?php }?>
+              </select>
+          </div>
+          <!-- Status : On-going, Closed -->
+          <div class="form-group">
+             <label>Status</label>
+              <select class="form-control" name="incidentStatus" id="incident_status">
+                 <option <?php if($incidentStatus == "On-going"){echo "selected";}?> value="On-going">On-going</option>
+                 <option <?php if($incidentStatus == "Closed"){echo "selected";}?> value="Closed">Closed</option>
+              </select>
+          </div>
+          <!-- Remarks -->
+          <div class="form-group">
+              <label>Remarks</label>
+              <textarea class="form-control" name="incidentDetails" rows="3" placeholder="Enter remarks" style="resize:vertical"><?= $incidentDetails ?></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>
