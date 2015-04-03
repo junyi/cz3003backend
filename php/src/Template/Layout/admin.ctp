@@ -40,7 +40,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index.php" class="logo">
+        <a href="/dashboard" class="logo">
             <img src="../dist/img/logo.png" width="40px" height="40px" style="margin-bottom:5px; margin-right:5px;" /><b>TIME</b>Crisis
         </a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -102,10 +102,10 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="index.php?pg=edit_profile" class="btn btn-default btn-flat">Profile</a>
+                      <a href="/admin/editProfile" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/admin/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>

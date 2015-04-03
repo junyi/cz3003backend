@@ -21,43 +21,42 @@
                   <h3 class="box-title">General Details</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" id="edit_profile_form" action="/admin/editProfile" method="post" enctype="multipart/form-data">
                   <div class="box-body">
                     <!-- Profile Picture -->
                     <div class="form-group">
                       <label for="exampleInputFile">Profile Picture</label>
-                      <input type="file" id="profile_picture_input">
-                      <p class="help-block">Example block-level help text here.</p>
+                      <input type="file" name="file" id="profile_picture_input">
                     </div>
                     <!-- Full Name -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Full Name</label>
-                      <input type="text" class="form-control" id="full_name_input" placeholder="Enter full name">
+                      <input type="text" class="form-control" id="full_name_input" name="name" value="<?= $user['name']?>" placeholder="Enter full name">
                     </div>
                     <!-- Email Address -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="email_input" placeholder="Enter email">
+                      <input type="email" class="form-control" id="email_input" name="email" value="<?= $user['email']?>" placeholder="Enter email">
                     </div>
                     <!-- Contact -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Contact</label>
-                      <input type="text" class="form-control" id="contact_input" placeholder="Enter contact number">
-                    </div>
+                      <input type="text" class="form-control" id="contact_input" name="contact" value="<?= $user['contact']?>" placeholder="Enter contact number">
+                  </div>
                     <!-- Role: administrator, call operator -->
                     <div class="form-group">
                        <label>Role</label>
                         <select class="form-control" id="role_input">
-                           <option value="Administrator">Administrator</option>
-                           <option value="Call Operator">Call Operator</option>
+                           <option value="Administrator" <?php if($user['role'] == "Administrator"){echo "selected";}?>>Administrator</option>
+                           <option value="Call Operator" <?php if($user['role'] == "Call Operator"){echo "selected";}?>>Call Operator</option>
                         </select>
                     </div>
                     <!-- Status: active, inactive -->
                     <div class="form-group">
                        <label>Status</label>
                         <select class="form-control" id="status_input">
-                           <option value="Administrator">Active</option>
-                           <option value="Call Operator">Inactive</option>
+                           <option value="active" <?php if($user['status'] == "active"){echo "selected";}?>>Active</option>
+                           <option value="inactive" <?php if($user['status'] == "inactive"){echo "selected";}?>>Inactive</option>
                         </select>
                     </div>
 
