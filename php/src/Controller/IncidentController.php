@@ -30,6 +30,18 @@ class IncidentController extends AppController
 {
     public $helper = ['Time'];
 
+    private function getIncident($id)
+    {
+        // $query = $this->Incident->find('all', [
+        //     'where' => ['incidentID' => $id]
+        // ]);
+
+        // $incident = $query->first();
+        $incident = $this->Incident->get($id);
+
+        return $incident;
+    }
+
     private function getIncidents()
     {
         $query = $this->Incident->find('all')->contain(['IncidentCategory']);
@@ -90,8 +102,23 @@ class IncidentController extends AppController
     {
         if ($this->request->is('get')) {
             $action = $this->request->query['action'];
+
+            $this->set('incident', false);
+
             if ($action === 'add') {
                 $this->getIncidentCategoryOptions();
+                $this->set('header', "Add Incident");
+                $this->set('action', '/incident/'.$action);
+
+            } else if ($action === 'edit') {
+                $id = $this->request->query['id'];
+
+                $this->getIncidentCategoryOptions();
+                $this->set('header', "Edit Incident");
+                $this->set('action', '/incident/'.$action.'?id='.$id);
+                $incident = $this->getIncident($id);
+                $this->set('incident', $incident);
+
             }
         }
     }
@@ -116,14 +143,32 @@ class IncidentController extends AppController
     public function edit()
     {
         $this->autoRender = false;
-        $incident = $this->Incident->newEntity();
         if ($this->request->is('post')) {
+            $id = $this->request->query['id'];
+            $incident = $this->getIncident($id);
             $incident = $this->Incident->patchEntity($incident, $this->request->data);
             if ($this->Incident->save($incident)) {
-                $this->Flash->success(__('The incident has been added.'));
+                $this->Flash->success(__('The incident has been edited.'));
                 return $this->redirect(['action' => 'index']);
             }else{
-                $this->Flash->error(__('Unable to add your incident.'));
+                $this->Flash->error(__('Unable to edit your incident.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function delete()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('get')) {
+            $id = $this->request->query['id'];
+            $incident = $this->getIncident($id);
+            if ($this->Incident->delete($incident)) {
+                $this->Flash->success(__('The incident has been deleted.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to delete your incident.'));
             }
         } else {
             return $this->redirect(['action' => 'index']);

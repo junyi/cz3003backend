@@ -1,13 +1,17 @@
 <?php
+  use Cake\Error\Debugger;
+
   if($incident){
-    $incidentTitle = $incident->$incidentTitle;
-    $incidentDateTime = $incident->$incidentDateTime;
-    $address = $incident->$address;
-    $latitude = $incident->$latitude;
-    $longitude = $incident->$incidentTitle;
-    $incidentCategoryID = $incident->$incidentCategoryID;
-    $incidentStatus = $incident->$incidentStatus;
-    $incidentDetails = $incident->$incidentDetails;
+    $incidentTitle = $incident['incidentTitle'];
+    $incidentDateTime = $incident['incidentDateTime']->format('d-m-Y h:i A');
+    $incidentDateTime = str_replace('-', '/', $incidentDateTime);
+    // $incidentDateTime = $incident['incidentDateTime']->nice();
+    $address = $incident['address'];
+    $latitude = $incident['latitude'];
+    $longitude = $incident['incidentTitle'];
+    $incidentCategoryID = $incident['incidentCategoryID'];
+    $incidentStatus = $incident['incidentStatus'];
+    $incidentDetails = $incident['incidentDetails'];
   } else {
     $incidentTitle = "";
     $incidentDateTime = "";
@@ -18,37 +22,37 @@
     $incidentStatus = "";
     $incidentDetails = "";
   }
+
+  $this->layout = false;
 ?>
 
-<div class="modal fade" id="incident_modal" tabindex="-1" role="dialog" aria-labelledby="Incident modal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="modal_title"><?=$header?></h4>
+        <h4 class="modal-title" id="modal_title"><?= $header ?></h4>
       </div>
       <div class="modal-body">
-        <form id="add_incident_form" action="{$action}" method="post">
+
+        <form id="add_incident_form" action="<?= $action ?>" method="post">
           <!-- Incident Title -->
           <div class="form-group">
               <label>Incident Title</label>
-              <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title" value="{$incidentTitle}">
+              <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title" value="<?= $incidentTitle ?>">
           </div>
           <!-- Date / Time -->
           <div class="form-group">
               <label>Date/Time</label>
               <div class="input-group date">
                 <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
-                <input type="text" class="form-control" name="incidentDateTime" placeholder="DD/MM/YYYY hh:mm A" id="incident_datetime_input" value="${incidentDateTime}"/>
+                <input type="text" class="form-control" name="incidentDateTime" placeholder="DD/MM/YYYY hh:mm A" id="incident_datetime_input" value="<?= $incidentDateTime ?>"/>
               </div><!-- /.input group -->
           </div><!-- /.form group -->
           <!-- Location -->
           <div class="form-group">
               <label>Location</label>
-              <input type="text" class="form-control" value="{$address}" name="address" id="incident_location_input" placeholder="Enter the location where the incident happened">
+              <input type="text" class="form-control" value="<?= $address ?>" name="address" id="incident_location_input" placeholder="Enter the location where the incident happened">
               <div class="details">
-                <input type="hidden" data-geo="lat" name="latitude" value="${latitude}"/>
-                <input type="hidden" data-geo="lng" name="longitude" value="${longitude}"/>
+                <input type="hidden" data-geo="lat" name="latitude" value="<?= $latitude ?>"/>
+                <input type="hidden" data-geo="lng" name="longitude" value="<?= $longitude ?>"/>
               </div>
           </div>
           <!-- Incident Category -->
@@ -64,18 +68,15 @@
           <div class="form-group">
              <label>Status</label>
               <select class="form-control" name="incidentStatus" id="incident_status">
-                 <option <?php if($incidentStatus == "On-going"){echo "selected";)}?> value="On-going">On-going</option>
-                 <option <?php if($incidentStatus == "Closed"){echo "selected";)}?> value="Closed">Closed</option>
+                 <option <?php if($incidentStatus == "On-going"){echo "selected";}?> value="On-going">On-going</option>
+                 <option <?php if($incidentStatus == "Closed"){echo "selected";}?> value="Closed">Closed</option>
               </select>
           </div>
           <!-- Remarks -->
           <div class="form-group">
               <label>Remarks</label>
-              <textarea value="{$incidentDetails}" class="form-control" name="incidentDetails" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
+              <textarea class="form-control" name="incidentDetails" rows="3" placeholder="Enter remarks" style="resize:vertical"><?= $incidentDetails ?></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-      </div>
     </div>
-  </div>
-</div>

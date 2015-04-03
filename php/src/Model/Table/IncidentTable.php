@@ -29,5 +29,4 @@ class IncidentTable extends Table
 	    }
 	    return false;
 	}
-
 }
