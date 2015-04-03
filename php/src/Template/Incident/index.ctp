@@ -64,13 +64,14 @@ use Cake\Error\Debugger;
                                   $incidentDateTime,
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
-                                  if($status === "On-Going"){
+                                  /*if($status == "On-going"){
                                      ?><span class="label label-success">On-going</span><?php
-                                  }else if ($status === "Closed")
+                                  }else if ($status == "Closed")
                                      ?><span class="label label-danger">Closed</span><?php
-                                  }else if ($status === "Pending"){
+                                  }else if ($status == "Pending"){
                                      ?><span class="label label-warning">Pending</span><?php
-                                  }
+                                  }*/
+                                  ($status=='On-Going')?.'<span class="label label-success">On-going</span>'.:.'<span class="label label-danger">Closed</span>'
                                   /*"<span class=\"label ".($status == 'On-Going' ? "label-success">" : "label-danger\">").$status."</span>"*/,
 
                                   '<a href="#" data-toggle="modal" data-remote="/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
