@@ -226,7 +226,7 @@ class StaffController extends AppController
             }
 
             if ($this->Staff->save($user)) {
-                $this->Flash->success(__('Your profile has been updated.'));
+                $this->Flash->success(__('Your profile has been updated.'.$filePath));
                 return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('Unable to edit your profile.'));
