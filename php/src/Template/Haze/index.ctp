@@ -1,5 +1,3 @@
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src="script/haze.js"></script>
 
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
@@ -20,7 +18,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_haze_btn">Add PSI records</button>
+            <button class="btn btn-block btn-success" id="add_haze_btn"  data-toggle="modal" data-target="#addHaze">Add PSI records</button>
           </div>
 
           <div class="row">
@@ -100,47 +98,52 @@
 
 
       <!-- Add PSI Readings - Haze Form -->
-    <div id="add_haze_field">
-        <form role="form" id="add_haze_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add PSI Readings</h4>
-            <div class="box-body">
-            <!-- Region -->
-            <div class="form-group">
-                <label>Region</label>
-                <input type="text" class="form-control" id="region_input" placeholder="Enter region in Singapore">
-            </div>
-            <!-- PSI Value -->
-            <div class="form-group">
-                <label>PSI Value</label>
-                <input type="text" class="form-control" id="psi_value_input" placeholder="Enter PSI value of the region">
-            </div>
-            <!-- Air Quality Descriptor : Good, Moderate, Unhealthy, Hazardous -->
-            <div class="form-group">
-               <label>Air Quality Descriptor</label>
-                <select class="form-control" id="severity_input">
-                   <option value="good">Good</option>
-                   <option value="moderate">Moderate</option>
-                   <option value="unhealthy">Unhealthy</option>
-                   <option value="hazardous">Hazardous</option>
-                </select>
-            </div>
-            <!-- Date / Time -->
-            <div class="form-group">
-                <label>Date/Time</label>
-                <div class="input-group">
-                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" class="form-control" id="datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
-                </div>
-            </div>
-            <!-- Remarks -->
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
-            </div>
-            </div> <!--./box-body-->
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+    <div class="modal fade" id="addHaze" tabindex="-1" role="dialog" aria-labelledby="addHaze" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="addHaze">Add New Region</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <!-- Region -->
+              <div class="form-group">
+                  <label>Region</label>
+                  <input type="text" class="form-control" id="region_input" placeholder="Enter region in Singapore">
+              </div>
+              <!-- PSI Value -->
+              <div class="form-group">
+                  <label>PSI Value</label>
+                  <input type="text" class="form-control" id="psi_value_input" placeholder="Enter PSI value of the region">
+              </div>
+              <!-- Air Quality Descriptor : Good, Moderate, Unhealthy, Hazardous -->
+              <div class="form-group">
+                 <label>Air Quality Descriptor</label>
+                  <select class="form-control" id="severity_input">
+                     <option value="good">Good</option>
+                     <option value="moderate">Moderate</option>
+                     <option value="unhealthy">Unhealthy</option>
+                     <option value="hazardous">Hazardous</option>
+                  </select>
+              </div>
+              <!-- Date / Time -->
+              <div class="form-group">
+                  <label>Date/Time</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    <input type="text" class="form-control" id="datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
+                  </div>
+              </div>
+              <!-- Remarks -->
+              <div class="form-group">
+                  <label>Remarks</label>
+                  <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
+              </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>

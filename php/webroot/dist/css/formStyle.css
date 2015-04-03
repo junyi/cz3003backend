@@ -15,13 +15,23 @@
 
 /*FORM*/
 #add_incident_categories_form{background-color:#FFF; border-radius:10px; width:25%; margin: 5% auto 0 auto; padding:0.3% 2% 4.5% 2%;}
-#add_incident_form, #add_dengue_form, #add_haze_form, #add_agency_form, #add_staff_accounts_form{
+#add_dengue_form, #add_haze_form, #add_agency_form, #add_staff_accounts_form{
 	background-color:#FFF; border-radius:10px; width:45%; margin: 5% auto 0 auto; padding:0.3% 2% 4.5% 2%; overflow: auto; max-height:500px;
 }
 
 
 #close_button{background:url(../img/close_button.png) no-repeat; width:30px; height:30px; display:block;}
 
+/* Google Places Autocomplete */
+.pac-container{
+  z-index: 1050 !important;
+}
 
-
-
+[data-notify="progressbar"] {
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 5px;
+}

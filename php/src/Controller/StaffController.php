@@ -99,6 +99,12 @@ class StaffController extends AppController
 
     public function logout()
     {
+        $this->request->session()->destroy();
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function editProfile()
+    {
+
     }
 }

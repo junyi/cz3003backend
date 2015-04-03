@@ -325,7 +325,7 @@ $DB = [
 
 $LOCAL = array('localhost', '127.0.0.1');
 
-if (in_array($_SERVER['SERVER_NAME'], $LOCAL)){
+if (in_array($_SERVER['SERVER_NAME'], $LOCAL) || in_array(explode(':', $_SERVER['HTTP_HOST'])[0], $LOCAL)){
     $DB['Datasources']['default']['host'] = 'localhost';
     $DB['Datasources']['default']['port'] = '3308';
     $DB['Datasources']['default']['username'] = 'adminSH5rxhi';

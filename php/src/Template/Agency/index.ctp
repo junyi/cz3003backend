@@ -1,4 +1,3 @@
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
       <script src="script/agency.js"></script>
 
       <!-- ........................................COPY HERE........................................ -->

@@ -34,4 +34,15 @@ class HazeController extends AppController
         
         $this->set('page', 'haze');
     }
+
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access
+        if (isset($user['role'])) {
+            return true;
+        }
+
+        // Default deny
+        return false;
+    }
 }

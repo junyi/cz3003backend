@@ -52,8 +52,9 @@ class AppController extends Controller
                 'controller' => 'Staff',
                 'action' => 'login',
             ],
-            'authError' => 'Did you really think you are allowed to see that?',
-            'loginRedirect' => '/Dashboard',
+            'authorize' => 'Controller',
+            'authError' => 'You are not authorized to access this area',
+            'loginRedirect' => '/dashboard',
             'logoutRedirect' => '/login'
         ]);
     }
@@ -78,7 +79,6 @@ class AppController extends Controller
 
     public function isAuthorized($user)
     {   
-        return true;
         // Admin can access every action
         if (isset($user['role']) && $user['role'] === 'Administrator') {
             return true;

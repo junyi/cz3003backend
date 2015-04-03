@@ -16,12 +16,16 @@
     <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- Daterange picker -->
     <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap-datetimepicker -->
+    <link href="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="dist/css/skins/_all-skins.css" rel="stylesheet" type="text/css" />
-
+    <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
     
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -101,7 +105,7 @@
                       <a href="index.php?pg=edit_profile" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -132,7 +136,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <?php if ($page == "dashboard"){ ?>  <li class= "active treeview"> <?php }else{ ?> <li class= "treeview"> <?php }?>
-              <a href="/Dashboard">
+              <a href="/dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
               </a>
             </li>
@@ -146,14 +150,17 @@
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "report_incident"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                    <a href="ReportIncident"><i class="fa fa-circle-o"></i>Report Incidents <span class="label label-primary pull-right">3</span></a>
+                    <a href="reportIncident"><i class="fa fa-circle-o"></i>Report Incidents <span class="label label-primary pull-right">3</span></a>
                 </li>
                 <?php if ($page == "incidents"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                    <a href="Incident"><i class="fa fa-circle-o"></i>Incidents</a>
+                    <a href="incident"><i class="fa fa-circle-o"></i>Incidents</a>
                 </li>
-                <?php if ($page == "incident_category"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="IncidentCategory"><i class="fa fa-circle-o"></i>Incident Category</a>
+                <?php if ($user['role'] === 'Administrator') {
+                  if ($page == "incident_category"){ ?>  
+                  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+                  <a href="incidentCategory"><i class="fa fa-circle-o"></i>Incident Category</a>
                 </li>
+                <?php }?>
               </ul>
             </li>
             
@@ -166,16 +173,17 @@
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "dengue"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="Dengue"><i class="fa fa-circle-o"></i>Dengue</a>
+                  <a href="dengue"><i class="fa fa-circle-o"></i>Dengue</a>
                 </li>
                 <?php if ($page == "haze"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="Haze"><i class="fa fa-circle-o"></i>Haze</a>
+                  <a href="haze"><i class="fa fa-circle-o"></i>Haze</a>
                 </li>
               </ul>
             </li>
 
             <!-- MANAGE CONTACTS -->
-            <?php if ($page == "agency" || $page == "subscribers"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+            <?php if ($user['role'] === 'Administrator') {
+              if ($page == "agency" || $page == "subscribers"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="#">
                 <i class="fa fa-envelope"></i>
                 <span>Contacts</span>
@@ -183,16 +191,18 @@
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "agency"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="Agency"><i class="fa fa-circle-o"></i>Agency</a>
+                  <a href="agency"><i class="fa fa-circle-o"></i>Agency</a>
                 </li>
                 <?php if ($page == "subscribers"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="Subscriber"><i class="fa fa-circle-o"></i>Subscribers</a>
+                  <a href="subscriber"><i class="fa fa-circle-o"></i>Subscribers</a>
                 </li>
               </ul>
             </li>
+            <?php }?>
 
             <!-- MANAGE ACCOUNTS -->
-            <?php if ($page == "staff_account"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+            <?php if ($user['role'] === 'Administrator') {
+              if ($page == "staff_account"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>Accounts</span>
@@ -200,13 +210,15 @@
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "staff_account"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="StaffAccount"><i class="fa fa-circle-o"></i>Staff Account</a>
+                  <a href="staff"><i class="fa fa-circle-o"></i>Staff Account</a>
                 </li>
               </ul>
             </li>
+            <?php }?>
 
             <!-- GENERATE REPORTS -->
-            <?php if ($page == "incident_report" || $page == "event_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+            <?php if ($user['role'] === 'Administrator') {
+              if ($page == "incident_report" || $page == "event_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="#">
                 <i class="fa fa-book"></i>
                 <span>Reports</span>
@@ -214,20 +226,21 @@
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "incident_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="IncidentReport"><i class="fa fa-circle-o"></i>Incident Report</a>
+                  <a href="incidentReport"><i class="fa fa-circle-o"></i>Incident Report</a>
                 </li>
                 <?php if ($page == "event_report"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
-                  <a href="EventReport"><i class="fa fa-circle-o"></i>Event Report</a>
+                  <a href="eventReport"><i class="fa fa-circle-o"></i>Event Report</a>
                 </li>
               </ul>
             </li>
+            <?php }?>
             
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
       <!-- .............................................END OF NAVIGATION............................................. -->
-
+      
       <?= $this->fetch('content') ?>
 
 
@@ -275,6 +288,45 @@
     <script src="plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
     <script src="plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+    <!-- bootstrap-datetimepicker -->
+    <script src="bootstrap/js/collapse.js" type="text/javascript"></script>
+    <script src="bootstrap/js/transition.js" type="text/javascript"></script>
+    <script src="plugins/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+
+    <!-- bootstrap-notify -->
+    <script src="plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- formvalidation -->
+    <script src="plugins/formvalidation/formValidation.min.js"></script>
+    <script src="plugins/formvalidation/bootstrap.min.js"></script>
+
+    <?php
+      switch ($page) {
+        case 'agency':
+          ?><script src="script/agency.js"></script><?php
+          break;
+        case 'incident':
+          ?>
+          <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+          <script src="dist/js/jquery.geocomplete.min.js"></script>
+          <script src="script/incidents.js"></script><?php
+          break;
+        case 'haze':
+          ?><script src="script/haze.js"></script><?php
+          break;
+        case 'dengue':
+          ?><script src="script/dengue.js"></script><?php
+          break;
+        case 'staff_account':
+          ?><script src="script/staff_accounts.js"></script><?php
+          break;
+        default:
+          break;
+      }
+    ?>
+    
+    <?= $this->Flash->render(); ?>
 
   </body>
 </html>

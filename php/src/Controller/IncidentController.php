@@ -28,13 +28,10 @@ use Cake\Error\Debugger;
  */
 class IncidentController extends AppController
 {
+    public $helper = ['Time'];
 
-    public function index()
+    private function getIncidents()
     {
-        parent::index();
-        
-        $this->set('page', 'incident');
-
         $query = $this->Incident->find('all')->contain(['IncidentCategory']);
 
         // Iteration will execute the query.
@@ -52,5 +49,95 @@ class IncidentController extends AppController
         $results = $query->toArray();
 
         $this->set('incidents', $results);
+    }
+
+    private function getIncidentCategoryOptions()
+    {
+        $query = $this->Incident->IncidentCategory->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $results = array_map(function($v){
+            return $v->incidentCategoryTitle;
+        }, $results);
+
+        $this->set('incident_category_options', $results);
+    }
+
+    public function index()
+    {
+        parent::index();
+
+        $this->set('page', 'incident');
+
+        $this->getIncidents();
+
+    }
+
+    public function form()
+    {
+        if ($this->request->is('get')) {
+            $action = $this->request->query['action'];
+            if ($action === 'add') {
+                $this->getIncidentCategoryOptions();
+            }
+        }
+    }
+
+    public function add()
+    {
+        $this->autoRender = false;
+        $incident = $this->Incident->newEntity();
+        if ($this->request->is('post')) {
+            $incident = $this->Incident->patchEntity($incident, $this->request->data);
+            if ($this->Incident->save($incident)) {
+                $this->Flash->success(__('The incident has been added.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to add your incident.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function edit()
+    {
+        $this->autoRender = false;
+        $incident = $this->Incident->newEntity();
+        if ($this->request->is('post')) {
+            $incident = $this->Incident->patchEntity($incident, $this->request->data);
+            if ($this->Incident->save($incident)) {
+                $this->Flash->success(__('The incident has been added.'));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Unable to add your incident.'));
+            }
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access
+        if (isset($user['role'])) {
+            return true;
+        }
+
+        // Default deny
+        return false;
     }
 }

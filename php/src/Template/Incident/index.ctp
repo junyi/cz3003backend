@@ -4,8 +4,6 @@ use Cake\Error\Debugger;
 
 ?>
 
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src="script/incidents.js"></script>
 
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
@@ -17,7 +15,7 @@ use Cake\Error\Debugger;
             <small> to add, edit, or remove incident</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incidents</li>
           </ol>
@@ -26,7 +24,7 @@ use Cake\Error\Debugger;
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_incident_btn">Add Incident</button>
+            <button class="btn btn-block btn-success" href="remote.html" id="add_incident_btn" data-toggle="modal" data-target="#incident_modal">Add Incident</button>
           </div>
 
           <div class="row">
@@ -65,7 +63,7 @@ use Cake\Error\Debugger;
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
                                   "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>",
-                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
+                                  '<a href="#" data-toggle="modal" data-target="#editIncident"> Edit </a> | <a href="#">Delete</a>'
                               )
                           );
                       }
@@ -89,55 +87,64 @@ use Cake\Error\Debugger;
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
-    <!-- Add Incident Form -->
-    <div id="add_incident_field">
-        <form role="form" id="add_incident_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add Incident</h4>
-            <div class="box-body">
-            <!-- Incident Title -->
-            <div class="form-group">
-                <label>Incident Title</label>
-                <input type="text" class="form-control" id="incident_title_input" placeholder="Enter incident categories">
-            </div>
-            <!-- Date / Time -->
-            <div class="form-group">
-                <label>Date/Time</label>
-                <div class="input-group">
-                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" class="form-control" id="incident_datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
-                </div><!-- /.input group -->
-            </div><!-- /.form group -->
-            <!-- Location -->
-            <div class="form-group">
-                <label>Location</label>
-                <input type="text" class="form-control" id="incident_location_input" placeholder="Enter the location where the incident happened">
-            </div>
-            <!-- Incident Category -->
-            <div class="form-group">
-               <label>Incident Category</label>
-                <select class="form-control" id="incident_category_id">
-                   <option value="1">[Incident Category 1]</option>
-                   <option value="2">[Incident Category 2]</option>
-                </select>
-            </div>
-            <!-- Status : On-going, Closed -->
-            <div class="form-group">
-               <label>Status</label>
-                <select class="form-control" id="incident_status">
-                   <option value="ongoing">On-going</option>
-                   <option value="closed">Closed</option>
-                </select>
-            </div>
-            <!-- Remarks -->
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
-            </div>
-            </div> <!--./box-body-->
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+    <!-- Modal -->
+    <div class="modal fade" id="incident_modal" tabindex="-1" role="dialog" aria-labelledby="Incident modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="modal_title">Add Incident</h4>
+          </div>
+          <div class="modal-body">
+            <form id="add_incident_form" action="/incident/add" method="post">
+              <!-- Incident Title -->
+              <div class="form-group">
+                  <label>Incident Title</label>
+                  <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title">
+              </div>
+              <!-- Date / Time -->
+              <div class="form-group">
+                  <label>Date/Time</label>
+                  <div class="input-group date">
+                    <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
+                    <input type="text" class="form-control" name="incidentDateTime" placeholder="DD/MM/YYYY hh:mm A" id="incident_datetime_input"/>
+                  </div><!-- /.input group -->
+              </div><!-- /.form group -->
+              <!-- Location -->
+              <div class="form-group">
+                  <label>Location</label>
+                  <input type="text" class="form-control" name="address" id="incident_location_input" placeholder="Enter the location where the incident happened">
+                  <div class="details">
+                    <input type="hidden" data-geo="lat" name="latitude" value=""/>
+                    <input type="hidden" data-geo="lng" name="longitude" value=""/>
+                  </div>
+              </div>
+              <!-- Incident Category -->
+              <div class="form-group">
+                  <label>Incident Category</label>
+                  <select class="form-control" name="incidentCategoryID" id="incident_category_id">
+                    <?php foreach($incident_category_options as $k => $v) {?>
+                    <option value=<?='"'. ($k+1) . '"'?>><?=$v?></option>
+                    <?php }?>
+                  </select>
+              </div>
+              <!-- Status : On-going, Closed -->
+              <div class="form-group">
+                 <label>Status</label>
+                  <select class="form-control" name="incidentStatus" id="incident_status">
+                     <option value="On-going">On-going</option>
+                     <option value="Closed">Closed</option>
+                  </select>
+              </div>
+              <!-- Remarks -->
+              <div class="form-group">
+                  <label>Remarks</label>
+                  <textarea class="form-control" name="incidentDetails" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          </div>
+        </div>
+      </div>
     </div>
  

@@ -31,7 +31,7 @@ class AgencyController extends AppController
     public function index()
     {
         parent::index();
-        
+
         $this->set('page', 'agency');
 
         $query = $this->Agency->find('all');
@@ -52,4 +52,6 @@ class AgencyController extends AppController
 
         $this->set('agencies', $results);
     }
+
+    
 }

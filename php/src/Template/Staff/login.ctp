@@ -3,7 +3,6 @@
 ?>
 
 <?= $this->Flash->render(); ?>
-<?= $this->Flash->render('auth'); ?>
 
 <?php echo $this->Form->create(); ?>
 <!-- <form name='User' action="login" method="post"> -->

@@ -1,6 +1,3 @@
-      <link href="dist/css/formStyle.css" rel="stylesheet" type="text/css" />
-      <script src="script/staff_accounts.js"></script>
-
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">

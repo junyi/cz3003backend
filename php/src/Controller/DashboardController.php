@@ -32,8 +32,19 @@ class DashboardController extends AppController
     public function index()
     {
         parent::index();
-        
+
         $this->set('page', 'dashboard');
 
+    }
+
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access dashboard
+        if (isset($user['role'])) {
+            return true;
+        }
+
+        // Default deny
+        return false;
     }
 }

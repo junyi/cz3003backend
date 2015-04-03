@@ -34,4 +34,15 @@ class ReportIncidentController extends AppController
         
         $this->set('page', 'report_incident');
     }
+
+    public function isAuthorized($user)
+    {   
+        // Logged in users can access
+        if (isset($user['role'])) {
+            return true;
+        }
+
+        // Default deny
+        return false;
+    }
 }

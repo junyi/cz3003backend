@@ -20,7 +20,7 @@
         <!-- Main content -->
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_dengue_btn">Add New Region</button>
+            <button class="btn btn-block btn-success" id="add_dengue_btn" data-toggle="modal" data-target="#addDengue">Add New Region</button>
           </div>
 
           <div class="row">
@@ -91,46 +91,51 @@
       </div><!-- /.content-wrapper -->
 
     <!-- Add New Region - Dengue Form -->
-    <div id="add_dengue_field">
-        <form role="form" id="add_dengue_form">
-            <div align="right" style="padding-top:20px"><a href="#" id='close_button'> &nbsp;</a></div>
-            <h4>Add New Region</h4>
-            <div class="box-body">
-            <!-- Region -->
-            <div class="form-group">
-                <label>Region</label>
-                <input type="text" class="form-control" id="region_input" placeholder="Enter region in Singapore">
-            </div>
-            <!-- No of people infected -->
-            <div class="form-group">
-                <label>No of people infected</label>
-                <input type="text" class="form-control" id="no_of_people_infected_input" placeholder="Enter no of people infected">
-            </div>
-            <!-- Severity : Alert, Warning, Info -->
-            <div class="form-group">
-               <label>Severity</label>
-                <select class="form-control" id="severity_input">
-                   <option value="alert">Alert</option>
-                   <option value="warning">Warning</option>
-                   <option value="info">Info</option>
-                </select>
-            </div>
-            <!-- Date / Time -->
-            <div class="form-group">
-                <label>Date/Time</label>
-                <div class="input-group">
-                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" class="form-control" id="datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
+    <div class="modal fade" id="addDengue" tabindex="-1" role="dialog" aria-labelledby="addDengue" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="addDengue">Add New Region</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+                <!-- Region -->
+                <div class="form-group">
+                    <label>Region</label>
+                    <input type="text" class="form-control" id="region_input" placeholder="Enter region in Singapore">
                 </div>
-            </div>
-            <!-- Remarks -->
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
-            </div>
-            </div> <!--./box-body-->
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+                <!-- No of people infected -->
+                <div class="form-group">
+                    <label>No of people infected</label>
+                    <input type="text" class="form-control" id="no_of_people_infected_input" placeholder="Enter no of people infected">
+                </div>
+                <!-- Severity : Alert, Warning, Info -->
+                <div class="form-group">
+                   <label>Severity</label>
+                    <select class="form-control" id="severity_input">
+                       <option value="alert">Alert</option>
+                       <option value="warning">Warning</option>
+                       <option value="info">Info</option>
+                    </select>
+                </div>
+                <!-- Date / Time -->
+                <div class="form-group">
+                    <label>Date/Time</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                      <input type="text" class="form-control" id="datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
+                    </div>
+                </div>
+                <!-- Remarks -->
+                <div class="form-group">
+                    <label>Remarks</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter remarks" style="resize:vertical"></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>

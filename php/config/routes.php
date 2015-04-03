@@ -49,17 +49,22 @@ Router::scope('/', function ($routes) {
      */
     $routes->connect('/', ['controller' => 'Staff', 'action' => 'login']);
     $routes->connect('/login', ['controller' => 'Staff', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Staff', 'action' => 'logout']);
 
-    $routes->connect('/Agency', ['controller' => 'Agency']);
-    $routes->connect('/Dengue', ['controller' => 'Dengue']);
-    $routes->connect('/EventReport', ['controller' => 'EventReport']);
-    $routes->connect('/Haze', ['controller' => 'Haze']);
-    $routes->connect('/IncidentCategory', ['controller' => 'IncidentCategory']);
-    $routes->connect('/Incident', ['controller' => 'Incident']);
-    $routes->connect('/IncidentReport', ['controller' => 'IncidentReport']);
-    $routes->connect('/ReportIncident', ['controller' => 'ReportIncident']);
-    $routes->connect('/StaffAccount', ['controller' => 'Staff']);
-    $routes->connect('/Subscriber', ['controller' => 'Subscriber']);
+    $routes->connect('/agency', ['controller' => 'Agency']);
+    $routes->connect('/dengue', ['controller' => 'Dengue']);
+    $routes->connect('/eventReport', ['controller' => 'EventReport']);
+    $routes->connect('/haze', ['controller' => 'Haze']);
+    $routes->connect('/incidentCategory', ['controller' => 'IncidentCategory']);
+    $routes->connect('/incident', ['controller' => 'Incident']);
+    $routes->connect('/incident/add', ['controller' => 'Incident', 'action' => 'add']);
+    $routes->connect('/incidentReport', ['controller' => 'IncidentReport']);
+    $routes->connect('/reportIncident', ['controller' => 'ReportIncident']);
+
+    $routes->connect('/staff', ['controller' => 'Staff']);
+    $routes->connect('/editProfile', ['controller' => 'Staff', 'action' => 'editProfile']);
+
+    $routes->connect('/subscriber', ['controller' => 'Subscriber']);
 
 
     /**
