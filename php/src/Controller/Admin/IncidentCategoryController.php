@@ -69,13 +69,13 @@ class IncidentCategoryController extends AppController
 
             if ($action === 'add') {
                 $this->set('header', "Add Incident Category");
-                $this->set('action', '/incidentCategory/'.$action);
+                $this->set('action', '/admin/incidentCategory/'.$action);
 
             } else if ($action === 'edit') {
                 $id = $this->request->query['id'];
 
                 $this->set('header', "Edit Incident Category");
-                $this->set('action', '/incidentCategory/'.$action.'?id='.$id);
+                $this->set('action', '/admin/incidentCategory/'.$action.'?id='.$id);
                 $incidentCategory = $this->getIncidentCategory($id);
                 $this->set('incidentCategory', $incidentCategory);
 

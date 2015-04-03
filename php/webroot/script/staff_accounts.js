@@ -1,32 +1,45 @@
-document.addEventListener('DOMContentLoaded', function (arg){
-	
-	// CLOSE FORM BUTTON
-	var closeBtn = document.getElementById('close_button');
-
-	// ADD HAZE BUTTON, FIELD, AND FORM
-	var addStaffAccountsBtn = document.getElementById('add_staff_accounts_btn');
-	var addStaffAccountsField = document.getElementById('add_staff_accounts_field');
-	var addStaffAccountsForm = document.getElementById('add_staff_accounts_form');
-	
-	
-	// ADD HAZE EVENT HANDLER
-	
-	addStaffAccountsBtn.onclick = function (arg){
-		addStaffAccountsField.style.display = 'block';
-	};
-	
-	addStaffAccountsField.onclick = function (arg){
-		this.style.display = 'none';
-	};
-
-	// CLOSE BTN EVENT HANDLER
-	closeBtn.onclick = function (arg){
-		addStaffAccountsField.style.display = 'none';
-	};
-
-	addStaffAccountsForm.onclick = function (arg){
-		arg.stopPropagation();
-	};
-
-	
-});
+$('#staff_modal').on('loaded.bs.modal', function (e) {
+	$('#add_staff_accounts_form')
+	    .formValidation({
+	        framework: 'bootstrap',
+	        icon: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            name: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The title is required'
+	                    }
+	                }
+	            },
+	            email: {
+	                validators: {
+	                    emailAddress: {
+	                        message: 'The value is not a valid email address'
+	                    },
+	                	notEmpty: {
+	                        message: 'The email is required'
+	                    }
+	                }
+	            },
+	            contact: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The location is required'
+	                    },
+	                    digits: {
+	                        message: 'The value must consists of only digits'
+	                    },
+	                    stringLength: {
+	                        message: 'The value must be exactly 8 digits',
+	                        max: 8,
+	                        min: 8
+	                    }
+	                }
+	            }
+	        }
+	    });
+})

@@ -59,8 +59,8 @@
           <div class="form-group">
               <label>Incident Category</label>
               <select class="form-control" name="incidentCategoryID" id="incident_category_id">
-                <?php foreach($incident_category_options as $k => $v) {?>
-                <option <?php if($incidentCategoryID == ($k+1)){echo "selected";} ?> value=<?='"'. ($k+1) . '"'?>><?=$v?></option>
+                <?php foreach($incident_category_options as $v) {?>
+                <option <?php if($incidentCategoryID == $v['id']){echo "selected";} ?> value=<?='"'. $v['id'] . '"'?>><?=$v['title']?></option>
                 <?php }?>
               </select>
           </div>

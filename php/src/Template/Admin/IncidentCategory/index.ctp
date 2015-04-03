@@ -51,7 +51,7 @@
                                   $num++,
                                   $i->incidentCategoryTitle,
                                   $i->incidentCategoryDescription,
-                                  '<a href="#" data-toggle="modal" data-remote="/incidentCategory/form?action=edit&id='.$i->incidentCategoryID.'" data-target="#incident_category_modal"> Edit </a> | <a href="/incidentCategory/delete?id='.$i->incidentCategoryID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
+                                  '<a href="#" data-toggle="modal" data-remote="/admin/incidentCategory/form?action=edit&id='.$i->incidentCategoryID.'" data-target="#incident_category_modal"> Edit </a> | <a href="/admin/incidentCategory/delete?id='.$i->incidentCategoryID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
                       }

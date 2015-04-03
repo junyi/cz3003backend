@@ -3,7 +3,7 @@
 
   if($incidentCategory){
     $incidentCategoryTitle = $incidentCategory['incidentCategoryTitle'];
-    $incidentCategoryDetails = $incidentCategory['incidentCategoryDescription'];
+    $incidentCategoryDescription = $incidentCategory['incidentCategoryDescription'];
   } else {
     $incidentCategoryTitle = "";
     $incidentCategoryDescription = "";
@@ -28,7 +28,7 @@
           <!-- Description -->
           <div class="form-group">
               <label>Description</label>
-              <textarea class="form-control" name="incidentCategoryDetails" rows="3" placeholder="Enter incident category description" style="resize:vertical"><?= $incidentCategoryDescription ?></textarea>
+              <textarea class="form-control" name="incidentCategoryDescription" rows="3" placeholder="Enter incident category description" style="resize:vertical"><?= $incidentCategoryDescription ?></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>

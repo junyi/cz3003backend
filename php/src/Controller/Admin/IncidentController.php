@@ -82,7 +82,10 @@ class IncidentController extends AppController
         $results = $query->toArray();
 
         $results = array_map(function($v){
-            return $v->incidentCategoryTitle;
+            return [
+                    'title' => $v->incidentCategoryTitle,
+                    'id' => $v->incidentCategoryID
+                ];
         }, $results);
 
         $this->set('incident_category_options', $results);
@@ -108,14 +111,14 @@ class IncidentController extends AppController
             if ($action === 'add') {
                 $this->getIncidentCategoryOptions();
                 $this->set('header', "Add Incident");
-                $this->set('action', '/incident/'.$action);
+                $this->set('action', '/admin/incident/'.$action);
 
             } else if ($action === 'edit') {
                 $id = $this->request->query['id'];
 
                 $this->getIncidentCategoryOptions();
                 $this->set('header', "Edit Incident");
-                $this->set('action', '/incident/'.$action.'?id='.$id);
+                $this->set('action', '/admin/incident/'.$action.'?id='.$id);
                 $incident = $this->getIncident($id);
                 $this->set('incident', $incident);
 
@@ -147,6 +150,11 @@ class IncidentController extends AppController
             $id = $this->request->query['id'];
             $incident = $this->getIncident($id);
             $incident = $this->Incident->patchEntity($incident, $this->request->data);
+
+            $session = $this->request->session();
+            $user = $session->read('Auth.User');
+            $incident->set('staffID', $user['staffID']);
+
             if ($this->Incident->save($incident)) {
                 $this->Flash->success(__('The incident has been edited.'));
                 return $this->redirect(['action' => 'index']);

@@ -104,20 +104,28 @@
                 <!-- Full Name -->
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" class="form-control" id="full_name_input" placeholder="Enter full name">
+                    <input type="text" class="form-control" id="full_name_input" name="name" placeholder="Enter full name">
                 </div>
                 <!-- Email -->
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" id="email_input" placeholder="Enter email">
+                    <input type="email" class="form-control" id="email_input" name="email" placeholder="Enter email">
                 </div>
                 <!-- Contact -->
                 <div class="form-group">
                     <label>Contact</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                      <input type="text" class="form-control" id="contact_input" placeholder="Enter contact no"/>
+                      <input type="text" class="form-control" id="contact_input" maxlength="8" name="contact" placeholder="Enter contact no"/>
                     </div>
+                </div>
+                <!-- Gender : Male, Female -->
+                <div class="form-group">
+                   <label>Gender</label>
+                    <select class="form-control" id="role_input">
+                       <option value="Male">Male</option>
+                       <option value="Female">Female</option>
+                    </select>
                 </div>
                 <!-- Role : Administrator, Call Operator -->
                 <div class="form-group">
