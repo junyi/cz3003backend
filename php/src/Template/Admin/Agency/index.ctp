@@ -47,7 +47,7 @@
                     </tr>
                     <?php 
                       foreach ($agencies as $i) {               
-                          $status = $i->incidentStatus;
+                          //$status = $i->incidentStatus;
                           echo $this->Html->tableCells(
                               array(
                                   $i->agencyID,
