@@ -132,6 +132,11 @@ class IncidentController extends AppController
         $incident = $this->Incident->newEntity();
         if ($this->request->is('post')) {
             $incident = $this->Incident->patchEntity($incident, $this->request->data);
+
+            $session = $this->request->session();
+            $user = $session->read('Auth.User');
+            $incident->set('staffID', $user['staffID']);
+            
             if ($this->Incident->save($incident)) {
                 $this->Flash->success(__('The incident has been added.'));
                 return $this->redirect(['action' => 'index']);
@@ -157,7 +162,7 @@ class IncidentController extends AppController
 
             if ($this->Incident->save($incident)) {
                 $this->Flash->success(__('The incident has been edited.'));
-                return $this->redirect(['action' => 'index']);
+                // return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('Unable to edit your incident.'));
             }
