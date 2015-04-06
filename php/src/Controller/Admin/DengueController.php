@@ -27,12 +27,46 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class DengueController extends AppController
 {
+    var $dengueMapping = [
+        'central' => 'Central',
+        'northeast' => 'North East',
+        'northwest' => 'North West',
+        'southeast' => 'South East',
+        'southwest' => 'South West',
+        'cluster' => 'Cluster'
+    ];
+
+    private function getDengueInfo()
+    {
+        $this->loadModel('Dengue');
+
+        $query = $this->Dengue->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('dengueMapping', $this->dengueMapping);
+        $this->set('dengue', $results);
+    }
 
     public function index()
     {
         parent::index();
         
         $this->set('page', 'dengue');
+
+        $this->getDengueInfo();
     }
 
     public function isAuthorized($user)

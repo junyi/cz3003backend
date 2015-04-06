@@ -105,43 +105,34 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Central Area</td>
-                    <td>15 people</td>
-                    <td><span class="label label-danger">Alert</span></td>
-                    <td><div class="sparkbar" data-color="#00a65a" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                  <tr>
-                    <td>NorthEast Area</td>
-                    <td>20 people</td>
-                    <td><span class="label label-danger">Alert</span></td>
-                    <td><div class="sparkbar" data-color="#f39c12" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                  <tr>
-                    <td>NorthWest Area</td>
-                    <td>3 people</td>
-                    <td><span class="label label-info">Info</span></td>
-                    <td><div class="sparkbar" data-color="#f56954" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                  <tr>
-                    <td>SouthEast Area</td>
-                    <td>9 people</td>
-                    <td><span class="label label-warning">Warning</span></td>
-                    <td><div class="sparkbar" data-color="#00c0ef" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                  <tr>
-                    <td>SouthWest Area</td>
-                    <td>10 people</td>
-                    <td><span class="label label-warning">Warning</span></td>
-                    <td><div class="sparkbar" data-color="#f39c12" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                  <tr>
-                    <td>Cluster</td>
-                    <td>10 people</td>
-                    <td><span class="label label-warning">Warning</span></td>
-                    <td><div class="sparkbar" data-color="#f56954" data-height="20">16 March 2015 - 13:00</div></td>
-                  </tr>
-                 
+                  <?php 
+                    foreach ($dengue as $i) {               
+                        $time = $i['postDateTime']->format('d-m-Y h:i A');
+                        $time = str_replace('-', '/', $time);
+                        $label = "";
+                        switch ($i->severity) {
+                          case 'Alert':
+                            $label = "danger";
+                            break;
+                          case 'Info':
+                            $label = "info";
+                            break;
+                          case 'Warning':
+                            $label = "warning";
+                            break;
+                          default:
+                            break;
+                        }
+                        echo $this->Html->tableCells(
+                            array(
+                                $dengueMapping[$i->region],
+                                ($i->noOfPeopleInfected)." people",
+                                "<span class=\"label label-$label\">$i->severity</span>",
+                                "<div class=\"sparkbar\" data-color=\"#00a65a\" data-height=\"20\">$time</div>"
+                            )
+                        );
+                    }
+                  ?>
                 </tbody>
               </table>
             </div><!-- /.table-responsive -->

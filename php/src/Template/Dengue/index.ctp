@@ -40,40 +40,38 @@
                       <th>Severity</th>
                       <th>Date/Time</th>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[No of people infected with dengue]</td>
-                      <td><span class="label label-danger">Alert</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[No of people infected with dengue]</td>
-                      <td><span class="label label-warning">Warning</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[No of people infected with dengue]</td>
-                      <td><span class="label label-info">Info</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
+                    <?php 
+                      $count = 1;
+                      foreach ($dengue as $i) {               
+                          $time = $i['postDateTime']->format('d-m-Y h:i A');
+                          $time = str_replace('-', '/', $time);
+                          $label = "";
+                          switch ($i->severity) {
+                            case 'Alert':
+                              $label = "danger";
+                              break;
+                            case 'Info':
+                              $label = "info";
+                              break;
+                            case 'Warning':
+                              $label = "warning";
+                              break;
+                            default:
+                              break;
+                          }
+                          echo $this->Html->tableCells(
+                              array(
+                                  $count++,
+                                  $dengueMapping[$i->region],
+                                  ($i->noOfPeopleInfected)." people",
+                                  "<span class=\"label label-$label\">$i->severity</span>",
+                                  "<div class=\"sparkbar\" data-color=\"#00a65a\" data-height=\"20\">$time</div>"
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
-                <!-- footer pagination -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                  </ul>
-                </div>
-                <!-- /.footer pagination -->
               </div><!-- /.box -->
             </div>
           </div>

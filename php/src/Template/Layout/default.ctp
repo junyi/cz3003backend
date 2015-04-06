@@ -1,9 +1,9 @@
-<? echo $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>TIMECrisis</title>
+    <?= $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />

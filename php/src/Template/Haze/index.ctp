@@ -39,47 +39,40 @@
                       <th>Air Quality Descriptor</th>
                       <th>Date/Time</th>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[PSI Value]</td>
-                      <td><span class="label label-success">Good</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[PSI Value]</td>
-                      <td><span class="label label-info">Moderate</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[PSI Value]</td>
-                      <td><span class="label label-warning">Unhealthy</span></td>
-                      <td>[Date/Time]</td>
-                    <tr>
-                      <td>4.</td>
-                      <td>[Region in Singapore]</td>
-                      <td>[PSI Value]</td>
-                      <td><span class="label label-danger">Hazardous</span></td>
-                      <td>[Date/Time]</td>
-                    </tr>
-                    </tr>
+                    <?php 
+                      $count = 1;
+                      foreach ($haze as $i) {               
+                          $time = $i['postDateTime']->format('d-m-Y h:i A');
+                          $time = str_replace('-', '/', $time);
+                          $label = "";
+                          switch ($i->airQualityDescriptor) {
+                            case 'Good':
+                              $label = "success";
+                              break;
+                            case 'Moderate':
+                              $label = "info";
+                              break;
+                            case 'Unhealthy':
+                            case 'Very unhealthy':
+                              $label = "warning";
+                              break;
+                            case 'Hazardous':
+                              $label = "danger";
+                              break;
+                          }
+                          echo $this->Html->tableCells(
+                              array(
+                                  $count++,
+                                  ucfirst($i->region),
+                                  $i->psiValue,
+                                  "<span class=\"label label-$label\">$i->airQualityDescriptor</span>",
+                                  "<div class=\"sparkbar\" data-color=\"#00a65a\" data-height=\"20\">$time</div>"
+                              )
+                          );
+                      }
+                    ?>
                   </table>
                 </div><!-- /.box-body -->
-                <!-- footer pagination -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                  </ul>
-                </div>
-                <!-- /.footer pagination -->
               </div><!-- /.box -->
             </div>
           </div>

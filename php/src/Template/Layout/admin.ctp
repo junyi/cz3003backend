@@ -1,5 +1,3 @@
-<? echo $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
-
 <?php
   if ($user['photo']) {
     $avatar = "../uploads/".$user['photo'];
@@ -13,6 +11,7 @@
     <meta charset="UTF-8">
     <title>TIMECrisis | Admin Panel </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <?= $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->

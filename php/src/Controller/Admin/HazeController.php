@@ -27,12 +27,36 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class HazeController extends AppController
 {
+    private function getHazeInfo()
+    {
+        $this->loadModel('Haze');
+
+        $query = $this->Haze->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('haze', $results);
+    }
 
     public function index()
     {
         parent::index();
         
         $this->set('page', 'haze');
+
+        $this->getHazeInfo();
     }
 
     public function isAuthorized($user)
