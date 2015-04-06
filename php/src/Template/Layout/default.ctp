@@ -24,7 +24,8 @@
     <link href="dist/css/skins/_all-skins.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
-
+    <!-- bootstrap-datetimepicker -->
+    <link href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
     
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,9 +37,10 @@
     
     
     <!-- START OF GOOGLE MAPS API -->
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=true"></script>
-    <script src="script/maps.js"></script>
+    <?php if ($page == "dashboard"){ ?>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=true"></script>
+      <script src="script/maps.js"></script>
+    <?php }?>
 </head>
   
   <body class="skin-blue">
@@ -218,6 +220,12 @@
 
     <!-- bootstrap-notify -->
     <script src="../plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- bootstrap-datetimepicker -->
+    <script src="../bootstrap/js/collapse.js" type="text/javascript"></script>
+    <script src="../bootstrap/js/transition.js" type="text/javascript"></script>
+    <script src="../plugins/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 
     <?php
       switch ($page) {

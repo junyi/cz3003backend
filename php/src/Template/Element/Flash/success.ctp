@@ -1,5 +1,4 @@
 <script>
-	// $(window).load(function(){
 		$.notify({
 			// options
 			message: <?= '"'.h($message).'"' ?>
@@ -17,6 +16,5 @@
 				exit: 'animated fadeOutUp'
 			},
 		});
-	// });
 	
 </script>

@@ -4,7 +4,8 @@ $('#incident_datetime_input').datetimepicker({
 
 $('#incident_location_input').geocomplete({
   details: ".details",
-  detailsAttribute: "data-geo"
+  detailsAttribute: "data-geo",
+  country: "sg"
 });
 
 $('#add_incident_form')

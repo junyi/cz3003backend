@@ -28,6 +28,35 @@ use Cake\Error\Debugger;
  */
 class IncidentController extends AppController
 {
+
+    private function getIncidentCategoryOptions()
+    {
+        $query = $this->Incident->IncidentCategory->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $results = array_map(function($v){
+            return [
+                    'title' => $v->incidentCategoryTitle,
+                    'id' => $v->incidentCategoryID
+                ];
+        }, $results);
+
+        $this->set('incident_category_options', $results);
+    }
+
 	private function getIncidents()
     {
         $query = $this->Incident->find('all')->contain(['IncidentCategory']);
@@ -61,7 +90,23 @@ class IncidentController extends AppController
 
     public function report()
     {
-        $this->set('page', 'report_incidents');
+        if ($this->request->is('get')) {
+            $this->set('page', 'report_incidents');
+            $this->getIncidentCategoryOptions();
+
+        } elseif ($this->request->is('post')) {
+            $this->autoRender = false;
+            $incident = $this->Incident->newEntity();
+            $incident = $this->Incident->patchEntity($incident, $this->request->data);
+
+            if ($this->Incident->save($incident)) {
+                $this->Flash->success(__("The incident has been reported. Thank you."));
+                return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__("Unable to report the incident. Please try again later."));
+                return $this->redirect(['action' => 'report']);
+            }
+        }
 
     }
 }

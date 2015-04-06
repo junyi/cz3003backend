@@ -44,7 +44,7 @@ $('#incident_modal').on('loaded.bs.modal', function (e) {
 	                        message: 'The value is not a valid date'
 	                    },
 	                    notEmpty: {
-	                        message: 'The location is required'
+	                        message: 'The date/time is required'
 	                    }
 	                }
 	            },

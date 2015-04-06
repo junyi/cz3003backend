@@ -37,6 +37,30 @@ class DashboardController extends AppController
         'cluster' => 'Cluster'
     ];
 
+    private function getHazeInfo()
+    {
+        $this->loadModel('Haze');
+
+        $query = $this->Dengue->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('dengueMapping', $this->dengueMapping);
+        $this->set('dengue', $results);
+    }
+
     private function getDengueInfo()
     {
         $this->loadModel('Dengue');

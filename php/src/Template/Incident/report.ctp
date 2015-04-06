@@ -20,18 +20,28 @@
           <div class="row">
             <div class="col-xs-8">
               <div class="box">
-                  <form role="form" id="add_incident_form">
+                  <form role="form" id="add_incident_form" action="/report" method="post">
                     <div class="box-body">
                     <!-- Incident Title -->
                     <div class="form-group">
                         <label>Incident Title</label>
-                        <input type="text" class="form-control" id="incident_title_input" placeholder="Enter incident categories">
+                        <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title">
+                    </div>
+
+                    <!-- Incident Category -->
+                    <div class="form-group">
+                        <label>Incident Category</label>
+                        <select class="form-control" name="incidentCategoryID" id="incident_category_id">
+                          <?php foreach($incident_category_options as $v) {?>
+                          <option value=<?='"'. $v['id'] . '"'?>><?=$v['title']?></option>
+                          <?php }?>
+                        </select>
                     </div>
                     
                     <!-- Details -->
                     <div class="form-group">
                         <label>Details</label>
-                        <textarea class="form-control" id="incident_details_input" rows="3" placeholder="Enter details" style="resize:vertical"></textarea>
+                        <textarea class="form-control" name="incidentDetails" id="incident_details_input" rows="3" placeholder="Enter details" style="resize:vertical"></textarea>
                     </div>
                     
                     <!-- Date / Time -->
@@ -39,7 +49,7 @@
                         <label>Date/Time</label>
                         <div class="input-group">
                           <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                          <input type="text" class="form-control" id="incident_datetime_input" placeholder="yyyy-mm-dd HH:mm"/>
+                          <input type="text" class="form-control" name="incidentDateTime" id="incident_datetime_input" placeholder="DD/MM/YYYY hh:mm A"/>
                         </div><!-- /.input group -->
                     </div><!-- /.form group -->
                     
@@ -55,12 +65,12 @@
                     
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" id="incident_pname_input" placeholder="Enter your name">
+                        <input type="text" class="form-control" id="incident_pname_input" name="publicName" placeholder="Enter your name">
                     </div>
                     
                     <div class="form-group">
                         <label>Contact</label>
-                        <input type="text" class="form-control" id="incident_pcontact_input" placeholder="Enter your contact number">
+                        <input type="text" class="form-control" id="incident_pcontact_input" name="publicContact" placeholder="Enter your contact number">
                     </div>
                     
                     </div> <!--./box-body-->
