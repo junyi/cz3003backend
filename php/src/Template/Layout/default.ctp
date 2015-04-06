@@ -1,12 +1,3 @@
-<?php
-    #Dynamically change the page based on the URL
-    if(isset($_GET['pg'])) {
-      $page=$_GET['pg'];
-    } else {
-      $page='dashboard';
-    }
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,6 +21,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="dist/css/skins/_all-skins.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
 
     
     
@@ -219,8 +212,14 @@
     <script src="plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
     <script src="plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+    <!-- formvalidation -->
+    <script src="../plugins/formvalidation/formValidation.min.js"></script>
+    <script src="../plugins/formvalidation/bootstrap.min.js"></script>
+
+    <!-- bootstrap-notify -->
+    <script src="../plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
     <?php
-      echo $page;
       switch ($page) {
         case 'report_incidents':
           ?>
@@ -228,10 +227,16 @@
           <script src="dist/js/jquery.geocomplete.min.js"></script>
           <script src="script/public/incidents.js"></script><?php
           break;
+        case 'subscribe':
+          ?>
+          <script src="script/public/subscribe.js"></script><?php
+          break;
         default:
           break;
       }
     ?>
+    
+    <?= $this->Flash->render(); ?>
 
   </body>
 </html>

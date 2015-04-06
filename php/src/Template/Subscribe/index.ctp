@@ -19,18 +19,18 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
-                  <form role="form" id="add_incident_form">
+                  <form role="form" id="subscribe_form" action="/subscribe/subscribe" method="post">
                     <div class="box-body">
                     <!-- Name -->
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" id="subscribe_name_input" placeholder="Enter your name">
+                        <input type="text" class="form-control" id="subscribe_name_input" name="subscriberName" placeholder="Enter your name">
                     </div>
                     
                     <!-- Email -->
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" id="subscribe_email_input" placeholder="Enter your email address">
+                        <input type="text" class="form-control" id="subscribe_email_input" name="email" placeholder="Enter your email address">
                     </div>
                     
                     </div> <!--./box-body-->

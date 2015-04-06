@@ -45,6 +45,7 @@ Router::scope('/', function ($routes) {
     $routes->connect('/', ['controller' => 'Dashboard']);
     $routes->connect('/about', ['controller' => 'About']);
     $routes->connect('/subscribe', ['controller' => 'Subscribe']);
+    $routes->connect('/subscribe/subscribe', ['controller' => 'Subscribe', 'action' => 'subscribe']);
     $routes->connect('/incident', ['controller' => 'Incident']);
     $routes->connect('/report', ['controller' => 'Incident', 'action' => 'report']);
     $routes->connect('/incident', ['controller' => 'Incident']);

@@ -35,4 +35,28 @@ class SubscribeController extends AppController
         $this->set('page', 'subscribe');
 
     }
+
+    public function subscribe()
+    {
+        $this->autoRender = false;
+    	$this->loadModel('Subscriber');
+        if ($this->request->is('post')) {
+            $subscriber = $this->Subscriber->newEntity();
+            $subscriber = $this->Subscriber->patchEntity($subscriber, $this->request->data);
+
+            if (!$subscriber->errors()){
+            	if ($this->Subscriber->save($subscriber)) {
+	                $this->Flash->success(__('Your subscription has been created'));
+	                return $this->redirect(['action' => 'index']);
+	            }else{
+	                $this->Flash->error(__('Unable to create subscription'));
+	                return $this->redirect(['action' => 'index']);
+	            }
+            }else{
+                $this->Flash->error(__($subscriber->errors()['email']['unique']));
+                return $this->redirect(['action' => 'index']);
+            }
+            
+        }
+    }
 }
