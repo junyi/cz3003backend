@@ -1,5 +1,5 @@
 #!/bin/bash
-cd "$OPENSHIFT_REPO_DIR"
+cd "$OPENSHIFT_REPO_DIR/php"
 echo "Fetching haze information..."
 bin/cake haze
 echo "Fetching dengue information..."
