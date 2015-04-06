@@ -30,50 +30,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#00a65a" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-success">On-going</span></td>
-                        </tr>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#f39c12" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-danger">Alert</span></td>
-                        </tr>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#f56954" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-info">Info</span></td>
-                        </tr>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#00c0ef" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-warning">Warning</span></td>
-                        </tr>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#f39c12" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-warning">Warning</span></td>
-                        </tr>
-                        <tr>
-                          <td><a href="#">[Incident Title]</a></td>
-			  <td><div class="sparkbar" data-color="#f56954" data-height="20">16 March 2015 - 13:00</div></td>
-                          <td>[Location]</td>
-                          <td><span class="label label-warning">Warning</span></td>
-                          
-                        </tr>
-                       
+                        <?php 
+                          foreach ($incidents as $i) {               
+                              $status = $i->incidentStatus;
+                              $incidentDateTime = $i['incidentDateTime']->format('d-m-Y h:i A');
+                              $incidentDateTime = str_replace('-', '/', $incidentDateTime);
+                              echo $this->Html->tableCells(
+                                  array(
+                                      '<a href="#">'. $i->incidentTitle .'</a>',
+                                      '<div class="sparkbar" data-color="#00a65a" data-height="20">'.$incidentDateTime.'</div>',
+                                      $i->address,
+                                      "<span class=\"label ".($status === 'On-going' ? "label-success\">" : "label-danger\">").$status."</span>"
+                                  )
+                              );
+                          }
+                        ?>
                       </tbody>
                     </table>
                   </div><!-- /.table-responsive -->
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                  <a href="index.php?pg=incidents" class="btn btn-sm btn-info btn-flat pull-left">View All Incidents</a>
+                  <a href="/incident" class="btn btn-sm btn-info btn-flat pull-left">View All Incidents</a>
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->
@@ -90,14 +67,9 @@
                 </div><!-- /.box-header -->
                 <div class="box-footer no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#">Road-Traffic Accident <span class="pull-right text-green"> 12% </span></a></li>
-                    <li><a href="#">Gas Incident  <span class="pull-right text-green"> 5% </span></a></li>
-                    <li><a href="#">Construction Incident <span class="pull-right text-green"> 0% </span></a></li>
-                    <li><a href="#">Suicide and Self-Harm Incident  <span class="pull-right text-green"> 12% </span></a></li>
-                    <li><a href="#">Fire Incident  <span class="pull-right text-green"> 5% </span></a></li>
-                    <li><a href="#">Physical Injuries <span class="pull-right text-green"> 0% </span></a></li>
-                    <li><a href="#">Workplace Accidents  <span class="pull-right text-green"> 5% </span></a></li>
-                    <li><a href="#">Others  <span class="pull-right text-green"> 5% </span></a></li>
+                    <?php foreach ($incident_category_stat as $stat) {
+                      ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
+                    <?php }?>
                   </ul>
                 </div><!-- /.footer -->
               </div><!-- /.box -->

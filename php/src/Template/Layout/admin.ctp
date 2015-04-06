@@ -143,7 +143,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <?php if ($page == "dashboard"){ ?>  <li class= "active treeview"> <?php }else{ ?> <li class= "treeview"> <?php }?>
-              <a href="/dashboard">
+              <a href="/admin/dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
               </a>
             </li>

@@ -28,12 +28,66 @@ use Cake\Error\Debugger;
  */
 class DashboardController extends AppController
 {
+	private function getIncidentCategoryStat()
+	{
+		$this->loadModel('IncidentCategoryStat');
+
+        $query = $this->IncidentCategoryStat->find('all')
+        	->contain(['IncidentCategory'])
+        	->order(['percentage' => 'DESC']);
+
+		// Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('incident_category_stat', $results);
+	}
+
+	private function getIncidents()
+    {
+        $this->loadModel('Incident');
+
+        $query = $this->Incident->find('all')
+        	->contain(['IncidentCategory'])
+        	->order(['incidentDateTime' => 'DESC'])
+        	->limit(6);
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('incidents', $results);
+    }
 
     public function index()
     {
         parent::index();
 
         $this->set('page', 'dashboard');
+
+        $this->getIncidents();
+
+        $this->getIncidentCategoryStat();
 
     }
 }

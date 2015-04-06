@@ -72,14 +72,9 @@
           </div><!-- /.box-header -->
           <div class="box-footer no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#">Road-Traffic Accident <span class="pull-right text-green"> 12% </span></a></li>
-              <li><a href="#">Gas Incident  <span class="pull-right text-green"> 5% </span></a></li>
-              <li><a href="#">Construction Incident <span class="pull-right text-green"> 0% </span></a></li>
-              <li><a href="#">Suicide and Self-Harm Incident  <span class="pull-right text-green"> 12% </span></a></li>
-              <li><a href="#">Fire Incident  <span class="pull-right text-green"> 5% </span></a></li>
-              <li><a href="#">Physical Injuries <span class="pull-right text-green"> 0% </span></a></li>
-              <li><a href="#">Workplace Accidents  <span class="pull-right text-green"> 5% </span></a></li>
-              <li><a href="#">Others  <span class="pull-right text-green"> 5% </span></a></li>
+              <?php foreach ($incident_category_stat as $stat) {
+                ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
+              <?php }?>
             </ul>
           </div><!-- /.footer -->
         </div><!-- /.box -->
@@ -170,17 +165,21 @@
           </div><!-- /.box-header -->
           <div class="box-body">
             <ul class="products-list product-list-in-box">
+              <?php foreach ($incidents as $i) { 
+                $label = ($i->incidentStatus === 'On-going') ? 'success' : 'danger';
+              ?>
               <li class="item">
                 <div class="product-img">
                   <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>
                 </div>
                 <div class="product-info">
-                  <a href="javascript::;" class="product-title">[Incident Title] <span class="label label-success pull-right">On-Going</span></a>
+                  <a href="javascript::;" class="product-title"><?= $i->incidentTitle ?><span class="label label-<?=$label?> pull-right"><?=$i->incidentStatus?></span></a>
                   <span class="product-description">
-                    [Location / Address of the Incident]
+                    <?=$i->address?>
                   </span>
                 </div>
               </li><!-- /.item -->
+              <?php }?>
             </ul>
           </div><!-- /.box-body -->
           <div class="box-footer text-center">
