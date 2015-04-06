@@ -40,7 +40,7 @@
     <script src="script/maps.js"></script>
 </head>
   
-  <body class="skin-red">
+  <body class="skin-blue">
     <div class="wrapper">
       
       <header class="main-header">
