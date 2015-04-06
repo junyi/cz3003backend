@@ -3,7 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class AgencyTable extends Table
+class HazeTable extends Table
 {
 
     public function initialize(array $config)

@@ -3,7 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class AgencyTable extends Table
+class DengueTable extends Table
 {
 
     public function initialize(array $config)
