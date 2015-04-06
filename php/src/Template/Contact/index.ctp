@@ -22,7 +22,7 @@
               <div class="box">
                 
                 <div class="box-body col-xs-6">
-                  <h3><img src="dist/img/ntu.png" width="100%"/></h3>
+                  <h3><img src="dist/img/logoWithText.png" width="100%"/></h3>
                   
                   <h2>6345 4938
                   <br/>
