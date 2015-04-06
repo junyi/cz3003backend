@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>TIMECrisis | Admin Panel</title>
+    <title>TIMECrisis</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -40,7 +40,7 @@
     <script src="script/maps.js"></script>
 </head>
   
-  <body class="skin-red">
+  <body class="skin-blue">
     <div class="wrapper">
       
       <header class="main-header">
@@ -97,19 +97,18 @@
               </a>
             </li>
 	    
-	    <?php if ($page == 'about') { ?>
-	      <li class="active treeview"> <?php } else { ?> <li class="treeview"> <?php } ?>
-	      <a href="about">
-		<i class="fa fa-dashboard"></i> <span>About</span>
-	      </a>
-	    </li>
+      	    <?php if ($page == 'about') { ?> <li class="active treeview"> <?php } else { ?> <li class="treeview"> <?php } ?>
+      	      <a href="about">
+      		        <i class="fa fa-laptop"></i> <span>About</span>
+      	      </a>
+      	    </li>
 
             <!-- MANAGE INCIDENTS-->
             <?php if ($page == "report_incidents" || $page == "incidents" || $page == "incident_category"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Incidents</span>
-		<i class="fa fa-angle-left pull-right"></i>
+		              <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "report_incidents"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
@@ -146,10 +145,10 @@
               </a>
             </li>
 	    
-	    <!-- MANAGE SUBSCRIBE -->
+	         <!-- MANAGE SUBSCRIBE -->
             <?php if ($page == "subscribe"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="subscribe">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-edit"></i>
                 <span>Subscribe</span>
               </a>
             </li>
