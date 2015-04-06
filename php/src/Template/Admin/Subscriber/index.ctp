@@ -40,7 +40,6 @@
                       <th>No.</th>
                       <th>Subscribers</th>
                       <th>Subscribe Date/Time</th>
-                      <th>Action</th>
                     </tr>
                     <?php 
                       foreach ($subscribers as $i) {               
@@ -49,7 +48,6 @@
                                   $i->subscriberID,
                                   $i->email,
                                   $i->subscribeDateTime,
-                                  '<a href="#"> Edit </a> | <a href="#">Delete</a>'
                               )
                           );
                       }
