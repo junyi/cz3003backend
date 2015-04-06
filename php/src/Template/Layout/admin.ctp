@@ -2,7 +2,7 @@
 
 <?php
   if ($user['photo']) {
-    $avatar = '../uploads/'.$user['photo'].';
+    $avatar = "../uploads/".$user['photo'];
   } else {
     $avatar = '../dist/img/avatar'.($user['gender'] === 'Male' ? '5' : '2').'.png"';
   }
