@@ -1,0 +1,7 @@
+#!/bin/bash
+cd "$OPENSHIFT_REPO_DIR"
+echo "Fetching haze information..."
+bin/cake haze
+echo "Fetching dengue information..."
+bin/cake dengue
+echo "Done fetching"
