@@ -232,7 +232,7 @@ class HtmlHelper extends Helper
             ];
 
             if ($type === 'icon' && $content === null) {
-                $types['icon']['link'] = 'icon.ico';
+                $types['icon']['link'] = 'favicon.ico';
             }
 
             if (isset($types[$type])) {
