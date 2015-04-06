@@ -17,9 +17,6 @@
 
         <!-- Main content -->
         <section class="content">
-          <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
-            <button class="btn btn-block btn-success" id="add_haze_btn"  data-toggle="modal" data-target="#addHaze">Add PSI records</button>
-          </div>
 
           <div class="row">
             <div class="col-xs-12">
