@@ -22,16 +22,16 @@
               <div class="box">
                 
                 <div class="box-body col-xs-6">
-                  <h3><img src="dist/img/logoWithText.png" width="100%"/></h3>
-                  
-                  <h2>6345 4938
+                  <h3><img src="dist/img/logoWithText.png" width="70%"/></h3>
+                  <!-- &#09; is a tab in HTML  -->
+                  <h2>&#09; 6345 4938
                   <br/>
-                  <small>timecrisis@ntu.edu.sg</small>
+                  <small>&#09; timecrisis@ntu.edu.sg</small>
                   </h2>
                   
-                  <h3>Office Location
+                  <h3>&#09; Office Location
                   <br/>
-                  <p><small>20 Nanyang Avenue #02-10 Singapore 294837</small></p>
+                  <p><small>&#09; 20 Nanyang Avenue #02-10 Singapore 294837</small></p>
                   </h3>
                 </div>
                 
