@@ -1,3 +1,4 @@
+<? echo $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
 <?php
   if ($user['photo']) {
     $avatar = "../uploads/".$user['photo']."\"";
