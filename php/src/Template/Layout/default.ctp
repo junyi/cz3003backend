@@ -1,4 +1,4 @@
-<? echo $this->Html->meta('icon', 'dist/img/favicon.png'); ?>
+<? echo $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
 <!DOCTYPE html>
 <html>
   <head>
