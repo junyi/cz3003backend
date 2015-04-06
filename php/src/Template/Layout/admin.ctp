@@ -96,13 +96,13 @@
               <!-- USER ACCOUNT : EDIT PROFILE & LOG OUT -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<? $avatar ?>" class="user-image" alt="User Image"/>
+                  <img src="<?= $avatar ?>" class="user-image" alt="User Image"/>
                   <span class="hidden-xs"><?= $user['name'] ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<? $avatar ?>" class="img-circle" alt="User Image" />
+                    <img src="<?= $avatar ?>" class="img-circle" alt="User Image" />
                     <p>
                       <?= $user['name'] ?>
                       <small><?= $user['role'] ?></small>
