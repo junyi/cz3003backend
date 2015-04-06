@@ -1,4 +1,3 @@
-
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
@@ -191,10 +190,7 @@ class HtmlHelper extends Helper
      *
      * Create a meta tag that is output inline:
      *
-    **/
-
-        $this->Html->meta('icon', 'favicon.ico');
-    /**
+     * `$this->Html->meta('icon', 'favicon.ico');
      *
      * Append the meta tag to custom view block "meta":
      *
