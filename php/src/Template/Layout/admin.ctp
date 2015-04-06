@@ -62,7 +62,7 @@
              
                <!-- VISIT SITE LINK-->
               <li class="#">
-                <a href="../">
+                <a href="../" target="_blank">
                   <span class="hidden-xs">Visit Site</span>
                 </a>
               </li>

@@ -15,7 +15,7 @@ use Cake\Error\Debugger;
             <small> to add, edit, or remove incident</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incidents</li>
           </ol>

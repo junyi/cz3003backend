@@ -17,7 +17,8 @@ $('#incident_modal').on('loaded.bs.modal', function (e) {
 
 	$('#incident_location_input').geocomplete({
 	  details: ".details",
-	  detailsAttribute: "data-geo"
+	  detailsAttribute: "data-geo",
+	  country: "sg"
 	});
 
 	$('#add_incident_form')

@@ -183,7 +183,7 @@
             </ul>
           </div><!-- /.box-body -->
           <div class="box-footer text-center">
-            <a href="javascript::;" class="uppercase">View All Incidents</a>
+            <a href="/admin/incident" class="uppercase">View All Incidents</a>
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->

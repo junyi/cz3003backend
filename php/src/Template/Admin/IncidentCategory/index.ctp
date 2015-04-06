@@ -9,7 +9,7 @@
             <small> to add, edit, or remove incident category</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incident Category</li>
           </ol>

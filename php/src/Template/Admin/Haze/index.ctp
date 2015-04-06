@@ -9,7 +9,7 @@
             <small> to manage and summarize haze psi readings that are obtained from reliable sources</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Events</a></li>
             <li class="active">Haze</li>
           </ol>

@@ -8,7 +8,7 @@
             <small> to manage email of subscribers for notification purpose</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Contacts</a></li>
             <li class="active">Subscribers</li>
           </ol>

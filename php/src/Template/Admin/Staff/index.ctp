@@ -8,7 +8,7 @@
             <small> to manage call operator and administrator accounts</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Accounts</a></li>
             <li class="active">Staff Accounts</li>
           </ol>
