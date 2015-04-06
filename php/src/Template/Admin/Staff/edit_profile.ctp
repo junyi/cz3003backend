@@ -41,7 +41,7 @@
                     <!-- Contact -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Contact</label>
-                      <input type="text" class="form-control" id="contact_input" name="contact" value="<?= $user['contact']?>" placeholder="Enter contact number">
+                      <input type="text" class="form-control" id="contact_input" name="contact" value="<?= $user['contact']?>" placeholder="Enter contact number" maxlength="8">
                   </div>
                     <!-- Role: administrator, call operator -->
                     <div class="form-group">

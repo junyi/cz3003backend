@@ -95,7 +95,7 @@
               <!-- USER ACCOUNT : EDIT PROFILE & LOG OUT -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?=$avatar?>" class="user-image" alt="User Image"/>
+                  <img src="<? $user['photo']; ?>" class="user-image" alt="User Image"/>
                   <span class="hidden-xs"><?= $user['name'] ?></span>
                 </a>
                 <ul class="dropdown-menu">
