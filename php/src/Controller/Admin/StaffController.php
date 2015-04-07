@@ -222,7 +222,6 @@ class StaffController extends AppController
             if (array_key_exists('file', $this->request->data) && $this->request->data['file']['size'] != 0){
                 $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
                 $oldFilePath = $sessionUser['photo'];
-                $session->write('Path', $oldFilePath);
 
                 if (array_key_exists('urls', $filePath)) {
                     $user->set('photo', $filePath['urls'][0]);
