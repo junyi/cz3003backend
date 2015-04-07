@@ -33,6 +33,7 @@
                         <?php 
                           foreach ($incidents as $i) {               
                               $status = $i->incidentStatus;
+                              $i['incidentDateTime']->timezone = 'Asia/Singapore';
                               $incidentDateTime = $i['incidentDateTime']->format('d-m-Y h:i A');
                               $incidentDateTime = str_replace('-', '/', $incidentDateTime);
                               echo $this->Html->tableCells(
@@ -102,6 +103,7 @@
                       <tbody>
                         <?php 
                           foreach ($dengue as $i) {               
+                              $i['postDateTime']->timezone = 'Asia/Singapore';
                               $time = $i['postDateTime']->format('d-m-Y h:i A');
                               $time = str_replace('-', '/', $time);
                               $label = "";

@@ -55,6 +55,7 @@ use Cake\Error\Debugger;
                     <?php 
                       foreach ($incidents as $i) {               
                           $status = $i->incidentStatus;
+                          $i['incidentDateTime']->timezone = 'Asia/Singapore';
                           $incidentDateTime = $i['incidentDateTime']->format('d-m-Y h:i A');
                           $incidentDateTime = str_replace('-', '/', $incidentDateTime);
                           echo $this->Html->tableCells(

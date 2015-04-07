@@ -107,6 +107,7 @@
                 <tbody>
                   <?php 
                     foreach ($dengue as $i) {               
+                        $i['postDateTime']->timezone = 'Asia/Singapore';
                         $time = $i['postDateTime']->format('d-m-Y h:i A');
                         $time = str_replace('-', '/', $time);
                         $label = "";
