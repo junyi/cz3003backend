@@ -219,10 +219,10 @@ class StaffController extends AppController
 
             $user = $this->Staff->get($id);
             $user = $this->Staff->patchEntity($user, $this->request->data);
-
-            if (array_key_exists('file', $this->request->data)){
+            if (array_key_exists('file', $this->request->data) && $this->request->data['file']['size'] != 0){
                 $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
-                $oldFilePath = $user['photo'];
+                $oldFilePath = $sessionUser['photo'];
+                $session->write('Path', $oldFilePath);
 
                 if (array_key_exists('urls', $filePath)) {
                     $user->set('photo', $filePath['urls'][0]);
@@ -231,14 +231,16 @@ class StaffController extends AppController
                     return $this->redirect(['action' => 'index']);
                 }
             }
-            
+
             if ($this->Staff->save($user)) {
 
                 // Delete old profile photo is exists
 
-                if ($oldFilePath && file_exists(WWW_ROOT.'uploads/'.$oldFilePath)) {
+                if (isset($oldFilePath) && !empty($oldFilePath) && file_exists(WWW_ROOT.'uploads/'.$oldFilePath)) {
                     unlink(WWW_ROOT.'uploads/'.$oldFilePath);
                 }
+
+                $this->request->session()->write('Auth.User', $user);
 
                 $this->Flash->success(__('Your profile has been updated.'));
                 return $this->redirect(['action' => 'index']);
@@ -261,10 +263,8 @@ class StaffController extends AppController
             
             $user = $this->Staff->newEntity();
             $user = $this->Staff->patchEntity($user, $this->request->data);
-
-            if (array_key_exists('file', $this->request->data)){
+            if (array_key_exists('file', $this->request->data) && $this->request->data['file']['size'] != 0){
                 $filePath = $this->uploadFiles('uploads', [$this->request->data['file']]);
-                $oldFilePath = $user['photo'];
 
                 if (array_key_exists('urls', $filePath)) {
                     $user->set('photo', $filePath['urls'][0]);
