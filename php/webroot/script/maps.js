@@ -228,18 +228,18 @@ function initialize() {
     }
     
     //simulate PHP to extract data of road incidents
-    var fireIncidents = [];
-    fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
-    fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
-    fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
+    // var fireIncidents = [];
+    // fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
+    // fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
+    // fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
     
-    //Loop to generate all markers
-    for(i=0; i<3; i++) {
-        //add fire marker
-        addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
-        //add fire marker events listener
-        addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
-    }
+    // //Loop to generate all markers
+    // for(i=0; i<3; i++) {
+    //     //add fire marker
+    //     addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
+    //     //add fire marker events listener
+    //     addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
+    // }
     
     var dengueHotSpots = [];
     dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
@@ -257,6 +257,14 @@ function initialize() {
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz'
     });
     ctaLayer.setMap(map);
+
+    $.getJSON( "/incident.json", function( data ) {
+      for(i = 0; i < data.length; i++){
+        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
+        addRoadMarker(marker[0], marker[1]);
+        addRoadMarkerListener(i, marker[1], marker[2]);
+      }
+    });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
