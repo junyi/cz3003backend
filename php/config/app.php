@@ -215,7 +215,7 @@ $DB = [
 
             // Actual deployment
             'host' => getenv("OPENSHIFT_MYSQL_DB_HOST"),
-            'port' => getenv("OPENSHIFT_MYSQL_DB_PORT"),
+            'port' => getenv("OPENSHIFT_JAVA_PORT"),
             'username' => getenv("OPENSHIFT_MYSQL_DB_USERNAME"),
             'password' => getenv("OPENSHIFT_MYSQL_DB_PASSWORD"),
 
@@ -333,5 +333,10 @@ if (in_array($_SERVER['SERVER_NAME'], $LOCAL) || in_array(explode(':', $_SERVER[
     // $DB['Datasources']['default']['username'] = 'adminSH5rxhi';
     // $DB['Datasources']['default']['password'] = 'hMRpD1NdelBp';
 }
+
+// $DB['Datasources']['default']['host'] = '127.0.0.1';
+// $DB['Datasources']['default']['port'] = '33005';
+// $DB['Datasources']['default']['username'] = 'adminSH5rxhi';
+// $DB['Datasources']['default']['password'] = 'hMRpD1NdelBp';
 
 return $DB;
