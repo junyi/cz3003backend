@@ -63,11 +63,13 @@
                         </div>
                     </div>
                     
+                    <!-- Name of reporter -->
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" id="incident_pname_input" name="publicName" placeholder="Enter your name">
                     </div>
                     
+                     <!-- Contact of reporter -->
                     <div class="form-group">
                         <label>Contact</label>
                         <input type="text" class="form-control" id="incident_pcontact_input" name="publicContact" placeholder="Enter your contact number">
