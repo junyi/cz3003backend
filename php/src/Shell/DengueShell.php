@@ -45,7 +45,7 @@ class DengueShell extends Shell
         $converter = new SVY21Converter();
         $noOfPeopleInfected = 0;
 
-        for ($i = 1; $i <= $results->SrchResults[0]->FeatCount; $i++) {
+        for ($i = 1; $i <= $results->SrchResults[0]->FeatCount - 1; $i++) {
             $r = $results->SrchResults[$i];
             $noOfPeopleInfected += intval(explode(":", $r->NAME));
             $xy = explode(",", explode("|", $r->XY)[0]);
