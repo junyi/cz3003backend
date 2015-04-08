@@ -46,11 +46,12 @@
                       <th>Action</th>
                     </tr>
                     <?php 
+                      $no=1;
                       foreach ($agencies as $i) {               
                           //$status = $i->incidentStatus;
                           echo $this->Html->tableCells(
                               array(
-                                  $i->agencyID,
+                                  $no++,
                                   $i->agencyName,
                                   $i->agencyContact,
                                   '',
