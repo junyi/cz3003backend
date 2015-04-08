@@ -252,6 +252,11 @@ function initialize() {
         //add fire marker events listener
         addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
     }
+    
+    var ctaLayer = new google.maps.KmlLayer({
+      url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz'
+    });
+    ctaLayer.setMap(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
