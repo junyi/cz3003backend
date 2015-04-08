@@ -69,13 +69,13 @@
               </li>
 
               <li class="#">
-                <a href="http://www.facebook.com/" target="_blank">
+                <a href="https://www.facebook.com/pages/Cz3003_ssad/787481631307717" target="_blank">
                   <span class="hidden-xs">Facebook</span>
                 </a>
               </li>
 	      
 	             <li class="#">
-                <a href="http://www.twitter.com/" target="_black">
+                <a href="https://twitter.com/3003time_crisis" target="_black">
                   <span class="hidden-xs">Twitter</span>
                 </a>
               </li>

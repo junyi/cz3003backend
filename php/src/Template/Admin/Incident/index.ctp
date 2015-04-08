@@ -53,6 +53,7 @@ use Cake\Error\Debugger;
                       <th>Action</th>
                     </tr>
                     <?php 
+                      $no=1;
                       foreach ($incidents as $i) {               
                           $status = $i->incidentStatus;
                           $i['incidentDateTime']->timezone = 'Asia/Singapore';
@@ -60,12 +61,15 @@ use Cake\Error\Debugger;
                           $incidentDateTime = str_replace('-', '/', $incidentDateTime);
                           echo $this->Html->tableCells(
                               array(
-                                  $i->incidentID,
+                                  $no++,
                                   $i->incidentTitle,
                                   $incidentDateTime,
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
-                                  "<span class=\"label ".($status === 'On-going' ? "label-success\">" : "label-danger\">").$status."</span>",
+                                  if($status === 'On-going'){ $label = "label-success\">"; }else 
+                                  if($status === 'Closed'){ $label = "label-danger\">"; }else{
+                                     $label = "label-warning\">"; }
+                                  "<span class=\"label ".$label.$status."</span>",
                                   '<a href="#" data-toggle="modal" data-remote="/admin/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/admin/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );
