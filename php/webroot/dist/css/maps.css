@@ -1,0 +1,31 @@
+#legend-box {
+  background-color: #000000;
+  opacity: 0.8;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  width: 180px;
+  height: 400px;
+  padding: 10px;
+  color: #fff;
+}
+
+#legend-box h3 {
+  margin-top: 0;
+}
+
+#legend-box ul {
+  padding: 0;
+  padding-left: 0px;
+}
+
+#legend-box li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+#legend-box input {
+  margin-right: 5px;
+}
