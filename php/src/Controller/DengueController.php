@@ -37,7 +37,37 @@ class DengueController extends AppController
         'cluster' => 'Cluster'
     ];
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
     private function getDengueInfo()
+    {
+        $this->loadModel('DengueStat');
+
+        $query = $this->DengueStat->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $this->set('dengueMapping', $this->dengueMapping);
+        $this->set('dengue', $results);
+    }
+
+    private function getAllDengueInfo()
     {
         $this->loadModel('Dengue');
 
@@ -63,10 +93,18 @@ class DengueController extends AppController
 
     public function index()
     {
-        parent::index();
+        
+        if ($this->request->params['_ext'] === 'json') {
 
-        $this->set('page', 'dengue');
+            $this->getAllDengueInfo();
 
-        $this->getDengueInfo();
+        } else {
+
+            parent::index();
+
+            $this->set('page', 'dengue');
+
+            $this->getDengueInfo();
+        }
     }
 }

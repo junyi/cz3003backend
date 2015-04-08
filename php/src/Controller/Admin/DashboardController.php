@@ -39,9 +39,9 @@ class DashboardController extends AppController
 
     private function getDengueInfo()
     {
-        $this->loadModel('Dengue');
+        $this->loadModel('DengueStat');
 
-        $query = $this->Dengue->find('all');
+        $query = $this->DengueStat->find('all');
 
         // Iteration will execute the query.
         foreach ($query as $row) {

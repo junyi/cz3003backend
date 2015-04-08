@@ -257,6 +257,15 @@ function initialize() {
     });
     ctaLayer.setMap(map);
 
+    $.getJSON("/dengue.json", function( data ) {
+      for(i = 0; i < data.length; i++){
+        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
+        dengueHotSpots.push(marker);
+        addDengueMarker(marker[0], marker[1]);
+        addDengueMarkerListener(i, marker[1], marker[2]);
+      }
+    });
+
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
