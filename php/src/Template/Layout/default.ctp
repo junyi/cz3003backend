@@ -172,7 +172,7 @@
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          Admin Panel
+          Time Crisis
         </div>
         <strong>Copyright &copy; 2015 <a href="#">TIMECrisis</a>.</strong> All rights reserved.
       </footer>
