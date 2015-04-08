@@ -95,11 +95,19 @@ class IncidentController extends AppController
 
     public function index()
     {
-        parent::index();
 
-        $this->set('page', 'incidents');
+        if ($this->request->params['_ext'] === 'json') {
 
-        $this->getIncidents();
+            $this->getIncidents();
+
+        } else {
+
+            parent::index();
+
+            $this->set('page', 'incidents');
+
+            $this->getIncidents();
+        }
 
     }
 
