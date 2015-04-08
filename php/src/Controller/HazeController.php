@@ -28,6 +28,11 @@ use Cake\Error\Debugger;
  */
 class HazeController extends AppController
 {
+	public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
 
 	private function getHazeInfo()
     {
@@ -54,10 +59,18 @@ class HazeController extends AppController
 
     public function index()
     {
-        parent::index();
 
-        $this->set('page', 'haze');
+        if ($this->request->params['_ext'] === 'json') {
 
-        $this->getHazeInfo();
+            $this->getHazeInfo();
+
+        } else {
+
+            parent::index();
+
+        	$this->set('page', 'haze');
+
+        	$this->getHazeInfo();
+        }
     }
 }

@@ -7,6 +7,7 @@ var dengueMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
+var heatMap;
 
 function addRoadMarker(location, title) {
     var roadMarker = new google.maps.Marker({
@@ -164,6 +165,7 @@ function toggleDengueMarkers(btn) {
     } else {
         clearDengueMarkers();
     }
+    heatMap.setMap(heatMap.getMap() ? null : map);
 }
 
 
@@ -241,29 +243,35 @@ function initialize() {
     }
     
     var dengueHotSpots = [];
-    dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
-    dengueHotSpots.push([new google.maps.LatLng(1.387831, 103.832363), 500, 8]);
-    dengueHotSpots.push([new google.maps.LatLng(1.397831, 103.752363), 1000, 20]);
+    // dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
+    // dengueHotSpots.push([new google.maps.LatLng(1.387831, 103.832363), 500, 8]);
+    // dengueHotSpots.push([new google.maps.LatLng(1.397831, 103.752363), 1000, 20]);
     
-    for(i=0; i<3; i++) {
-        //add dengue marker
-        addDengueMarker(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
-        //add fire marker events listener
-        addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
-    }
+    // for(i=0; i<3; i++) {
+    //     //add dengue marker
+    //     addDengueMarker(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
+    //     //add fire marker events listener
+    //     addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
+    // }
     
     var ctaLayer = new google.maps.KmlLayer({
-      url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz'
+      url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
     ctaLayer.setMap(map);
+    latlng = new google.maps.MVCArray();
 
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
         dengueHotSpots.push(marker);
+        latlng.push({
+          location: marker[0],
+          weight: marker[1]});
         addDengueMarker(marker[0], marker[1]);
         addDengueMarkerListener(i, marker[1], marker[2]);
       }
+      
+
     });
 
     $.getJSON("/incident.json", function( data ) {
@@ -274,6 +282,14 @@ function initialize() {
         addRoadMarkerListener(i, marker[1], marker[2]);
       }
     });
+
+    heatMap = new google.maps.visualization.HeatmapLayer({
+      data: latlng,
+      radius: 30,
+      maxIntensity: 50
+    });
+    heatMap.setMap(map);
+
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

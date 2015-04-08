@@ -39,7 +39,7 @@
     
     <!-- START OF GOOGLE MAPS API -->
     <?php if ($page == "dashboard"){ ?>
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=false&libraries=weather"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization,weather&amp;signed_in=false"></script>
       <script src="script/maps.js"></script>
     <?php }?>
 </head>

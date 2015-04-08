@@ -55,8 +55,8 @@ Router::scope('/', function ($routes) {
 
     $routes->extensions(['json']);
     $routes->resources('Incident');
-    // $routes->resources('DengueStat');
     $routes->resources('Dengue');
+    $routes->resources('Haze');
 
 });
 
