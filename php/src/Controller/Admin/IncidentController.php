@@ -162,9 +162,10 @@ class IncidentController extends AppController
 
             if ($this->Incident->save($incident)) {
                 $this->Flash->success(__('The incident has been edited.'));
-                // return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('Unable to edit your incident.'));
+                return $this->redirect(['action' => 'index']);
             }
         } else {
             return $this->redirect(['action' => 'index']);

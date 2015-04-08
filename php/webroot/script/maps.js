@@ -212,34 +212,33 @@ function initialize() {
     
     //initialize weather layer
     initializeWeatherLayer(map);
-    
     //simulate PHP to extract data of road incidents
     var roadIncidents = [];
-    roadIncidents.push([new google.maps.LatLng(1.337831, 103.832363), 'Road Accident at YYYYY', 'A road accident has occurred at YYYYY']);
-    roadIncidents.push([new google.maps.LatLng(1.389641, 103.682941), 'Road Accident at ZZZZZ', 'A road accident has occurred at YYYYY']);
-    roadIncidents.push([new google.maps.LatLng(1.359641, 103.952941), 'Road Accident at XXXXX', 'A road accident has occurred at YYYYY']);
-    
-    //Loop to generate all markers
-    for(i=0; i<3; i++) {
-        //add road marker
-        addRoadMarker(roadIncidents[i][0], roadIncidents[i][1]);
-        //add road marker events listener
-        addRoadMarkerListener(i, roadIncidents[i][1], roadIncidents[i][2]);
-    }
-    
-    //simulate PHP to extract data of road incidents
-    // var fireIncidents = [];
-    // fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
-    // fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
-    // fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
+    // roadIncidents.push([new google.maps.LatLng(1.337831, 103.832363), 'Road Accident at YYYYY', 'A road accident has occurred at YYYYY']);
+    // roadIncidents.push([new google.maps.LatLng(1.389641, 103.682941), 'Road Accident at ZZZZZ', 'A road accident has occurred at YYYYY']);
+    // roadIncidents.push([new google.maps.LatLng(1.359641, 103.952941), 'Road Accident at XXXXX', 'A road accident has occurred at YYYYY']);
     
     // //Loop to generate all markers
     // for(i=0; i<3; i++) {
-    //     //add fire marker
-    //     addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
-    //     //add fire marker events listener
-    //     addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
+    //     //add road marker
+    //     addRoadMarker(roadIncidents[i][0], roadIncidents[i][1]);
+    //     //add road marker events listener
+    //     addRoadMarkerListener(i, roadIncidents[i][1], roadIncidents[i][2]);
     // }
+    
+    //simulate PHP to extract data of road incidents
+    var fireIncidents = [];
+    fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
+    fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
+    fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
+    
+    //Loop to generate all markers
+    for(i=0; i<3; i++) {
+        //add fire marker
+        addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
+        //add fire marker events listener
+        addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
+    }
     
     var dengueHotSpots = [];
     dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
@@ -258,9 +257,10 @@ function initialize() {
     });
     ctaLayer.setMap(map);
 
-    $.getJSON( "/incident.json", function( data ) {
+    $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
+        roadIncidents.push(marker);
         addRoadMarker(marker[0], marker[1]);
         addRoadMarkerListener(i, marker[1], marker[2]);
       }
