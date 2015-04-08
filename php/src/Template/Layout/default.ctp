@@ -38,7 +38,7 @@
     
     <!-- START OF GOOGLE MAPS API -->
     <?php if ($page == "dashboard"){ ?>
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=true"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=false"></script>
       <script src="script/maps.js"></script>
     <?php }?>
 </head>

@@ -28,6 +28,11 @@ use Cake\Error\Debugger;
  */
 class IncidentController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
 
     private function getIncidentCategoryOptions()
     {
@@ -55,6 +60,13 @@ class IncidentController extends AppController
         }, $results);
 
         $this->set('incident_category_options', $results);
+    }
+
+    private function getIncident($id)
+    {
+        $incident = $this->Incident->get($id);
+
+        return $incident;
     }
 
 	private function getIncidents()
@@ -91,6 +103,11 @@ class IncidentController extends AppController
 
     }
 
+    public function view($id)
+    {
+        $this->set('incident', $this->getIncident($id));
+    }
+
     public function report()
     {
         if ($this->request->is('get')) {
@@ -111,6 +128,5 @@ class IncidentController extends AppController
                 return $this->redirect(['action' => 'report']);
             }
         }
-
     }
 }

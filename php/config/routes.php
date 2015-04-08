@@ -53,6 +53,9 @@ Router::scope('/', function ($routes) {
     $routes->connect('/haze', ['controller' => 'Haze']);
     $routes->connect('/contact', ['controller' => 'Contact']);
 
+    $routes->extensions(['json']);
+    $routes->resources('Incident');
+
 });
 
 
