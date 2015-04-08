@@ -3,7 +3,9 @@
   opacity: 0.8;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 180px;
   height: 400px;
   padding: 10px;
