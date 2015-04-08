@@ -174,7 +174,7 @@ function showMarkers() {
 }
 
 function initializeWeatherLayer(map) {
-    var weatherLayer = new google.maps.weather.WeatherLayer({
+    weatherLayer = new google.maps.weather.WeatherLayer({
         temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
     });
 }
