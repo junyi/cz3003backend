@@ -43,7 +43,6 @@
                       <th>Date/Time</th>
                       <th>Location</th>
                       <th>Category</th>
-                      <th>Status</th>
                     </tr>
                     <?php 
                       $num = 1;
@@ -58,8 +57,7 @@
                                   $i->incidentTitle,
                                   $incidentDateTime,
                                   $i->address,
-                                  $i->incidentCategory->incidentCategoryTitle,
-                                  "<span class=\"label ".($status === 'On-going' ? "label-success\">" : "label-danger\">").$status."</span>"
+                                  $i->incidentCategory->incidentCategoryTitle
                               )
                           );
                       }

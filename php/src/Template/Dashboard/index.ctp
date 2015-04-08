@@ -22,7 +22,6 @@
                           <th>Incident</th>
                           <th>Date/Time</th>
                           <th>Location</th>
-                          <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>f
@@ -36,8 +35,7 @@
                                   array(
                                       '<a href="#">'. $i->incidentTitle .'</a>',
                                       '<div class="sparkbar" data-color="#00a65a" data-height="20">'.$incidentDateTime.'</div>',
-                                      $i->address,
-                                      "<span class=\"label ".($status === 'On-going' ? "label-success\">" : "label-danger\">").$status."</span>"
+                                      $i->address
                                   )
                               );
                           }

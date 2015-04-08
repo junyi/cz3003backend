@@ -59,7 +59,10 @@ class IncidentController extends AppController
 
 	private function getIncidents()
     {
-        $query = $this->Incident->find('all')->contain(['IncidentCategory']);
+        $query = $this->Incident
+            ->find('all')
+            ->contain(['IncidentCategory'])
+            ->where(['incidentStatus' => 'On-going']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
@@ -98,6 +101,7 @@ class IncidentController extends AppController
             $this->autoRender = false;
             $incident = $this->Incident->newEntity();
             $incident = $this->Incident->patchEntity($incident, $this->request->data);
+            $incident['incidentStatus'] = 'Pending';
 
             if ($this->Incident->save($incident)) {
                 $this->Flash->success(__("The incident has been reported. Thank you."));

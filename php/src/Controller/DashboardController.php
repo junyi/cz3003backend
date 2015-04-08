@@ -117,6 +117,7 @@ class DashboardController extends AppController
         $query = $this->Incident->find('all')
         	->contain(['IncidentCategory'])
         	->order(['incidentDateTime' => 'DESC'])
+        	->where(['incidentStatus' => 'On-going'])
         	->limit(6);
 
         // Iteration will execute the query.
