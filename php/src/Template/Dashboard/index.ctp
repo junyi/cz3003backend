@@ -3,23 +3,24 @@
         <!-- Main content -->
         <section class="content">
 	  
-	  <div id="map-canvas" style="width: 100%; height: 400px; box-shadow: 0px 0px 1px #999999; margin-bottom: 20px;">
-	    <div id="legend-box">
-	      <h3>LEGEND</h3>
-	      <form>
-		<ul>
-		  <li><input type="checkbox" checked="checked" onclick="toggleRoadMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_blue.png" /> Road Accidents</li>
-		  <li><input type="checkbox" checked="checked" onclick="toggleFireMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_red.png" /> Fire Outbreaks</li>
-		  <li><input type="checkbox" checked="checked"/> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
-		  <li><input type="checkbox" checked="checked" onclick="toggleDengueMarkers(this);"/> <img src="dist/img/dengue_marker.png" /> Dengue</li>
-		  <li><input type="checkbox" onclick="toggleWeather(this);" /> <img src="dist/img/weather.png" /> Weather</li>
-		  <li><input type="checkbox" /> <img src="dist/img/haze.png" /> PSI</li>
-		</ul>
-	      </form>
-	    </div><!-- ./legend-box -->
-	  </div>
-	  
-	  
+	  <div class="row">
+            <div class="col-md-12">
+	      <div id="map-canvas" style="width: 100%; height: 400px; box-shadow: 0px 0px 1px #999999; margin-bottom: 20px;"></div>
+	      <div id="legend-box">
+		<h3>LEGEND</h3>
+		<form>
+		  <ul>
+		    <li><input type="checkbox" checked="checked" onclick="toggleRoadMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_blue.png" /> Road Accidents</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleFireMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_red.png" /> Fire Outbreaks</li>
+		    <li><input type="checkbox" checked="checked"/> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleDengueMarkers(this);"/> <img src="dist/img/dengue_marker.png" /> Dengue</li>
+		    <li><input type="checkbox" onclick="toggleWeather(this);" /> <img src="dist/img/weather.png" /> Weather</li>
+		    <li><input type="checkbox" /> <img src="dist/img/haze.png" /> PSI</li>
+		  </ul>
+		</form>
+	      </div><!-- /.legend-box -->
+	    </div><!-- /.col-md-12 -->
+	  </div><!-- /.row -->
         
           <!-- Main row -->
           <div class="row">
