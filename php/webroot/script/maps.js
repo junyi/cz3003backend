@@ -1,126 +1,257 @@
 // This example displays a marker at the center of Singapore.
 // When the user clicks the marker, an info window opens.
 
-function closeInfoWindow(infowindow) {
-    if (infowindow) {
-        infowindow.close();
+var roadMarkers = [];
+var fireMarkers = [];
+var dengueMarkers = [];
+var infoWindow;
+var map;
+var weatherLayer;
+
+function addRoadMarker(location, title) {
+    var roadMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        title: title
+    });
+    roadMarkers.push(roadMarker);
+}
+
+function addFireMarker(location, title) {
+    var fireMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        title: title
+    });
+    fireMarkers.push(fireMarker);
+}
+
+function addDengueMarker(location, radius, numOfPeople) {
+    var dengueMarker = new google.maps.Circle({
+        center: location,
+        radius: radius,
+        strokeColor:    "#114455",
+        strokeOpacity:  0.8,
+        strokeWeight:   2,
+        fillColor:  "#14ad80",
+        fillOpacity:    0.4,
+        map: map
+    });
+    dengueMarkers.push(dengueMarker);
+}
+
+function addRoadMarkerListener(i, title, content) {
+    google.maps.event.addListener(roadMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+        });
+        
+        infoWindow.open(map, roadMarkers[i]);
+    });
+}
+
+function addFireMarkerListener(i, title, content) {
+    google.maps.event.addListener(fireMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+        });
+        
+        infoWindow.open(map, fireMarkers[i]);
+    });
+}
+
+
+function addDengueMarkerListener(location, radius, numOfPeople) {
+    google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h4><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
+            position: location
+        });
+        
+        infoWindow.open(map, dengueMarkers[i]);
+    });
+}
+
+//function to set all categories markers onto map EXCEPT weather and PSI
+function setAllMap(map) {
+    showRoadMarkers(map);
+    showFireMarkers(map);
+    showDengueMarkers(map);
+}
+
+//clears ALL markers INCLUDING weather and PSI
+function clearMarkers() {
+    setAllMap(null);
+    clearWeather();
+}
+
+//function to SET all ROAD markers onto map
+function showRoadMarkers(map) {
+    for(i=0; i<roadMarkers.length;i++) {
+        roadMarkers[i].setMap(map);
     }
 }
 
+//function to SET all FIRE markers onto map
+function showFireMarkers(map) {
+    for(i=0; i<fireMarkers.length;i++) {
+        fireMarkers[i].setMap(map);
+    }
+}
+
+//function to SET all DENGUE markers onto map
+function showDengueMarkers(map) {
+    for(i=0; i<dengueMarkers.length;i++) {
+        dengueMarkers[i].setMap(map);
+    }
+}
+
+//function to CLEAR all ROAD markers from map
+function clearRoadMarkers() {
+    for(i=0; i<roadMarkers.length;i++) {
+        roadMarkers[i].setMap(null);
+    }
+}
+
+//function to CLEAR all FIRE markers from map
+function clearFireMarkers() {
+    for(i=0; i<fireMarkers.length;i++) {
+        fireMarkers[i].setMap(null);
+    }
+}
+
+//function to CLEAR all DENGUE markers from map
+function clearDengueMarkers() {
+    for(i=0; i<dengueMarkers.length;i++) {
+        dengueMarkers[i].setMap(null);
+    }
+}
+
+
+function toggleRoadMarkers(btn) {
+    if(btn.checked == true) {
+        showRoadMarkers(map);
+    } else {
+        clearRoadMarkers();
+    }
+}
+
+function toggleFireMarkers(btn) {
+    if(btn.checked == true) {
+        showFireMarkers(map);
+    } else {
+        clearFireMarkers();
+    }
+}
+
+function toggleDengueMarkers(btn) {
+    if(btn.checked == true) {
+        showDengueMarkers(map);
+    } else {
+        clearDengueMarkers();
+    }
+}
+
+
+//shows ALL markers INCLUDING weather and PSI
+function showMarkers() {
+    setAllMap(map);
+    showWeather();
+}
+
+function initializeWeatherLayer(map) {
+    weatherLayer = new google.maps.weather.WeatherLayer({
+        temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+    });
+}
+
+function showWeather() {
+    weatherLayer.setMap(map);
+}
+
+function clearWeather() {
+    weatherLayer.setMap(null);
+}
+
+function toggleWeather(btn) {
+    if(btn.checked == true) {
+        showWeather();
+    } else {
+        clearWeather();
+    }
+}
+
+function toggle() {
+    //$("#legend-box").toggle("slow", function() {});
+}
+
 function initialize() {
-    var myLatlng = new google.maps.LatLng(1.337831, 103.832363);
-    var myLatlng2 = new google.maps.LatLng(1.349641, 103.682941);
-    var myLatlng3 = new google.maps.LatLng(1.349641, 103.752941);
+    //initialize map
+    var mapCenterLatLng = new google.maps.LatLng(1.337831, 103.832363);
     var mapOptions = {
       zoom: 11,
-      center: myLatlng
+      center: mapCenterLatLng
     };
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    var infowindow = null;
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    infoWindow = null;
     
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h4 id="firstHeading" class="firstHeading">Fire Outbreak (Blk 236 Bishan St 81)</h4>'+
-        '<div id="bodyContent">'+
-        '<p>A fire outbreak at Blk 236 Bishan Street 81 #02-492 has occurred.</p>'+
-        '<p><a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194" target="_blank">'+
-        'More Details</a></p>'+
-        '</div>'+
-        '</div>';
+    //initialize weather layer
+    initializeWeatherLayer(map);
     
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        //Hover pop up description
-        title: 'Fire Outbreak (Bishan)'
-    });
+    //simulate PHP to extract data of road incidents
+    var roadIncidents = [];
+    roadIncidents.push([new google.maps.LatLng(1.337831, 103.832363), 'Road Accident at YYYYY', 'A road accident has occurred at YYYYY']);
+    roadIncidents.push([new google.maps.LatLng(1.389641, 103.682941), 'Road Accident at ZZZZZ', 'A road accident has occurred at YYYYY']);
+    roadIncidents.push([new google.maps.LatLng(1.359641, 103.952941), 'Road Accident at XXXXX', 'A road accident has occurred at YYYYY']);
     
-    google.maps.event.addListener(marker, 'click', function() {
-      
-      if (infowindow) {
-        infowindow.close();
-      }
-      
-      infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-      
-      infowindow.open(map, marker);
-      
-    });
+    //Loop to generate all markers
+    for(i=0; i<3; i++) {
+        //add road marker
+        addRoadMarker(roadIncidents[i][0], roadIncidents[i][1]);
+        //add road marker events listener
+        addRoadMarkerListener(i, roadIncidents[i][1], roadIncidents[i][2]);
+    }
     
-    var contentString2 = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h4 id="firstHeading" class="firstHeading">Road Accident (LWN Bus Stop)</h4>'+
-      '<div id="bodyContent">'+
-      '<p>A road accident at NTU LWN Bus Stop has occurred.</p>'+ 
-      '<p><a href="#" target="_blank">'+
-      'More Details</a></p>'+
-      '</div>'+
-      '</div>';
+    //simulate PHP to extract data of road incidents
+    var fireIncidents = [];
+    fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
+    fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
+    fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
     
-    var marker2 = new google.maps.Marker({
-        position: myLatlng2,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
-        //Hover pop up description
-        title: 'Road Accident (NTU)'
-    });
+    //Loop to generate all markers
+    for(i=0; i<3; i++) {
+        //add fire marker
+        addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
+        //add fire marker events listener
+        addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
+    }
     
-    google.maps.event.addListener(marker2, 'click', function() {
-        
-        if (infowindow) {
-            infowindow.close();
-        }
-        
-        infowindow = new google.maps.InfoWindow({
-            content: contentString2
-        });
-        
-        infowindow.open(map, marker2);
-    });
+    var dengueHotSpots = [];
+    dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
+    dengueHotSpots.push([new google.maps.LatLng(1.387831, 103.832363), 500, 8]);
+    dengueHotSpots.push([new google.maps.LatLng(1.397831, 103.752363), 1000, 20]);
     
-    var contentString3 = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h4 id="firstHeading" class="firstHeading">Dengue Affected Area</h4>'+
-      '<div id="bodyContent">'+
-      '<p>No. of people affected: 17</p>'
-      '</div>'+
-      '</div>';
-    
-    var myCity = new google.maps.Circle({
-        center:myLatlng3,
-        radius:800,
-        strokeColor:"#114455",
-        strokeOpacity:0.8,
-        strokeWeight:2,
-        fillColor:"#14ad80",
-        fillOpacity:0.4,
-        map: map
-    });
-    
-    google.maps.event.addListener(myCity, 'click', function() {
-        closeInfoWindow(infowindow);
-        
-        infowindow = new google.maps.InfoWindow({
-            content: contentString3,
-            position: myLatlng3
-        });
-        
-        infowindow.open(map);
-    });
-
-    var ctaLayer = new google.maps.KmlLayer({
-      url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz'
-    });
-    ctaLayer.setMap(map);
-
+    for(i=0; i<3; i++) {
+        //add dengue marker
+        addDengueMarker(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
+        //add fire marker events listener
+        addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
+    }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
