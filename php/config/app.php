@@ -325,14 +325,14 @@ $DB = [
 
 $LOCAL = array('localhost', '127.0.0.1');
 
-// if (in_array($_SERVER['SERVER_NAME'], $LOCAL) || in_array(explode(':', $_SERVER['HTTP_HOST'])[0], $LOCAL)){
+if (in_array($_SERVER['SERVER_NAME'], $LOCAL) || in_array(explode(':', $_SERVER['HTTP_HOST'])[0], $LOCAL)){
     $DB['Datasources']['default']['host'] = 'localhost';
     $DB['Datasources']['default']['port'] = '3306';
     $DB['Datasources']['default']['username'] = 'root';
     // $DB['Datasources']['default']['password'] = 'admin';
     // $DB['Datasources']['default']['username'] = 'adminSH5rxhi';
     // $DB['Datasources']['default']['password'] = 'hMRpD1NdelBp';
-// }
+}
 
 // $DB['Datasources']['default']['host'] = '127.0.0.1';
 // $DB['Datasources']['default']['port'] = '33005';
