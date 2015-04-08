@@ -214,7 +214,7 @@ $DB = [
             'persistent' => false,
 
             // Actual deployment
-            'host' => getenv("OPENSHIFT_MYSQL_DB_HOST"),
+            'host' => getenv("OPENSHIFT_JAVA_HOST"),
             'port' => getenv("OPENSHIFT_JAVA_PORT"),
             'username' => getenv("OPENSHIFT_MYSQL_DB_USERNAME"),
             'password' => getenv("OPENSHIFT_MYSQL_DB_PASSWORD"),
