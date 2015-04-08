@@ -8,7 +8,7 @@
     // $incidentDateTime = $incident['incidentDateTime']->nice();
     $address = $incident['address'];
     $latitude = $incident['latitude'];
-    $longitude = $incident['incidentTitle'];
+    $longitude = $incident['longitude'];
     $incidentCategoryID = $incident['incidentCategoryID'];
     $incidentStatus = $incident['incidentStatus'];
     $incidentDetails = $incident['incidentDetails'];
