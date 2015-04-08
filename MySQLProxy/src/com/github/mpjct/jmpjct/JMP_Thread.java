@@ -44,9 +44,7 @@ public class JMP_Thread implements Runnable {
         
         if (JMP.config.getProperty("plugins") != null)
             ps = JMP.config.getProperty("plugins").split(",");
-        
-        this.listening = false;
-        
+                
         while (this.listening) {
             plugins = new ArrayList<Base>();
             for (String p: ps) {
