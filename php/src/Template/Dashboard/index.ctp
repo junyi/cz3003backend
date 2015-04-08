@@ -24,7 +24,7 @@
                           <th>Location</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody>f
                         <?php 
                           foreach ($incidents as $i) {               
                               $status = $i->incidentStatus;

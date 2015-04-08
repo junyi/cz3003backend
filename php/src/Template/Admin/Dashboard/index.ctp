@@ -24,10 +24,6 @@
         <div class="box box-success">
           <div class="box-header with-border">
             <h3 class="box-title">Map Overview</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div><!-- /.box-header -->
           <div class="box-body no-padding">
             <div class="row">
@@ -65,10 +61,6 @@
         <div class="box box-default">
           <div class="box-header with-border">
             <h3 class="box-title">Incident Categories</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div><!-- /.box-header -->
           <div class="box-footer no-padding">
             <ul class="nav nav-pills nav-stacked">
@@ -88,10 +80,6 @@
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Dengue Cases</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive">
@@ -150,10 +138,6 @@
         <div class="box box-primary">
           <div class="box-header with-border">
             <h3 class="box-title">Recently Added Incidents</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div><!-- /.box-header -->
           <div class="box-body">
             <ul class="products-list product-list-in-box">
