@@ -59,6 +59,20 @@ use Cake\Error\Debugger;
                           $i['incidentDateTime']->timezone = 'Asia/Singapore';
                           $incidentDateTime = $i['incidentDateTime']->format('d-m-Y h:i A');
                           $incidentDateTime = str_replace('-', '/', $incidentDateTime);
+                          $label = "";
+                          switch ($status) {
+                             case 'On-going':
+                                $label = "success";
+                                break;
+                             case 'Closed':
+                                $label = "danger";
+                                break;
+                             case 'Pending':
+                                $label = "warning";
+                                break;
+                             default:
+                                break;
+                          }
                           echo $this->Html->tableCells(
                               array(
                                   $no++,
@@ -66,20 +80,6 @@ use Cake\Error\Debugger;
                                   $incidentDateTime,
                                   $i->address,
                                   $i->incidentCategory->incidentCategoryTitle,
-                                  $label = "";
-                                    switch ($status) {
-                                      case 'On-going':
-                                        $label = "success";
-                                        break;
-                                      case 'Closed':
-                                        $label = "danger";
-                                        break;
-                                      case 'Pending':
-                                        $label = "warning";
-                                        break;
-                                      default:
-                                        break;
-                                    }
                                   "<span class=\"label label-$label\">$i->incidentStatus</span>",
                                   '<a href="#" data-toggle="modal" data-remote="/admin/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/admin/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
