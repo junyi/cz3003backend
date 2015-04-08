@@ -1,2 +1,3 @@
 #!/bin/bash
-nohup java -jar $OPENSHIFT_REPO_DIR/MySQLProxy/run/MySQLProxy.jar > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
+cd $OPENSHIFT_REPO_DIR/MySQLProxy/run
+nohup java -jar MySQLProxy.jar > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
