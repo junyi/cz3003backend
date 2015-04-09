@@ -5,6 +5,8 @@ use \ArrayObject;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 use Cake\ORM\Entity;
+use \DateTimeZone;
+use \DateTime;
 
 class IncidentTable extends Table
 {
@@ -24,7 +26,15 @@ class IncidentTable extends Table
 	{
 		if (!empty($entity->incidentDateTime)){
 			$datetime = strtotime($entity->incidentDateTime);
-	    	$entity->incidentDateTime = date("Y-m-d H:i:s", $datetime);
+	    	// $entity->incidentDateTime = date("Y-m-d H:i:s", $datetime);
+
+            $src_tz = new DateTimeZone('Asia/Singapore');
+            $dest_tz = new DateTimeZone('UTC');
+
+            $dt = new DateTime($entity->incidentDateTime, $src_tz);
+            $dt->setTimeZone($dest_tz);
+
+            $entity->incidentDateTime = $dt->format('Y-m-d H:i:s');
 	    	return true;
 	    }
 	    return false;
