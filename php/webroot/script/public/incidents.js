@@ -1,7 +1,3 @@
-$('#incident_datetime_input').datetimepicker({
-	format: 'DD/MM/YYYY hh:mm A'
-});
-
 $('#incident_location_input').geocomplete({
   details: ".details",
   detailsAttribute: "data-geo",
@@ -24,17 +20,6 @@ $('#add_incident_form')
                     }
                 }
             },
-            incidentDateTime: {
-                validators: {
-                    date: {
-                        format: 'DD/MM/YYYY hh:mm A',
-                        message: 'The value is not a valid date'
-                    },
-                    notEmpty: {
-                        message: 'The date/time is required'
-                    }
-                }
-            },
             address: {
                 validators: {
                     notEmpty: {
@@ -44,10 +29,6 @@ $('#add_incident_form')
             }
         }
     });
-
-$('#incident_datetime_input').on('dp.change dp.show', function(e) {
-    $('#add_incident_form').formValidation('revalidateField', 'incident_datetime');
-});
 
 
 // $('#incident_modal').on('shown.bs.modal', function() {

@@ -38,14 +38,6 @@
               <label>Incident Title</label>
               <input type="text" class="form-control" name="incidentTitle" id="incident_title_input" placeholder="Enter incident title" value="<?= $incidentTitle ?>">
           </div>
-          <!-- Date / Time -->
-          <div class="form-group">
-              <label>Date/Time</label>
-              <div class="input-group date">
-                <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
-                <input type="text" class="form-control" name="incidentDateTime" placeholder="DD/MM/YYYY hh:mm A" id="incident_datetime_input" value="<?= $incidentDateTime ?>"/>
-              </div><!-- /.input group -->
-          </div><!-- /.form group -->
           <!-- Location -->
           <div class="form-group">
               <label>Location</label>

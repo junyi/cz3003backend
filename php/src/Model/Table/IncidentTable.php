@@ -22,21 +22,21 @@ class IncidentTable extends Table
         ]);
     }
 
-    public function beforeSave(Event $event, Entity $entity, ArrayObject $options)
-	{
-		if (!empty($entity->incidentDateTime)){
-			$datetime = strtotime($entity->incidentDateTime);
-	    	// $entity->incidentDateTime = date("Y-m-d H:i:s", $datetime);
+ //    public function beforeSave(Event $event, Entity $entity, ArrayObject $options)
+	// {
+	// 	if (!empty($entity->incidentDateTime)){
+	// 		$datetime = strtotime($entity->incidentDateTime);
+	//     	// $entity->incidentDateTime = date("Y-m-d H:i:s", $datetime);
 
-            $src_tz = new DateTimeZone('Asia/Singapore');
-            $dest_tz = new DateTimeZone('UTC');
+ //            $src_tz = new DateTimeZone('Asia/Singapore');
+ //            $dest_tz = new DateTimeZone('UTC');
 
-            $dt = new DateTime($entity->incidentDateTime, $src_tz);
-            $dt->setTimeZone($dest_tz);
+ //            $dt = new DateTime($entity->incidentDateTime, $src_tz);
+ //            $dt->setTimeZone($dest_tz);
 
-            $entity->incidentDateTime = $dt->format('Y-m-d H:i:s');
-	    	return true;
-	    }
-	    return false;
-	}
+ //            $entity->incidentDateTime = $dt->format('Y-m-d H:i:s');
+	//     	return true;
+	//     }
+	//     return false;
+	// }
 }

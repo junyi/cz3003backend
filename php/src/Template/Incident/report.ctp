@@ -44,15 +44,6 @@
                         <textarea class="form-control" name="incidentDetails" id="incident_details_input" rows="3" placeholder="Enter details" style="resize:vertical"></textarea>
                     </div>
                     
-                    <!-- Date / Time -->
-                    <div class="form-group">
-                        <label>Date/Time</label>
-                        <div class="input-group">
-                          <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                          <input type="text" class="form-control" name="incidentDateTime" id="incident_datetime_input" placeholder="DD/MM/YYYY hh:mm A"/>
-                        </div><!-- /.input group -->
-                    </div><!-- /.form group -->
-                    
                     <!-- Address -->
                     <div class="form-group">
                         <label>Address</label>
