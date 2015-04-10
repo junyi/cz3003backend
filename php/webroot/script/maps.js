@@ -262,7 +262,7 @@ function initialize() {
         };
 
         for (var j = 0; j < points.length; j++) {
-            bounds.extend(polygon[i]);
+            bounds.extend(polygon[j]);
         }
 
         addDengueMarker(polygon, data[i].severity);
