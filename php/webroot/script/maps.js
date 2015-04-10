@@ -4,6 +4,8 @@
 var roadMarkers = [];
 var fireMarkers = [];
 var dengueMarkers = [];
+var floodMarkers = [];
+var suicideMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
@@ -29,11 +31,31 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
+function addFloodMarker(location, title) {
+    var floodMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        title: title
+    });
+    floodMarkers.push(floodMarker);
+}
+
+function addSuicideMarker(location, title) {
+    var suicideMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        title: title
+    });
+    suicideMarkers.push(suicideMarker);
+}
+
 function addDengueMarker(polygon, severity) {
     var stroke;
     var fill;
     
-    if (status == 'Alert') {
+    if (severity == 'Alert') {
         //red
         fill = "red";
     } else {
@@ -81,6 +103,33 @@ function addFireMarkerListener(i, title, content) {
     });
 }
 
+function addFloodMarkerListener(i, title, content) {
+    google.maps.event.addListener(floodMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
+        });
+        
+        infoWindow.open(map, floodMarkers[i]);
+    });
+}
+
+function addSuicideMarkerListener(i, title, content) {
+    google.maps.event.addListener(suicideMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
+        });
+        
+        infoWindow.open(map, suicideMarkers[i]);
+    });
+}
 
 function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
     google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
@@ -95,19 +144,6 @@ function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
         
         infoWindow.open(map, dengueMarkers[i]);
     });
-}
-
-//function to set all categories markers onto map EXCEPT weather and PSI
-function setAllMap(map) {
-    showRoadMarkers(map);
-    showFireMarkers(map);
-    showDengueMarkers(map);
-}
-
-//clears ALL markers INCLUDING weather and PSI
-function clearMarkers() {
-    setAllMap(null);
-    clearWeather();
 }
 
 //function to SET all ROAD markers onto map
@@ -177,12 +213,6 @@ function toggleDengueMarkers(btn) {
     }
 }
 
-//shows ALL markers INCLUDING weather and PSI
-function showMarkers() {
-    setAllMap(map);
-    showWeather();
-}
-
 function initializeWeatherLayer(map) {
     weatherLayer = new google.maps.weather.WeatherLayer({
         temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
@@ -238,7 +268,6 @@ function initialize() {
     ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
-    //ctaLayer.setMap(map);
 
     var polygons = [];
     
@@ -272,9 +301,27 @@ function initialize() {
 
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
+        
+        alert(i);
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
-        addRoadMarker(marker[0], marker[1]);
-        addRoadMarkerListener(i, marker[1], marker[2]);
+        
+        if (data[i].incidentCategoryID == 1) {
+            //road
+            addRoadMarker(marker[0], marker[1]);
+            addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if (data[i].incidentCategoryID == 2) {
+            //fire
+            addFireMarker(marker[0], marker[1]);
+            addFireMarkerListener(i, marker[1], marker[2]);
+        } else if (data[i].incidentCategoryID == 3) {
+            //flood
+            addFloodMarker(marker[0], marker[1]);
+            //addFloodMarkerListener(i, marker[1], marker[2]);
+        } else if (data[i].incidentCategoryID == 4) {
+            //suicide
+            addSuicideMarker(marker[0], marker[1]);
+            //addSuicideMarkerListener(i, marker[1], marker[2]);
+        }
       }
     });
 
