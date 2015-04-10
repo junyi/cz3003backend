@@ -282,7 +282,7 @@ function initialize() {
             addRoadMarkerListener(i, marker[1], marker[2]);
         } else if(data[i].incidentCategoryID == 2) {
             addFireMarker(marker[0], marker[1]);
-            //addRoadMarkerListener(i, marker[1], marker[2]);
+            addFireMarkerListener(i, marker[1], marker[2]);
         } else if(data[i].incidentCategoryID == 3) {
             addFloodMarker(marker[0], marker[1]);
             //addRoadMarkerListener(i, marker[1], marker[2]);
