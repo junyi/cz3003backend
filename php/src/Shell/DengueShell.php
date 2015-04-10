@@ -73,7 +73,7 @@ class DengueShell extends Shell
         for ($i = 1; $i <= $results->SrchResults[0]->FeatCount - 1; $i++) {
             $r = $results->SrchResults[$i];
             $region = $r->DESCRIPTION;
-            $noOfPeopleInfected = intval(explode(":", $r->NAME));
+            $noOfPeopleInfected = intval($r->{"Number of cases"});
             $p = explode("|", $r->XY);
 
             $convertedPoints = [];

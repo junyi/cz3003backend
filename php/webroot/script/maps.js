@@ -267,7 +267,6 @@ function initialize() {
     
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
-<<<<<<< HEAD
         // marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
         // dengueHotSpots.push(marker);
         
