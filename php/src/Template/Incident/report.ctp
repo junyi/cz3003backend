@@ -18,7 +18,7 @@
         <section class="content">
 
           <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-12">
               <div class="box">
                   <form role="form" id="add_incident_form" action="/report" method="post">
                     <div class="box-body">

@@ -29,3 +29,16 @@
 #legend-box input {
   margin-right: 5px;
 }
+
+#content {
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+#content h5 {
+  margin: 3px 0;
+}
+
+#bodyContent {
+  margin: 0;
+}

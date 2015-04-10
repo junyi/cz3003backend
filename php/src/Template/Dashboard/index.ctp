@@ -15,7 +15,7 @@
 		    <li><input type="checkbox" checked="checked"/> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
 		    <li><input type="checkbox" checked="checked" onclick="toggleDengueMarkers(this);"/> <img src="dist/img/dengue_marker.png" /> Dengue</li>
 		    <li><input type="checkbox" onclick="toggleWeather(this);" /> <img src="dist/img/weather.png" /> Weather</li>
-		    <li><input type="checkbox" /> <img src="dist/img/haze.png" /> PSI</li>
+		    <li><input type="checkbox" onclick="toggleRegionOverlays(this);" /> <img src="dist/img/haze.png" /> Regions</li>
 		  </ul>
 		</form>
 	      </div><!-- /.legend-box -->
@@ -137,12 +137,32 @@
                     </table>
                   </div><!-- /.table-responsive -->
                 </div><!-- /.box-body -->
-                <div class="box-footer clearfix">
-                  <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Update Records</a>
-                  <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">View Reports</a>
-                </div><!-- /.box-footer -->
+                <div class="box-footer clearfix">&nbsp;</div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->
+	    
+	    <!-- HAZE CATEGORIES -->
+            <div class='col-md-4'>
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">PSI INDEX <small>As of 16 Mar 1300 hours</small></h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#">North <span class="pull-right text-green"> 50 </span></a></li>
+                    <li><a href="#">Central  <span class="pull-right text-green"> 50 </span></a></li>
+                    <li><a href="#">East <span class="pull-right text-green"> 60 </span></a></li>
+                    <li><a href="#">West  <span class="pull-right text-green"> 70 </span></a></li>
+                    <li><a href="#">South  <span class="pull-right text-green"> 80 </span></a></li>
+                  </ul>
+                </div><!-- /.footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+	    
           </div><!-- /.row -->
 
         </section><!-- /.content -->

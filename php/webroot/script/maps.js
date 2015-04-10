@@ -8,6 +8,7 @@ var infoWindow;
 var map;
 var weatherLayer;
 var heatMap;
+var ctaLayer;
 
 function addRoadMarker(location, title) {
     var roadMarker = new google.maps.Marker({
@@ -50,7 +51,7 @@ function addRoadMarkerListener(i, title, content) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
         infoWindow.open(map, roadMarkers[i]);
@@ -64,7 +65,7 @@ function addFireMarkerListener(i, title, content) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
         infoWindow.open(map, fireMarkers[i]);
@@ -79,7 +80,7 @@ function addDengueMarkerListener(location, radius, numOfPeople) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h4><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
             position: location
         });
         
@@ -197,8 +198,20 @@ function toggleWeather(btn) {
     }
 }
 
-function toggle() {
-    //$("#legend-box").toggle("slow", function() {});
+function showRegionOverlays() {
+    ctaLayer.setMap(map);
+}
+
+function hideRegionOverlays() {
+    ctaLayer.setMap(null);
+}
+
+function toggleRegionOverlays(btn) {
+    if (btn.checked == true) {
+        showRegionOverlays();
+    } else {
+        hideRegionOverlays();
+    }
 }
 
 function initialize() {
@@ -254,10 +267,11 @@ function initialize() {
     //     addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
     // }
     
-    var ctaLayer = new google.maps.KmlLayer({
+    ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
-    ctaLayer.setMap(map);
+    //ctaLayer.setMap(map);
+    
     latlng = new google.maps.MVCArray();
 
     $.getJSON("/dengue.json", function( data ) {
