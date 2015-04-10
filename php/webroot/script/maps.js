@@ -29,27 +29,6 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
-<<<<<<< HEAD
-function addDengueMarker(polygon, severity) {
-    var severityColor = "";
-    if (severity == "Warning") {
-      severityColor = "#FFFF00";
-    } else if (severity == "Alert") {
-      severityColor = "#FF0000";
-    }
-
-    var gpolygon = new google.maps.Polygon({
-      paths: polygon,
-      strokeColor: "#114455",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: severityColor,
-      fillOpacity: 0.4
-    });
-
-    gpolygon.setMap(map);
-    dengueMarkers.push(gpolygon);
-=======
 function addDengueMarker(location, radius, numOfPeople) {
     var stroke;
     var fill;
