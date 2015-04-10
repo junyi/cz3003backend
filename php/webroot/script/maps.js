@@ -8,6 +8,7 @@ var infoWindow;
 var map;
 var weatherLayer;
 var heatMap;
+var ctaLayer;
 
 function addRoadMarker(location, title) {
     var roadMarker = new google.maps.Marker({
@@ -254,10 +255,11 @@ function initialize() {
     //     addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
     // }
     
-    var ctaLayer = new google.maps.KmlLayer({
+    ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
-    ctaLayer.setMap(map);
+    //ctaLayer.setMap(map);
+    
     latlng = new google.maps.MVCArray();
 
     $.getJSON("/dengue.json", function( data ) {
