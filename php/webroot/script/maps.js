@@ -4,8 +4,6 @@
 var roadMarkers = [];
 var fireMarkers = [];
 var dengueMarkers = [];
-var floodMarkers = [];
-var suicideMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
@@ -29,26 +27,6 @@ function addFireMarker(location, title) {
         title: title
     });
     fireMarkers.push(fireMarker);
-}
-
-function addFloodMarker(location, title) {
-    var floodMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        title: title
-    });
-    floodMarkers.push(floodMarker);
-}
-
-function addSuicideMarker(location, title) {
-    var suicideMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        title: title
-    });
-    suicideMarkers.push(suicideMarker);
 }
 
 function addDengueMarker(polygon, severity) {
@@ -100,34 +78,6 @@ function addFireMarkerListener(i, title, content) {
         });
         
         infoWindow.open(map, fireMarkers[i]);
-    });
-}
-
-function addFloodMarkerListener(i, title, content) {
-    google.maps.event.addListener(floodMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
-        });
-        
-        infoWindow.open(map, floodMarkers[i]);
-    });
-}
-
-function addSuicideMarkerListener(i, title, content) {
-    google.maps.event.addListener(suicideMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
-        });
-        
-        infoWindow.open(map, suicideMarkers[i]);
     });
 }
 
@@ -308,8 +258,8 @@ function initialize() {
             addRoadMarker(marker[0], marker[1]);
             addRoadMarkerListener(i, marker[1], marker[2]);
         } else {
-            addRoadMarker(marker[0], marker[1]);
-            addRoadMarkerListener(i, marker[1], marker[2]);
+            addFireMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
         }
       }
     });
