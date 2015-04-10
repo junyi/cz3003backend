@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Security;
 
 class StaffTable extends Table
 {
@@ -30,6 +31,17 @@ class StaffTable extends Table
     public function initialize(array $config)
     {
         $this->table('Staff');
+    }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        if (!$this->staffID && !$entity->password) {
+            $entity->password = hash("sha256", "password");
+        } else {
+            $entity->password = hash("sha256", $entity->password);
+        }
+
+        return true;
     }
 
 }
