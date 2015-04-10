@@ -31,6 +31,26 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
+function addFloodMarker(location, title) {
+    var floodMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        title: title
+    });
+    floodMarkers.push(floodMarker);
+}
+
+function addSuicideMarker(location, title) {
+    var suicideMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        title: title
+    });
+    suicideMarkers.push(suicideMarker);
+}
+
 function addDengueMarker(polygon, severity) {
     var stroke;
     var fill;
@@ -110,8 +130,6 @@ function addSuicideMarkerListener(i, title, content) {
         infoWindow.open(map, suicideMarkers[i]);
     });
 }
-
-
 
 function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
     google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
@@ -284,6 +302,7 @@ function initialize() {
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         
+        alert(i);
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
         
         if (data[i].incidentCategoryID == 1) {
