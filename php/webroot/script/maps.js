@@ -36,18 +36,15 @@ function addDengueMarker(location, radius, numOfPeople) {
     
     if (status == 'Alert') {
         //red
-        stroke = "#114455";
         fill = "red";
     } else {
         //yellow
-        stroke = "#114455";
         fill = "yellow";
     }
     
     var dengueMarker = new google.maps.Circle({
         center: location,
         radius: radius,
-        strokeColor:    stroke,
         strokeOpacity:  0.8,
         strokeWeight:   2,
         fillColor:  fill,
