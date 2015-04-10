@@ -198,8 +198,20 @@ function toggleWeather(btn) {
     }
 }
 
-function toggle() {
-    //$("#legend-box").toggle("slow", function() {});
+function showRegionOverlays() {
+    ctaLayer.setMap(map);
+}
+
+function hideRegionOverlays() {
+    ctaLayer.setMap(null);
+}
+
+function toggleRegionOverlays(btn) {
+    if (btn.checked == true) {
+        showRegionOverlays();
+    } else {
+        hideRegionOverlays();
+    }
 }
 
 function initialize() {

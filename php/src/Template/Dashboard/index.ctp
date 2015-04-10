@@ -15,7 +15,7 @@
 		    <li><input type="checkbox" checked="checked"/> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
 		    <li><input type="checkbox" checked="checked" onclick="toggleDengueMarkers(this);"/> <img src="dist/img/dengue_marker.png" /> Dengue</li>
 		    <li><input type="checkbox" onclick="toggleWeather(this);" /> <img src="dist/img/weather.png" /> Weather</li>
-		    <li><input type="checkbox" /> <img src="dist/img/haze.png" /> PSI</li>
+		    <li><input type="checkbox" onclick="toggleRegionOverlays(this);" /> <img src="dist/img/haze.png" /> Regions</li>
 		  </ul>
 		</form>
 	      </div><!-- /.legend-box -->
