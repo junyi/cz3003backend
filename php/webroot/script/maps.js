@@ -4,6 +4,8 @@
 var roadMarkers = [];
 var fireMarkers = [];
 var dengueMarkers = [];
+var floodMarkers = [];
+var suicideMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
@@ -27,6 +29,26 @@ function addFireMarker(location, title) {
         title: title
     });
     fireMarkers.push(fireMarker);
+}
+
+function addFloodMarker(location, title) {
+    var floodMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_yellow.png',
+        title: title
+    });
+    floodMarkers.push(floodMarker);
+}
+
+function addSuicideMarker(location, title) {
+    var suicideMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_green.png',
+        title: title
+    });
+    suicideMarkers.push(suicideMarker);
 }
 
 function addDengueMarker(polygon, severity) {
@@ -257,9 +279,17 @@ function initialize() {
         if (data[i].incidentCategoryID == 1) {
             addRoadMarker(marker[0], marker[1]);
             addRoadMarkerListener(i, marker[1], marker[2]);
-        } else {
+        } else if(data[i].incidentCategoryID == 2) {
             addFireMarker(marker[0], marker[1]);
             //addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if(data[i].incidentCategoryID == 3) {
+            addFloodMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if(data[i].incidentCategoryID == 4) {
+            addSuicideMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
+        } else {
+            alert('fail');
         }
       }
     });
