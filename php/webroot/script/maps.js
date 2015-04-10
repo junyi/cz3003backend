@@ -249,21 +249,17 @@ function initialize() {
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected, data[i].severity];
-        dengueHotSpots.push(marker);
         latlng.push({
           location: marker[0],
           weight: marker[1]});
         addDengueMarker(marker[0], marker[1]);
         addDengueMarkerListener(i, marker[1], marker[2]);
       }
-      
-
     });
 
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
-        roadIncidents.push(marker);
         addRoadMarker(marker[0], marker[1]);
         addRoadMarkerListener(i, marker[1], marker[2]);
       }
