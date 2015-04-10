@@ -31,16 +31,30 @@ function addFireMarker(location, title) {
 }
 
 function addDengueMarker(location, radius, numOfPeople) {
+    var stroke;
+    var fill;
+    
+    if (status == 'Alert') {
+        //red
+        stroke = "#114455";
+        fill = "red";
+    } else {
+        //yellow
+        stroke = "#114455";
+        fill = "yellow";
+    }
+    
     var dengueMarker = new google.maps.Circle({
         center: location,
         radius: radius,
-        strokeColor:    "#114455",
+        strokeColor:    stroke,
         strokeOpacity:  0.8,
         strokeWeight:   2,
-        fillColor:  "#14ad80",
+        fillColor:  fill,
         fillOpacity:    0.4,
         map: map
     });
+    
     dengueMarkers.push(dengueMarker);
 }
 
@@ -276,7 +290,7 @@ function initialize() {
 
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
-        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
+        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected, data[i].severity];
         dengueHotSpots.push(marker);
         latlng.push({
           location: marker[0],
