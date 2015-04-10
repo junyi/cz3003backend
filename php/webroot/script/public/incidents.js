@@ -31,7 +31,7 @@ $('#add_incident_form')
                         message: 'The value is not a valid date'
                     },
                     notEmpty: {
-                        message: 'The location is required'
+                        message: 'The date/time is required'
                     }
                 }
             },
