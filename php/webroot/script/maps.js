@@ -29,6 +29,7 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
+<<<<<<< HEAD
 function addDengueMarker(polygon, severity) {
     var severityColor = "";
     if (severity == "Warning") {
@@ -48,6 +49,31 @@ function addDengueMarker(polygon, severity) {
 
     gpolygon.setMap(map);
     dengueMarkers.push(gpolygon);
+=======
+function addDengueMarker(location, radius, numOfPeople) {
+    var stroke;
+    var fill;
+    
+    if (status == 'Alert') {
+        //red
+        fill = "red";
+    } else {
+        //yellow
+        fill = "yellow";
+    }
+    
+    var dengueMarker = new google.maps.Circle({
+        center: location,
+        radius: radius,
+        strokeOpacity:  0.8,
+        strokeWeight:   2,
+        fillColor:  fill,
+        fillOpacity:    0.4,
+        map: map
+    });
+    
+    dengueMarkers.push(dengueMarker);
+>>>>>>> f173356f879cbb939278d6a0796fab9a66fd9381
 }
 
 function addRoadMarkerListener(i, title, content) {
@@ -231,45 +257,6 @@ function initialize() {
     
     //initialize weather layer
     initializeWeatherLayer(map);
-    //simulate PHP to extract data of road incidents
-    var roadIncidents = [];
-    // roadIncidents.push([new google.maps.LatLng(1.337831, 103.832363), 'Road Accident at YYYYY', 'A road accident has occurred at YYYYY']);
-    // roadIncidents.push([new google.maps.LatLng(1.389641, 103.682941), 'Road Accident at ZZZZZ', 'A road accident has occurred at YYYYY']);
-    // roadIncidents.push([new google.maps.LatLng(1.359641, 103.952941), 'Road Accident at XXXXX', 'A road accident has occurred at YYYYY']);
-    
-    // //Loop to generate all markers
-    // for(i=0; i<3; i++) {
-    //     //add road marker
-    //     addRoadMarker(roadIncidents[i][0], roadIncidents[i][1]);
-    //     //add road marker events listener
-    //     addRoadMarkerListener(i, roadIncidents[i][1], roadIncidents[i][2]);
-    // }
-    
-    //simulate PHP to extract data of road incidents
-    var fireIncidents = [];
-    fireIncidents.push([new google.maps.LatLng(1.357831, 103.932363), 'Fire Accident at YYYYY', 'A fire accident has occurred at YYYYY']);
-    fireIncidents.push([new google.maps.LatLng(1.349641, 103.682941), 'Fire Accident at ZZZZZ', 'A fire accident has occurred at YYYYY']);
-    fireIncidents.push([new google.maps.LatLng(1.349641, 103.752941), 'Fire Accident at XXXXX', 'A fire accident has occurred at YYYYY']);
-    
-    //Loop to generate all markers
-    for(i=0; i<3; i++) {
-        //add fire marker
-        addFireMarker(fireIncidents[i][0], fireIncidents[i][1]);
-        //add fire marker events listener
-        addFireMarkerListener(i, fireIncidents[i][1], fireIncidents[i][2]);
-    }
-    
-    var dengueHotSpots = [];
-    // dengueHotSpots.push([new google.maps.LatLng(1.327831, 103.932363), 800, 13]);
-    // dengueHotSpots.push([new google.maps.LatLng(1.387831, 103.832363), 500, 8]);
-    // dengueHotSpots.push([new google.maps.LatLng(1.397831, 103.752363), 1000, 20]);
-    
-    // for(i=0; i<3; i++) {
-    //     //add dengue marker
-    //     addDengueMarker(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
-    //     //add fire marker events listener
-    //     addDengueMarkerListener(dengueHotSpots[i][0], dengueHotSpots[i][1], dengueHotSpots[i][2]);
-    // }
     
     ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
@@ -280,6 +267,7 @@ function initialize() {
     
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
+<<<<<<< HEAD
         // marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
         // dengueHotSpots.push(marker);
         
@@ -309,7 +297,6 @@ function initialize() {
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
-        roadIncidents.push(marker);
         addRoadMarker(marker[0], marker[1]);
         addRoadMarkerListener(i, marker[1], marker[2]);
       }
