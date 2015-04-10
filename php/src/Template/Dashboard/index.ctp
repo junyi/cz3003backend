@@ -136,7 +136,8 @@
                       </tbody>
                     </table>
                   </div><!-- /.table-responsive -->
-                </div><!-- /.box-body --></div><!-- /.box-footer -->
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">&nbsp;</div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->
 	    
