@@ -304,8 +304,15 @@ function initialize() {
         
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
         
-        addRoadMarker(marker[0], marker[1]);
-        addRoadMarkerListener(i, marker[1], marker[2]);
+        if (data[i].incidentCategoryID == 1) {
+            addRoadMarker(marker[0], marker[1]);
+            addRoadMarkerListener(i, marker[1], marker[2]);
+        } else {
+            addFireMarker(marker[0], marker[1]);
+            addFireMarkerListener(i, marker[1], marker[2]);
+        }
+        
+        
       }
     });
 
