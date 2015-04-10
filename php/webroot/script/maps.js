@@ -35,7 +35,7 @@ function addFloodMarker(location, title) {
     var floodMarker = new google.maps.Marker({
         position: location,
         map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_yellow.png',
         title: title
     });
     floodMarkers.push(floodMarker);
@@ -45,7 +45,7 @@ function addSuicideMarker(location, title) {
     var suicideMarker = new google.maps.Marker({
         position: location,
         map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_green.png',
         title: title
     });
     suicideMarkers.push(suicideMarker);
@@ -103,33 +103,6 @@ function addFireMarkerListener(i, title, content) {
     });
 }
 
-function addFloodMarkerListener(i, title, content) {
-    google.maps.event.addListener(floodMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
-        });
-        
-        infoWindow.open(map, floodMarkers[i]);
-    });
-}
-
-function addSuicideMarkerListener(i, title, content) {
-    google.maps.event.addListener(suicideMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
-        });
-        
-        infoWindow.open(map, suicideMarkers[i]);
-    });
-}
 
 function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
     google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
@@ -307,9 +280,17 @@ function initialize() {
         if (data[i].incidentCategoryID == 1) {
             addRoadMarker(marker[0], marker[1]);
             addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if(data[i].incidentCategoryID == 2) {
+            addFireMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if(data[i].incidentCategoryID == 3) {
+            addFloodMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
+        } else if(data[i].incidentCategoryID == 4) {
+            addSuicideMarker(marker[0], marker[1]);
+            //addRoadMarkerListener(i, marker[1], marker[2]);
         } else {
-            addRoadMarker(marker[0], marker[1]);
-            addRoadMarkerListener(i, marker[1], marker[2]);
+            alert('fail');
         }
       }
     });
