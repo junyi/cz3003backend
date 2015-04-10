@@ -9,11 +9,11 @@ class LegacyPasswordHasher extends AbstractPasswordHasher
 
     public function hash($password)
     {
-        return $password;
+        return hash("sha256", $password);
     }
 
     public function check($password, $hashedPassword)
     {
-        return $password === $hashedPassword;
+        return $this->hash($password) === $hashedPassword;
     }
 }

@@ -7,7 +7,6 @@ var dengueMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
-var heatMap;
 var ctaLayer;
 
 function addRoadMarker(location, title) {
@@ -30,18 +29,25 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
-function addDengueMarker(location, radius, numOfPeople) {
-    var dengueMarker = new google.maps.Circle({
-        center: location,
-        radius: radius,
-        strokeColor:    "#114455",
-        strokeOpacity:  0.8,
-        strokeWeight:   2,
-        fillColor:  "#14ad80",
-        fillOpacity:    0.4,
-        map: map
+function addDengueMarker(polygon, severity) {
+    var severityColor = "";
+    if (severity == "Warning") {
+      severityColor = "#FFFF00";
+    } else if (severity == "Alert") {
+      severityColor = "#FF0000";
+    }
+
+    var gpolygon = new google.maps.Polygon({
+      paths: polygon,
+      strokeColor: "#114455",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: severityColor,
+      fillOpacity: 0.4
     });
-    dengueMarkers.push(dengueMarker);
+
+    gpolygon.setMap(map);
+    dengueMarkers.push(gpolygon);
 }
 
 function addRoadMarkerListener(i, title, content) {
@@ -73,15 +79,15 @@ function addFireMarkerListener(i, title, content) {
 }
 
 
-function addDengueMarkerListener(location, radius, numOfPeople) {
+function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
     google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
         if (infoWindow) {
             infoWindow.close();
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
-            position: location
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hotspot</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '<br/>Location: ' + region + '</p></div></div>',
+            position: center
         });
         
         infoWindow.open(map, dengueMarkers[i]);
@@ -166,9 +172,7 @@ function toggleDengueMarkers(btn) {
     } else {
         clearDengueMarkers();
     }
-    heatMap.setMap(heatMap.getMap() ? null : map);
 }
-
 
 //shows ALL markers INCLUDING weather and PSI
 function showMarkers() {
@@ -271,20 +275,34 @@ function initialize() {
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
     //ctaLayer.setMap(map);
-    
-    latlng = new google.maps.MVCArray();
 
+    var polygons = [];
+    
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
-        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
-        dengueHotSpots.push(marker);
-        latlng.push({
-          location: marker[0],
-          weight: marker[1]});
-        addDengueMarker(marker[0], marker[1]);
-        addDengueMarkerListener(i, marker[1], marker[2]);
+        // marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
+        // dengueHotSpots.push(marker);
+        
+        // addDengueMarker(marker[0], marker[1]);
+        // addDengueMarkerListener(i, marker[1], marker[2]);
+
+        var points = data[i].polygon.split("|");
+        var polygon = [];
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var j = 0; j < points.length; j++) {
+          points[j] = points[j].split(",");
+          polygon.push(new google.maps.LatLng(parseFloat(points[j][0]), parseFloat(points[j][1])));
+        };
+
+        for (var j = 0; j < points.length; j++) {
+            bounds.extend(polygon[i]);
+        }
+
+        addDengueMarker(polygon, data[i].severity);
+        addDengueMarkerListener(i, data[i].region, data[i].severity, data[i].noOfPeopleInfected, bounds.getCenter());
+
       }
-      
 
     });
 
@@ -296,13 +314,6 @@ function initialize() {
         addRoadMarkerListener(i, marker[1], marker[2]);
       }
     });
-
-    heatMap = new google.maps.visualization.HeatmapLayer({
-      data: latlng,
-      radius: 30,
-      maxIntensity: 50
-    });
-    heatMap.setMap(map);
 
 }
 

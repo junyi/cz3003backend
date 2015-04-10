@@ -8,11 +8,6 @@ use Cake\Datasource\ConnectionManager;
 class DengueShell extends Shell
 {
     var $regions = [
-        'central' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DengueCase_Central_Area&otptFlds=AREANAME&extents=-4423.6,15672.6,69773.4,52887.4',
-        'northeast' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DengueCase_Northeast_Area&otptFlds=AREANAME&extents=-4423.6,15672.6,69773.4,52887.4',
-        'northwest' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DengueCase_Northwest_Area&otptFlds=AREANAME&extents=-4423.6,15672.6,69773.4,52887.4',
-        'southeast' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DengueCase_Southeast_Area&otptFlds=AREANAME&extents=-4423.6,15672.6,69773.4,52887.4',
-        'southwest' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DengueCase_Southwest_Area&otptFlds=AREANAME&extents=-4423.6,15672.6,69773.4,52887.4',
         'cluster' => 'http://www.onemap.sg/API/services.svc/mashupData?token=qo/s2TnSUmfLz+32CvLC4RMVkzEFYjxqyti1KhByvEacEdMWBpCuSSQ+IFRT84QjGPBCuz/cBom8PfSm3GjEsGc8PkdEEOEr&themeName=DENGUE_CLUSTER&otptFlds=NAME&extents=-4423.6,15672.6,69773.4,52887.4'
     ];
 
@@ -77,22 +72,17 @@ class DengueShell extends Shell
 
         for ($i = 1; $i <= $results->SrchResults[0]->FeatCount - 1; $i++) {
             $r = $results->SrchResults[$i];
+            $region = $r->DESCRIPTION;
             $noOfPeopleInfected = intval(explode(":", $r->NAME));
             $p = explode("|", $r->XY);
-            $p1 = explode(",", $p[0]);
-            $p2 = explode(",", $p[1]);
-            $p3 = explode(",", $p[2]);
-            $p4 = explode(",", $p[3]);
 
-            $p1 = $converter->onemap_compute($p1[1], $p1[0]);
-            $p2 = $converter->onemap_compute($p2[1], $p2[0]);
-            $p3 = $converter->onemap_compute($p3[1], $p3[0]);
-            $p4 = $converter->onemap_compute($p4[1], $p4[0]);
+            $convertedPoints = [];
 
-            $topMid = $this->midPoint($p1['lat'], $p1['lng'], $p2['lat'], $p2['lng']);
-            $btmMid = $this->midPoint($p3['lat'], $p3['lng'], $p4['lat'], $p4['lng']);
-            $centerMid = $this->midPoint($topMid[0], $topMid[1], $btmMid[0], $btmMid[1]);
-            $radius = $this->getDistanceFromLatLonInM($topMid[0], $topMid[1], $centerMid[0], $centerMid[1]);
+            for ($j = 0; $j < count($p); $j++) {
+                $point = explode(",", $p[$j]);
+                $point = $converter->onemap_compute($point[1], $point[0]);
+                array_push($convertedPoints, $point['lat'].",".$point['lng']);
+            }
 
             $severity = 'Normal';
 
@@ -105,9 +95,7 @@ class DengueShell extends Shell
             $data[] = [
                 'region' => $region,
                 'noOfPeopleInfected' => $noOfPeopleInfected,
-                'latitude' => $centerMid[0],
-                'longitude' => $centerMid[1],
-                'radius' => $radius,
+                'polygon' => implode("|", $convertedPoints),
                 'severity' => $severity
             ];
 
@@ -115,24 +103,6 @@ class DengueShell extends Shell
         }
 
         $severity = 'Normal';
-
-        if ($noOfPeopleInfected >= 10){
-            $severity = 'Alert';
-        } elseif ($noOfPeopleInfected > 0) {
-            $severity = 'Warning';
-        }
-
-        $total[] = [
-                'region' => $region,
-                'noOfPeopleInfected' => $totalNoOfPeopleInfected,
-                'severity' => $severity
-            ];
-
-        $denguestat = $this->DengueStat->newEntities($total);
-
-        foreach ($denguestat as $stat) {
-            $this->DengueStat->save($stat);
-        }
 
         $dengues = $this->Dengue->newEntities($data);
 
