@@ -97,7 +97,7 @@
                     <table class="table no-margin">
                       <thead>
                         <tr>
-                          <th>Region</th>
+                          <th width="40%">Region</th>
                           <th>No of people infected</th>
                           <th>Severity</th>
                           <th>Date / Time Record</th>
@@ -125,7 +125,7 @@
                               }
                               echo $this->Html->tableCells(
                                   array(
-                                      $dengueMapping[$i->region],
+                                      $i->region,
                                       ($i->noOfPeopleInfected)." people",
                                       "<span class=\"label label-$label\">$i->severity</span>",
                                       "<div class=\"sparkbar\" data-color=\"#00a65a\" data-height=\"20\">$time</div>"
@@ -153,11 +153,12 @@
                 </div><!-- /.box-header -->
                 <div class="box-footer no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#">North <span class="pull-right text-green"> 50 </span></a></li>
-                    <li><a href="#">Central  <span class="pull-right text-green"> 50 </span></a></li>
-                    <li><a href="#">East <span class="pull-right text-green"> 60 </span></a></li>
-                    <li><a href="#">West  <span class="pull-right text-green"> 70 </span></a></li>
-                    <li><a href="#">South  <span class="pull-right text-green"> 80 </span></a></li>
+                    <li><a href="#">National <span class="pull-right text-green"> <?=$haze['national']['psiValue']?> </span></a></li>
+                    <li><a href="#">North <span class="pull-right text-green"> <?=$haze['north']['psiValue']?> </span></a></li>
+                    <li><a href="#">Central  <span class="pull-right text-green"> <?=$haze['central']['psiValue']?> </span></a></li>
+                    <li><a href="#">East <span class="pull-right text-green"> <?=$haze['east']['psiValue']?> </span></a></li>
+                    <li><a href="#">West  <span class="pull-right text-green"> <?=$haze['west']['psiValue']?> </span></a></li>
+                    <li><a href="#">South  <span class="pull-right text-green"> <?=$haze['south']['psiValue']?> </span></a></li>
                   </ul>
                 </div><!-- /.footer -->
               </div><!-- /.box -->

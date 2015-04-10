@@ -28,18 +28,39 @@ use Cake\Error\Debugger;
  */
 class DashboardController extends AppController
 {
-	var $dengueMapping = [
-        'central' => 'Central',
-        'northeast' => 'North East',
-        'northwest' => 'North West',
-        'southeast' => 'South East',
-        'southwest' => 'South West',
-        'cluster' => 'Cluster'
-    ];
 
     private function getHazeInfo()
     {
         $this->loadModel('Haze');
+
+        $query = $this->Haze->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+    	$hazeProcessed = [];
+
+        foreach ($results as $r) {
+        	$hazeProcessed[$r->region] = $r;
+        }
+
+        $this->set('haze', $hazeProcessed);
+    }
+
+    private function getDengueInfo()
+    {
+        $this->loadModel('Dengue');
 
         $query = $this->Dengue->find('all');
 
@@ -57,31 +78,6 @@ class DashboardController extends AppController
         // Converting the query to an array will execute it.
         $results = $query->toArray();
 
-        $this->set('dengueMapping', $this->dengueMapping);
-        $this->set('dengue', $results);
-    }
-
-    private function getDengueInfo()
-    {
-        $this->loadModel('DengueStat');
-
-        $query = $this->DengueStat->find('all');
-
-        // Iteration will execute the query.
-        foreach ($query as $row) {
-        }
-
-        // Calling execute will execute the query
-        // and return the result set.
-        $results = $query->all();
-
-        // Once we have a result set we can get all the rows
-        $data = $results->toArray();
-
-        // Converting the query to an array will execute it.
-        $results = $query->toArray();
-
-        $this->set('dengueMapping', $this->dengueMapping);
         $this->set('dengue', $results);
     }
 
@@ -148,6 +144,8 @@ class DashboardController extends AppController
         $this->getIncidentCategoryStat();
 
         $this->getDengueInfo();
+
+        $this->getHazeInfo();
 
     }
 }
