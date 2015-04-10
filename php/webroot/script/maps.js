@@ -302,26 +302,10 @@ function initialize() {
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
         
-        alert(i);
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
         
-        if (data[i].incidentCategoryID == 1) {
-            //road
-            addRoadMarker(marker[0], marker[1]);
-            addRoadMarkerListener(i, marker[1], marker[2]);
-        } else if (data[i].incidentCategoryID == 2) {
-            //fire
-            addFireMarker(marker[0], marker[1]);
-            addFireMarkerListener(i, marker[1], marker[2]);
-        } else if (data[i].incidentCategoryID == 3) {
-            //flood
-            addFloodMarker(marker[0], marker[1]);
-            //addFloodMarkerListener(i, marker[1], marker[2]);
-        } else if (data[i].incidentCategoryID == 4) {
-            //suicide
-            addSuicideMarker(marker[0], marker[1]);
-            //addSuicideMarkerListener(i, marker[1], marker[2]);
-        }
+        addRoadMarker(marker[0], marker[1]);
+        addRoadMarkerListener(i, marker[1], marker[2]);
       }
     });
 
