@@ -52,7 +52,6 @@ function addDengueMarker(location, radius, numOfPeople) {
     });
     
     dengueMarkers.push(dengueMarker);
->>>>>>> f173356f879cbb939278d6a0796fab9a66fd9381
 }
 
 function addRoadMarkerListener(i, title, content) {
