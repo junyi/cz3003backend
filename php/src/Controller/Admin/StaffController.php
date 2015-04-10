@@ -309,7 +309,7 @@ class StaffController extends AppController
             $new_password = $this->request->data['new_password'];
             $confirm_password = $this->request->data['confirm_password'];
 
-            if ($password === $old_password) {
+            if ($password === hash("sha256", $old_password)) {
                 if ($new_password === $confirm_password) {
                     $user->set('password', $confirm_password);
 
