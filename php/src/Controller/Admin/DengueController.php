@@ -27,14 +27,6 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class DengueController extends AppController
 {
-    var $dengueMapping = [
-        'central' => 'Central',
-        'northeast' => 'North East',
-        'northwest' => 'North West',
-        'southeast' => 'South East',
-        'southwest' => 'South West',
-        'cluster' => 'Cluster'
-    ];
 
     private function getDengueInfo()
     {
@@ -56,7 +48,6 @@ class DengueController extends AppController
         // Converting the query to an array will execute it.
         $results = $query->toArray();
 
-        $this->set('dengueMapping', $this->dengueMapping);
         $this->set('dengue', $results);
     }
 
