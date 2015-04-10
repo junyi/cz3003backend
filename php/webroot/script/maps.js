@@ -29,7 +29,7 @@ function addFireMarker(location, title) {
     fireMarkers.push(fireMarker);
 }
 
-function addDengueMarker(location, radius, numOfPeople) {
+function addDengueMarker(polygon, severity) {
     var stroke;
     var fill;
     
@@ -40,18 +40,17 @@ function addDengueMarker(location, radius, numOfPeople) {
         //yellow
         fill = "yellow";
     }
-    
-    var dengueMarker = new google.maps.Circle({
-        center: location,
-        radius: radius,
-        strokeOpacity:  0.8,
-        strokeWeight:   2,
-        fillColor:  fill,
-        fillOpacity:    0.4,
-        map: map
+
+    var gpolygon = new google.maps.Polygon({
+      paths: polygon,
+      strokeOpacity:  0.8,
+      strokeWeight:   2,
+      fillColor:  fill,
+      fillOpacity:    0.4,
     });
-    
-    dengueMarkers.push(dengueMarker);
+
+    gpolygon.setMap(map);
+    dengueMarkers.push(gpolygon);
 }
 
 function addRoadMarkerListener(i, title, content) {
