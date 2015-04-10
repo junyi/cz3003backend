@@ -5,7 +5,6 @@
 			unset($incident->staffID);
 			unset($incident->publicName);
 			unset($incident->publicContact);
-			unset($incident->postDate);
 			$incident->incidentCategory = $incident->incidentCategory->incidentCategoryTitle;
 
 		} else {

@@ -35,7 +35,7 @@ class StaffTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        if (!$this->staffID && !$entity->password) {
+        if (!$entity->staffID && !$entity->password) {
             $entity->password = hash("sha256", "password");
         } else {
             $entity->password = hash("sha256", $entity->password);

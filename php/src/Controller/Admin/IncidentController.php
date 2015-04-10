@@ -44,7 +44,9 @@ class IncidentController extends AppController
 
     private function getIncidents()
     {
-        $query = $this->Incident->find('all')->contain(['IncidentCategory']);
+        $query = $this->Incident->find('all')
+            ->order(['incidentStatus' => 'ASC', 'incidentDateTime' => 'ASC'])
+            ->contain(['IncidentCategory']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
