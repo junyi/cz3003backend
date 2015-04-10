@@ -51,7 +51,7 @@ function addRoadMarkerListener(i, title, content) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
         infoWindow.open(map, roadMarkers[i]);
@@ -65,7 +65,7 @@ function addFireMarkerListener(i, title, content) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + title + '</h4><div id="bodyContent"><p>' + content + '</p></div></div>'
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
         infoWindow.open(map, fireMarkers[i]);
@@ -80,7 +80,7 @@ function addDengueMarkerListener(location, radius, numOfPeople) {
         }
         
         infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h4 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h4><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hot Spot (' + radius + 'm radius)</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '</p></div></div>',
             position: location
         });
         

@@ -29,3 +29,11 @@
 #legend-box input {
   margin-right: 5px;
 }
+
+#content {
+  width: 250px;
+}
+
+#content h5 {
+  margin: 3px 0;
+}
