@@ -103,6 +103,7 @@ function addFireMarkerListener(i, title, content) {
     });
 }
 
+
 function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
     google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
         if (infoWindow) {
