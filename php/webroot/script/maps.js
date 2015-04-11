@@ -153,11 +153,6 @@ function initialize() {
     ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
-    
-    $('#legend-toggle-btn').click(function() {
-    $('#legend-box').toggle("fast", function() {
-        //Animation complete
-    });
 
     var polygons = [];
     
@@ -191,6 +186,12 @@ function initialize() {
         addIncidentMarker(marker[0], marker[1], marker[3]);
         addIncidentMarkerListener(i, marker[1], marker[2]);
       }
+    });
+    
+    $('#legend-toggle-btn').click(function() {
+        $('#legend-box').toggle("fast", function() {
+            //Animation complete
+        });
     });
 
 }
