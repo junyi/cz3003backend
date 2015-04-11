@@ -51,6 +51,12 @@
                 </div>
               </div><!-- /.col -->  
             </div><!-- /.row -->
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+
 
     <!-- EVENTS -->
     <div class="row">
