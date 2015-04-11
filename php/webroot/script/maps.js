@@ -1,55 +1,38 @@
 // This example displays a marker at the center of Singapore.
 // When the user clicks the marker, an info window opens.
 
-var roadMarkers = [];
-var fireMarkers = [];
+var incidentMarkers = [];
 var dengueMarkers = [];
-var floodMarkers = [];
-var suicideMarkers = [];
 var infoWindow;
 var map;
 var weatherLayer;
 var ctaLayer;
 
-function addRoadMarker(location, title) {
-    var roadMarker = new google.maps.Marker({
+function addIncidentMarker(location, title, catID) {
+    
+    var icon;
+    
+    switch(catID) {
+        case 1: icon = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';
+            break;
+        case 2: icon = 'http://labs.google.com/ridefinder/images/mm_20_red.png';
+            break;
+        case 3: icon = 'http://labs.google.com/ridefinder/images/mm_20_yellow.png';
+            break;
+        case 4: icon = 'http://labs.google.com/ridefinder/images/mm_20_green.png';
+            break;
+        default: icon = '';
+    }
+    
+    var marker = new google.maps.Marker({
         position: location,
         map: map,
         icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
         title: title
     });
-    roadMarkers.push(roadMarker);
+    incidentMarkers.push(marker);
 }
 
-function addFireMarker(location, title) {
-    var fireMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        title: title
-    });
-    fireMarkers.push(fireMarker);
-}
-
-function addFloodMarker(location, title) {
-    var floodMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_yellow.png',
-        title: title
-    });
-    floodMarkers.push(floodMarker);
-}
-
-function addSuicideMarker(location, title) {
-    var suicideMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_green.png',
-        title: title
-    });
-    suicideMarkers.push(suicideMarker);
-}
 
 function addDengueMarker(polygon, severity) {
     var stroke;
@@ -87,103 +70,6 @@ function addRoadMarkerListener(i, title, content) {
         
         infoWindow.open(map, roadMarkers[i]);
     });
-}
-
-function addFireMarkerListener(i, title, content) {
-    google.maps.event.addListener(fireMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
-        });
-        
-        infoWindow.open(map, fireMarkers[i]);
-    });
-}
-
-
-function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
-    google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
-        if (infoWindow) {
-            infoWindow.close();
-        }
-        
-        infoWindow = new google.maps.InfoWindow({
-            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hotspot</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '<br/>Location: ' + region + '</p></div></div>',
-            position: center
-        });
-        
-        infoWindow.open(map, dengueMarkers[i]);
-    });
-}
-
-//function to SET all ROAD markers onto map
-function showRoadMarkers(map) {
-    for(i=0; i<roadMarkers.length;i++) {
-        roadMarkers[i].setMap(map);
-    }
-}
-
-//function to SET all FIRE markers onto map
-function showFireMarkers(map) {
-    for(i=0; i<fireMarkers.length;i++) {
-        fireMarkers[i].setMap(map);
-    }
-}
-
-//function to SET all DENGUE markers onto map
-function showDengueMarkers(map) {
-    for(i=0; i<dengueMarkers.length;i++) {
-        dengueMarkers[i].setMap(map);
-    }
-}
-
-//function to CLEAR all ROAD markers from map
-function clearRoadMarkers() {
-    for(i=0; i<roadMarkers.length;i++) {
-        roadMarkers[i].setMap(null);
-    }
-}
-
-//function to CLEAR all FIRE markers from map
-function clearFireMarkers() {
-    for(i=0; i<fireMarkers.length;i++) {
-        fireMarkers[i].setMap(null);
-    }
-}
-
-//function to CLEAR all DENGUE markers from map
-function clearDengueMarkers() {
-    for(i=0; i<dengueMarkers.length;i++) {
-        dengueMarkers[i].setMap(null);
-    }
-}
-
-
-function toggleRoadMarkers(btn) {
-    if(btn.checked == true) {
-        showRoadMarkers(map);
-    } else {
-        clearRoadMarkers();
-    }
-}
-
-function toggleFireMarkers(btn) {
-    if(btn.checked == true) {
-        showFireMarkers(map);
-    } else {
-        clearFireMarkers();
-    }
-}
-
-function toggleDengueMarkers(btn) {
-    if(btn.checked == true) {
-        showDengueMarkers(map);
-    } else {
-        clearDengueMarkers();
-    }
 }
 
 function initializeWeatherLayer(map) {
@@ -246,12 +132,6 @@ function initialize() {
     
     $.getJSON("/dengue.json", function( data ) {
       for(i = 0; i < data.length; i++){
-        // marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].radius, data[i].noOfPeopleInfected];
-        // dengueHotSpots.push(marker);
-        
-        // addDengueMarker(marker[0], marker[1]);
-        // addDengueMarkerListener(i, marker[1], marker[2]);
-
         var points = data[i].polygon.split("|");
         var polygon = [];
         var bounds = new google.maps.LatLngBounds();
@@ -267,30 +147,16 @@ function initialize() {
 
         addDengueMarker(polygon, data[i].severity);
         addDengueMarkerListener(i, data[i].region, data[i].severity, data[i].noOfPeopleInfected, bounds.getCenter());
-
       }
 
     });
 
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
-        
-        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails];
-        
-        if (data[i].incidentCategoryID == 1) {
-            addRoadMarker(marker[0], marker[1]);
-            
-        } else if(data[i].incidentCategoryID == 2) {
-            addFireMarker(marker[0], marker[1]);
-            //addFireMarkerListener(i, marker[1], marker[2]);
-        } else if(data[i].incidentCategoryID == 3) {
-            addFloodMarker(marker[0], marker[1]);
-        } else if(data[i].incidentCategoryID == 4) {
-            addSuicideMarker(marker[0], marker[1]);
-        }
-        
-        addRoadMarkerListener(i, marker[1], marker[2]);
-        
+        marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails, data[i].incidentCategoryID];
+
+        addIncidentMarker(marker[0], marker[1], marker[3]);
+        //addIncidentMarkerListener(i, marker[1], marker[2]);
       }
     });
 
