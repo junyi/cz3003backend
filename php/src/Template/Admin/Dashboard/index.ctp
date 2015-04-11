@@ -56,26 +56,10 @@
 
       </div><!-- /.col -->
 
-      <!-- INCIDENT CATEGORIES -->
-      <div class='col-md-4'>
-        <div class="box box-default">
-          <div class="box-header with-border">
-            <h3 class="box-title">Incident Categories</h3>
-          </div><!-- /.box-header -->
-          <div class="box-footer no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <?php foreach ($incident_category_stat as $stat) {
-                ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
-              <?php }?>
-            </ul>
-          </div><!-- /.footer -->
-        </div><!-- /.box -->
-      </div><!-- /.col -->
-    </div><!-- /.row -->
 
     <!-- EVENTS -->
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <!-- TABLE: LATEST PSI READINGS -->
         <div class="box box-info">
           <div class="box-header with-border">
@@ -131,6 +115,23 @@
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->
+
+      <!-- INCIDENT CATEGORIES -->
+      <div class='col-md-4'>
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title">Incident Categories</h3>
+          </div><!-- /.box-header -->
+          <div class="box-footer no-padding">
+            <ul class="nav nav-pills nav-stacked">
+              <?php foreach ($incident_category_stat as $stat) {
+                ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
+              <?php }?>
+            </ul>
+          </div><!-- /.footer -->
+        </div><!-- /.box -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
 
        <!-- RECENTLY ADDED INCIDENTS -->
       <div class="col-md-4">
