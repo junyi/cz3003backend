@@ -59,7 +59,11 @@ function addDengueMarker(polygon, severity) {
 }
 
 function addIncidentMarkerListener(i, title, content) {
-    google.maps.event.addListener(incidentMarkers[i][0], 'click', function() { 
+    google.maps.event.addListener(incidentMarkers[i][0], 'click', function() {
+        
+        incidentMarkers[i][0].setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function(){ incidentMarkers[i][0].setAnimation(null); }, 750);
+        
         if (infoWindow) {
             infoWindow.close();
         }
