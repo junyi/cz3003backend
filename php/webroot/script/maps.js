@@ -27,7 +27,7 @@ function addIncidentMarker(location, title, catID) {
     var marker = new google.maps.Marker({
         position: location,
         map: map,
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        icon: icon,
         title: title
     });
     incidentMarkers.push(marker);
