@@ -189,7 +189,9 @@ function initialize() {
     });
     
     $('#legend-toggle-btn').click(function() {
-        alert('button is clicked');
+        $('#legend-box').toggle("fast", function() {
+            //Animation complete
+        });
     });
 
 }
