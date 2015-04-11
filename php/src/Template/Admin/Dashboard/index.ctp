@@ -141,7 +141,20 @@
           <div class="box-body">
             <ul class="products-list product-list-in-box">
               <?php foreach ($incidents as $i) { 
-                $label = ($i->incidentStatus === 'On-going') ? 'success' : 'danger';
+                $label = "";
+                        switch ($i->severity) {
+                          case 'Alert':
+                            $label = "danger";
+                            break;
+                          case 'Info':
+                            $label = "info";
+                            break;
+                          case 'Warning':
+                            $label = "warning";
+                            break;
+                          default:
+                            break;
+                        }
               ?>
               <li class="item">
                 <div class="product-img">
