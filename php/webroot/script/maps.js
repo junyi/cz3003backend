@@ -26,6 +26,7 @@ function addIncidentMarker(location, title, catID) {
     var marker = new google.maps.Marker({
         position: location,
         map: map,
+        animation: google.maps.Animation.DROP,
         icon: icon,
         title: title
     });
