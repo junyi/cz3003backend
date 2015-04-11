@@ -19,7 +19,7 @@
     <!-- Main row -->
     <div class="row">
       <!-- Left col -->
-      <div class="col-md-8">
+      <div class="col-md-12">
         <!-- MAP & BOX PANE -->
         <div class="box box-success">
           <div class="box-header with-border">
@@ -27,7 +27,7 @@
           </div><!-- /.box-header -->
           <div class="box-body no-padding">
             <div class="row">
-              <div class="col-md-9 col-sm-12">
+              <div class="col-md-9 col-sm-8">
                 <div class="pad">
                   <!-- Map will be created here -->
                   <div id="world-map-markers" style="height: 325px;"><img src="../dist/img/sample_map.gif" width="540px" height="325"></div>
@@ -60,7 +60,7 @@
     <!-- EVENTS -->
     <div class="row">
       <div class="col-md-10">
-        <!-- TABLE: LATEST PSI READINGS -->
+        <!-- TABLE: DENGUE CASE READINGS -->
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Dengue Cases</h3>
@@ -131,7 +131,7 @@
           </div><!-- /.footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-    </div><!-- /.row -->
+    
 
        <!-- RECENTLY ADDED INCIDENTS -->
       <div class="col-md-4">
