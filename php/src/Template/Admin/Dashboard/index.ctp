@@ -51,11 +51,6 @@
                 </div>
               </div><!-- /.col -->  
             </div><!-- /.row -->
-          </div><!-- /.box-body -->
-        </div><!-- /.box -->
-
-      </div><!-- /.col -->
-
 
     <!-- EVENTS -->
     <div class="row">
@@ -157,9 +152,6 @@
                         }
               ?>
               <li class="item">
-                <div class="product-img">
-                  <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>
-                </div>
                 <div class="product-info">
                   <a href="javascript::;" class="product-title"><?= $i->incidentTitle ?><span class="label label-<?=$label?> pull-right"><?=$i->incidentStatus?></span></a>
                   <span class="product-description">
