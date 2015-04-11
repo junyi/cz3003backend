@@ -30,9 +30,9 @@ function addIncidentMarker(location, title, catID) {
         icon: icon,
         title: title
     });
+    
     incidentMarkers.push(marker);
 }
-
 
 function addDengueMarker(polygon, severity) {
     var stroke;
@@ -58,8 +58,8 @@ function addDengueMarker(polygon, severity) {
     dengueMarkers.push(gpolygon);
 }
 
-function addRoadMarkerListener(i, title, content) {
-    google.maps.event.addListener(roadMarkers[i], 'click', function() { 
+function addIncidentMarkerListener(i, title, content) {
+    google.maps.event.addListener(incidentMarkers[i], 'click', function() { 
         if (infoWindow) {
             infoWindow.close();
         }
@@ -68,7 +68,7 @@ function addRoadMarkerListener(i, title, content) {
             content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
-        infoWindow.open(map, roadMarkers[i]);
+        infoWindow.open(map, incidentMarkers[i]);
     });
 }
 
@@ -156,7 +156,7 @@ function initialize() {
         marker = [new google.maps.LatLng(data[i].latitude, data[i].longitude), data[i].incidentTitle, data[i].incidentDetails, data[i].incidentCategoryID];
 
         addIncidentMarker(marker[0], marker[1], marker[3]);
-        //addIncidentMarkerListener(i, marker[1], marker[2]);
+        addIncidentMarkerListener(i, marker[1], marker[2]);
       }
     });
 
