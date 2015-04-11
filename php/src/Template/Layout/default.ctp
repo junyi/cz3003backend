@@ -71,7 +71,7 @@
 	       
               <li class="#">
                 <a href="/report">
-                  <span class="hidden-xs">Report an incident</span>
+                  <span class="hidden-xs"><b>Report an incident</b></span>
                 </a>
               </li>
 
