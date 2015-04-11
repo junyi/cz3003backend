@@ -63,6 +63,10 @@
             <ul class="nav navbar-nav">
              
                <!-- VISIT SITE LINK-->
+	      <li class="#">
+                <span class="hidden-xs">Hotline: 6777 8777</span>
+              </li>
+	       
               <li class="#">
                 <a href="/report">
                   <span class="hidden-xs">Report an incident</span>
@@ -71,13 +75,13 @@
 
               <li class="#">
                 <a href="https://www.facebook.com/pages/Cz3003_ssad/787481631307717" target="_blank">
-                  <span class="hidden-xs">Facebook</span>
+                  <span class="hidden-xs"><img src="../../webroot/dist/img/facebook.png" /></span>
                 </a>
               </li>
 	      
 	             <li class="#">
                 <a href="https://twitter.com/itest123445" target="_black">
-                  <span class="hidden-xs">Twitter</span>
+                  <span class="hidden-xs"><img src="../../webroot/dist/img/twitter.png" /></span>
                 </a>
               </li>
             </ul>
