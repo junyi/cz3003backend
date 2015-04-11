@@ -279,7 +279,7 @@ function initialize() {
         
         if (data[i].incidentCategoryID == 1) {
             addRoadMarker(marker[0], marker[1]);
-            addRoadMarkerListener(i, marker[1], marker[2]);
+            
         } else if(data[i].incidentCategoryID == 2) {
             addFireMarker(marker[0], marker[1]);
             //addFireMarkerListener(i, marker[1], marker[2]);
@@ -287,9 +287,10 @@ function initialize() {
             addFloodMarker(marker[0], marker[1]);
         } else if(data[i].incidentCategoryID == 4) {
             addSuicideMarker(marker[0], marker[1]);
-        } else {
-            alert('fail');
         }
+        
+        addRoadMarkerListener(i, marker[1], marker[2]);
+        
       }
     });
 
