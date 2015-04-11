@@ -131,7 +131,7 @@
           </div><!-- /.footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->
-    
+    </div><!-- /.row -->
 
        <!-- RECENTLY ADDED INCIDENTS -->
       <div class="col-md-4">
