@@ -32,7 +32,8 @@ class DengueController extends AppController
     {
         $this->loadModel('Dengue');
 
-        $query = $this->Dengue->find('all');
+        $query = $this->Dengue->find('all')
+            ->order(['severity' => 'ASC', 'noOfPeopleInfected' => 'DESC']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
