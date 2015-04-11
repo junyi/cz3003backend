@@ -150,6 +150,8 @@ function initialize() {
       }
 
     });
+    
+    var marker = [];
 
     $.getJSON("/incident.json", function( data ) {
       for(i = 0; i < data.length; i++){
