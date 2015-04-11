@@ -108,13 +108,18 @@ function toggleRegionOverlays(btn) {
     }
 }
 
-function toggleIncidentMarkers() {
-    var j = 1;
-    alert('ok');
-    
-    for(i=0; i<incidentMarkers.length; i++) {
-        if (incidentMarkers[1] == j) {
-            //code
+function toggleIncidentMarkers(btn, catID) {
+    if (btn.checked == true) {
+        for (i=0; i<incidentMarkers.length; i++) {
+            if (incidentMarkers[i][1] == catID) {
+                incidentMarkers[i][0].setMap(map);
+            }
+        }
+    } else {
+        for (i=0; i<incidentMarkers.length; i++) {
+            if (incidentMarkers[i][1] == catID) {
+                incidentMarkers[i][0].setMap(null);
+            }
         }
     }
 }
