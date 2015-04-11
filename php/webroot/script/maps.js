@@ -187,6 +187,10 @@ function initialize() {
         addIncidentMarkerListener(i, marker[1], marker[2]);
       }
     });
+    
+    $('#legend-toggle-btn').click(function() {
+        alert('button is clicked');
+    });
 
 }
 
