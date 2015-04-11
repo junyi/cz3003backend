@@ -58,7 +58,7 @@ function addDengueMarker(polygon, severity) {
 }
 
 function addIncidentMarkerListener(i, title, content) {
-    google.maps.event.addListener(incidentMarkers[i], 'click', function() { 
+    google.maps.event.addListener(incidentMarkers[i][0], 'click', function() { 
         if (infoWindow) {
             infoWindow.close();
         }
@@ -67,7 +67,7 @@ function addIncidentMarkerListener(i, title, content) {
             content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + title + '</h5><div id="bodyContent"><p>' + content + '</p></div></div>'
         });
         
-        infoWindow.open(map, incidentMarkers[i]);
+        infoWindow.open(map, incidentMarkers[i][0]);
     });
 }
 
@@ -111,6 +111,12 @@ function toggleRegionOverlays(btn) {
 function toggleIncidentMarkers() {
     var j = 1;
     alert('ok');
+    
+    for(i=0; i<incidentMarkers.length; i++) {
+        if (incidentMarkers[1] == j) {
+            //code
+        }
+    }
 }
 
 function initialize() {
