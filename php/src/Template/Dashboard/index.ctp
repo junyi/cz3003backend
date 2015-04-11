@@ -6,6 +6,9 @@
 	  <div class="row">
             <div class="col-md-12">
 	      <div id="map-canvas" style="width: 100%; height: 400px; box-shadow: 0px 0px 1px #999999; margin-bottom: 20px;"></div>
+	      
+	      <a href="#" id="legend-toggle-btn">L</a>
+	      
 	      <div id="legend-box">
 		<h3>LEGEND</h3>
 		<form>
