@@ -153,11 +153,6 @@ function initialize() {
     ctaLayer = new google.maps.KmlLayer({
       url: 'https://dl.dropboxusercontent.com/u/18619627/timecrisis/map.kmz',
     });
-    
-    $('#legend-toggle-btn').click(function() {
-    $('#legend-box').toggle("fast", function() {
-        //Animation complete
-    });
 
     var polygons = [];
     
