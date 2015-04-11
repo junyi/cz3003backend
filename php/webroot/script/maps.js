@@ -124,6 +124,18 @@ function toggleIncidentMarkers(btn, catID) {
     }
 }
 
+function toggleDengueMarkers(btn) {
+    if (btn.checked == true) {
+        for(i=0; i<dengueMarkers.length;i++) {
+            dengueMarkers[i].setMap(map);
+        }
+    } else {
+        for(i=0; i<dengueMarkers.length;i++) {
+            dengueMarkers[i].setMap(null);
+        }
+    }
+}
+
 function initialize() {
     //initialize map
     var mapCenterLatLng = new google.maps.LatLng(1.337831, 103.832363);
