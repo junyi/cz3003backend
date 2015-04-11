@@ -12,10 +12,14 @@ $("#agency_modal").on('hidden.bs.modal', function () {
 
 $('#agency_modal').on('loaded.bs.modal', function (e) {
 
+	$('.chosen-select').chosen().change(function(e){
+		$('#add_agency_form').formValidation('revalidateField', 'incidentCategoryID');
+	});
 
 	$('#add_agency_form')
 	    .formValidation({
 	        framework: 'bootstrap',
+	        excluded: ':disabled',
 	        icon: {
 	            valid: 'glyphicon glyphicon-ok',
 	            invalid: 'glyphicon glyphicon-remove',
@@ -44,9 +48,24 @@ $('#agency_modal').on('loaded.bs.modal', function (e) {
 	                        min: 8
 	                    }
 	                }
+	            },
+
+	            'incidentCategory[_ids][]': {
+	            	validators: {
+	                    callback: {
+                            message: 'Please choose at least 1 incident category',
+                            callback: function(value, validator, $field) {
+                                // Get the selected options
+                                var options = validator.getFieldElements('incidentCategory[_ids][]').val();
+                                return (options != null && options.length >= 1);
+                            }
+                        }
+	                }
 	            }
 
 	        }
 
 	    });
+
+	
 })

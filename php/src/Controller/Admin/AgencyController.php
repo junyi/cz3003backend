@@ -34,7 +34,7 @@ class AgencyController extends AppController
         
         $this->set('page', 'agency');
 
-        $query = $this->Agency->find('all');
+        $query = $this->Agency->find('all', ['contain' => ['IncidentCategory']]);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
@@ -55,9 +55,39 @@ class AgencyController extends AppController
 
     private function getAgency($id)
     {
-        $agency = $this->Agency->get($id);
+        $agency = $this->Agency->get($id, ['contain' => ['IncidentCategory']]);
 
         return $agency;
+    }
+
+    private function getIncidentCategoryOptions()
+    {
+        $this->loadModel('IncidentCategory');
+
+        $query = $this->IncidentCategory->find('all');
+
+        // Iteration will execute the query.
+        foreach ($query as $row) {
+        }
+
+        // Calling execute will execute the query
+        // and return the result set.
+        $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+        $data = $results->toArray();
+
+        // Converting the query to an array will execute it.
+        $results = $query->toArray();
+
+        $results = array_map(function($v){
+            return [
+                    'title' => $v->incidentCategoryTitle,
+                    'id' => $v->incidentCategoryID
+                ];
+        }, $results);
+
+        $this->set('incident_category_options', $results);
     }
 
     public function form()
@@ -66,6 +96,8 @@ class AgencyController extends AppController
             $action = $this->request->query['action'];
 
             $this->set('agency', false);
+
+            $this->getIncidentCategoryOptions();
 
             if ($action === 'add') {
                 $this->set('header', "Add Agency");
@@ -105,8 +137,11 @@ class AgencyController extends AppController
         $this->autoRender = false;
         if ($this->request->is('post')) {
             $id = $this->request->query['id'];
+
             $agency = $this->getAgency($id);
-            $agency = $this->Agency->patchEntity($agency, $this->request->data);
+            $agency = $this->Agency->patchEntity($agency, $this->request->data, [
+                'associated' => ['IncidentCategory']
+            ]);
             if ($this->Agency->save($agency)) {
                 $this->Flash->success(__('The agency has been edited.'));
                 return $this->redirect(['action' => 'index']);

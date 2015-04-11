@@ -1,5 +1,3 @@
-      <script src="script/agency.js"></script>
-
       <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -48,13 +46,16 @@
                     <?php 
                       $no=1;
                       foreach ($agencies as $i) {               
-                          //$status = $i->incidentStatus;
+                          $incidentCategories = [];
+                          foreach ($i->incidentCategory as $j) {
+                            array_push($incidentCategories, $j->incidentCategoryTitle);
+                          }
                           echo $this->Html->tableCells(
                               array(
                                   $no++,
                                   $i->agencyName,
                                   $i->agencyContact,
-                                  '',
+                                  implode(", ", $incidentCategories),
                                   '<a href="#" data-toggle="modal" data-remote="/admin/agency/form?action=edit&id='.$i->agencyID.'" data-target="#agency_modal"> Edit </a> | <a href="/admin/agency/delete?id='.$i->agencyID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )
                           );

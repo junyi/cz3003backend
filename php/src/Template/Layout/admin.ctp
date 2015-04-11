@@ -285,6 +285,9 @@
     <!-- formvalidation -->
     <script src="../plugins/formvalidation/formValidation.min.js"></script>
     <script src="../plugins/formvalidation/bootstrap.min.js"></script>
+    
+    <!-- bootstrap-chosen -->
+    <script src="../plugins/bootstrap-chosen/chosen.jquery.min.js"></script>
 
     <?php
       switch ($page) {
