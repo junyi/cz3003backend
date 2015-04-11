@@ -1,29 +1,51 @@
-#legend-box {
-  background-color: #000000;
-  opacity: 0.8;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+a#legend-toggle-btn {
   position: absolute;
-  top: 0;
-  right: 15px;
-  width: 180px;
-  height: 400px;
-  padding: 10px;
+  top: 40px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18pt;
+  color: red;
+  background-color: #fff;
+  box-shadow: 0px 0px 1px #999;
+}
+
+a#legend-toggle-btn:hover {
   color: #fff;
+  background-color: red;
+}
+
+#legend-box {
+  background-color: #fff;
+  opacity: 0.9;
+  position: absolute;
+  top: 75px;
+  right: 20px;
+  width: 180px;
+  padding: 10px;
+  color: #333 ;
+  box-shadow: 0px 0px 1px #999;
 }
 
 #legend-box h3 {
   margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 14pt;
 }
 
 #legend-box ul {
   padding: 0;
   padding-left: 0px;
+  margin: 0;
 }
 
 #legend-box li {
   list-style: none;
-  margin-bottom: 5px;
+  border-top: thin solid #999;
+  margin: 0;
+  padding: 5px 0;
 }
 
 #legend-box input {
