@@ -72,6 +72,21 @@ function addIncidentMarkerListener(i, title, content) {
     });
 }
 
+function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
+    google.maps.event.addListener(dengueMarkers[i], 'click', function() { 
+        if (infoWindow) {
+            infoWindow.close();
+        }
+        
+        infoWindow = new google.maps.InfoWindow({
+            content: '<div id="content"><h5 id="firstHeading" class="firstHeading">' + 'Dengue Hotspot</h5><div id="bodyContent"><p>No. of people infected: ' + numOfPeople + '<br/>Location: ' + region + '</p></div></div>',
+            position: center
+        });
+        
+        infoWindow.open(map, dengueMarkers[i]);
+    });
+}
+
 function initializeWeatherLayer(map) {
     weatherLayer = new google.maps.weather.WeatherLayer({
         temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
