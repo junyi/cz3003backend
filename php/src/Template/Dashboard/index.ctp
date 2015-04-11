@@ -10,10 +10,10 @@
 		<h3>LEGEND</h3>
 		<form>
 		  <ul>
-		    <li><input type="checkbox" checked="checked" onclick="toggleRoadMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_blue.png" /> Road Accidents</li>
-		    <li><input type="checkbox" checked="checked" onclick="toggleFireMarkers(this);"/> <img src="http://labs.google.com/ridefinder/images/mm_20_red.png" /> Fire Outbreaks</li>
-		    <li><input type="checkbox" checked="checked"/> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
-		    <li><input type="checkbox" checked="checked" onclick="toggleDengueMarkers(this);"/> <img src="dist/img/dengue_marker.png" /> Dengue</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleIncidentMarkers();" /> <img src="http://labs.google.com/ridefinder/images/mm_20_blue.png" /> Road Accidents</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleIncidentMarkers();" /> <img src="http://labs.google.com/ridefinder/images/mm_20_red.png" /> Fire Outbreaks</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleIncidentMarkers();" /> <img src="http://labs.google.com/ridefinder/images/mm_20_yellow.png" /> Flood</li>
+		    <li><input type="checkbox" checked="checked" onclick="toggleIncidentMarkers();" /> <img src="dist/img/dengue_marker.png" /> Dengue</li>
 		    <li><input type="checkbox" onclick="toggleWeather(this);" /> <img src="dist/img/weather.png" /> Weather</li>
 		    <li><input type="checkbox" onclick="toggleRegionOverlays(this);" /> <img src="dist/img/haze.png" /> Regions</li>
 		  </ul>

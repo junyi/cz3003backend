@@ -9,7 +9,6 @@ var weatherLayer;
 var ctaLayer;
 
 function addIncidentMarker(location, title, catID) {
-    
     var icon;
     
     switch(catID) {
@@ -31,7 +30,7 @@ function addIncidentMarker(location, title, catID) {
         title: title
     });
     
-    incidentMarkers.push(marker);
+    incidentMarkers.push([marker, catID]);
 }
 
 function addDengueMarker(polygon, severity) {
@@ -93,36 +92,25 @@ function initializeWeatherLayer(map) {
     });
 }
 
-function showWeather() {
-    weatherLayer.setMap(map);
-}
-
-function clearWeather() {
-    weatherLayer.setMap(null);
-}
-
 function toggleWeather(btn) {
     if(btn.checked == true) {
-        showWeather();
+        weatherLayer.setMap(map);
     } else {
-        clearWeather();
+        weatherLayer.setMap(null);
     }
-}
-
-function showRegionOverlays() {
-    ctaLayer.setMap(map);
-}
-
-function hideRegionOverlays() {
-    ctaLayer.setMap(null);
 }
 
 function toggleRegionOverlays(btn) {
     if (btn.checked == true) {
-        showRegionOverlays();
+        ctaLayer.setMap(map);
     } else {
-        hideRegionOverlays();
+        ctaLayer.setMap(null);
     }
+}
+
+function toggleIncidentMarkers() {
+    var j = 1;
+    alert('ok');
 }
 
 function initialize() {
