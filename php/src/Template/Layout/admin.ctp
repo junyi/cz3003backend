@@ -67,29 +67,6 @@
                   <span class="hidden-xs">Visit Site</span>
                 </a>
               </li>
-
-              <!-- Notifications: style can be found in dropdown.less -->
-              <!-- NOTIFICATION IS TO NOTIFY ABOUT PUBLIC INCIDENT REPORT-->
-              <li class="dropdown notifications-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">11</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 1 notifications</li>
-                  <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 1 new pending incident report
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">View all</a></li>
-                </ul>
-              </li>
               
               <!-- User Account: style can be found in dropdown.less -->
               <!-- USER ACCOUNT : EDIT PROFILE & LOG OUT -->

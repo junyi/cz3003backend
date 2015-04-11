@@ -59,7 +59,7 @@
 
     <!-- EVENTS -->
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-8">
         <!-- TABLE: DENGUE CASE READINGS -->
         <div class="box box-info">
           <div class="box-header with-border">
