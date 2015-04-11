@@ -27,7 +27,7 @@
           </div><!-- /.box-header -->
           <div class="box-body no-padding">
             <div class="row">
-              <div class="col-md-9 col-sm-8">
+              <div class="col-md-9 col-sm-12">
                 <div class="pad">
                   <!-- Map will be created here -->
                   <div id="world-map-markers" style="height: 325px;"><img src="../dist/img/sample_map.gif" width="540px" height="325"></div>
@@ -59,7 +59,7 @@
 
     <!-- EVENTS -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <!-- TABLE: LATEST PSI READINGS -->
         <div class="box box-info">
           <div class="box-header with-border">
