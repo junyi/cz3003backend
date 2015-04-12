@@ -52,6 +52,7 @@ Router::scope('/', function ($routes) {
     $routes->connect('/dengue', ['controller' => 'Dengue']);
     $routes->connect('/haze', ['controller' => 'Haze']);
     $routes->connect('/contact', ['controller' => 'Contact']);
+    $routes->connect('/faqs', ['controller' => 'Faqs']);
 
     $routes->extensions(['json']);
     $routes->resources('Incident');
