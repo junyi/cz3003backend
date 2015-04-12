@@ -17,7 +17,7 @@ $('#edit_profile_form')
             email: {
                 validators: {
                     emailAddress: {
-                        message: 'The value is not a valid email address'
+                        message: 'The email address is not valid'
                     },
                 	notEmpty: {
                         message: 'The email is required'
@@ -55,6 +55,11 @@ $('#change_password_form')
                 validators: {
                     notEmpty: {
                         message: 'This field is required'
+                    },
+                    stringLength: {
+                        message: 'The password length should be between 6-12 characters',
+                        max: 12,
+                        min: 6
                     }
                 }
             },
@@ -62,6 +67,11 @@ $('#change_password_form')
                 validators: {
                     notEmpty: {
                         message: 'This field is required'
+                    },
+                    stringLength: {
+                        message: 'The password length should be between 6-12 characters',
+                        max: 12,
+                        min: 6
                     }
                 }
             },

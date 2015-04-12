@@ -74,7 +74,7 @@ class AppController extends Controller
             ],
             'Form'
         ]);
-        $this->Auth->allow(['login']);
+        $this->Auth->allow(['login', 'forgotPassword']);
         $this->layout = 'admin';
     }
 

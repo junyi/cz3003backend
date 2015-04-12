@@ -22,13 +22,13 @@
           <!-- Incident Category -->
           <div class="form-group">
               <label>Incident Category</label>
-              <input type="text" class="form-control" name="incidentCategoryTitle" id="incident_category_title_input" placeholder="Enter incident title" value="<?= $incidentCategoryTitle ?>">
+              <input type="text" class="form-control" name="incidentCategoryTitle" id="incident_category_title_input" placeholder="Enter incident title" value="<?= h($incidentCategoryTitle) ?>">
           </div>
          
           <!-- Description -->
           <div class="form-group">
               <label>Description</label>
-              <textarea class="form-control" name="incidentCategoryDescription" rows="3" placeholder="Enter incident category description" style="resize:vertical"><?= $incidentCategoryDescription ?></textarea>
+              <textarea class="form-control" name="incidentCategoryDescription" rows="3" placeholder="Enter incident category description" style="resize:vertical"><?= h($incidentCategoryDescription) ?></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>

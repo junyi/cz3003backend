@@ -70,6 +70,7 @@ Router::prefix('admin', function ($routes) {
      */
     $routes->connect('/', ['controller' => 'Staff', 'action' => 'login']);
     $routes->connect('/login', ['controller' => 'Staff', 'action' => 'login']);
+    $routes->connect('/forgot_password', ['controller' => 'Staff', 'action' => 'forgotPassword']);
     $routes->connect('/logout', ['controller' => 'Staff', 'action' => 'logout']);
 
     $routes->connect('/dashboard', ['controller' => 'Dashboard']);

@@ -163,6 +163,11 @@ class StaffController extends AppController
         $this->set('header', "Add Account");
     }
 
+    public function forgotPassword()
+    {
+        
+    }
+
     public function isAuthorized($user) {
         return parent::isAuthorized($user);
     }

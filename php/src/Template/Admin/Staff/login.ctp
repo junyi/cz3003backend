@@ -27,6 +27,6 @@
     </div><!-- /.col -->
   </div>
 </form>
-<a href = "forget_password.php" > Forget Password </a>
+<a href = "/admin/forgot_password" > Forgot Password </a>
 
    

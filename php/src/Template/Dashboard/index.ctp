@@ -54,9 +54,9 @@
                               $incidentDateTime = str_replace('-', '/', $incidentDateTime);
                               echo $this->Html->tableCells(
                                   array(
-                                      '<a href="#">'. $i->incidentTitle .'</a>',
+                                      '<a href="#">'. h($i->incidentTitle) .'</a>',
                                       '<div class="sparkbar" data-color="#00a65a" data-height="20">'.$incidentDateTime.'</div>',
-                                      $i->address
+                                      h($i->address)
                                   )
                               );
                           }
@@ -80,7 +80,7 @@
                 <div class="box-footer no-padding">
                   <ul class="nav nav-pills nav-stacked">
                     <?php foreach ($incident_category_stat as $stat) {
-                      ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
+                      ?><li><a href="#"><?= h($stat->incidentCategory->incidentCategoryTitle)?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
                     <?php }?>
                   </ul>
                 </div><!-- /.footer -->

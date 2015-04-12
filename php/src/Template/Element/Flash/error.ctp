@@ -5,7 +5,7 @@
 			message: <?= '"'.h($message).'"' ?>
 		},{
 			// settings
-			type: 'error',
+			type: 'danger',
 			delay: '2000',
 			timer: '100',
 			placement: {

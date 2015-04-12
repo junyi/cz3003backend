@@ -55,10 +55,10 @@
                           echo $this->Html->tableCells(
                               array(
                                   $num++,
-                                  $i->incidentTitle,
+                                  h($i->incidentTitle),
                                   $incidentDateTime,
-                                  $i->address,
-                                  $i->incidentCategory->incidentCategoryTitle
+                                  h($i->address),
+                                  h($i->incidentCategory->incidentCategoryTitle)
                               )
                           );
                       }

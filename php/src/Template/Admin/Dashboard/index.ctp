@@ -112,7 +112,7 @@
           <div class="box-footer no-padding">
             <ul class="nav nav-pills nav-stacked">
               <?php foreach ($incident_category_stat as $stat) {
-                ?><li><a href="#"><?= $stat->incidentCategory->incidentCategoryTitle?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
+                ?><li><a href="#"><?= h($stat->incidentCategory->incidentCategoryTitle)?><span class="pull-right text-green"> <?= round($stat->percentage, 1)?>% </span></a></li>
               <?php }?>
             </ul>
           </div><!-- /.footer -->
@@ -145,9 +145,9 @@
               ?>
               <li class="item">
                 <div class="product-info">
-                  <a href="javascript::;" class="product-title"><?= $i->incidentTitle ?><span class="label label-<?=$label?> pull-right"><?=$i->incidentStatus?></span></a>
+                  <a href="javascript::;" class="product-title"><?= h($i->incidentTitle) ?><span class="label label-<?=$label?> pull-right"><?=$i->incidentStatus?></span></a>
                   <span class="product-description">
-                    <?=$i->address?>
+                    <?=h($i->address)?>
                   </span>
                 </div>
               </li><!-- /.item -->

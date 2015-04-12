@@ -76,10 +76,10 @@ use Cake\Error\Debugger;
                           echo $this->Html->tableCells(
                               array(
                                   $no++,
-                                  $i->incidentTitle,
+                                  h($i->incidentTitle),
                                   $incidentDateTime,
-                                  $i->address,
-                                  $i->incidentCategory->incidentCategoryTitle,
+                                  h($i->address),
+                                  h($i->incidentCategory->incidentCategoryTitle),
                                   "<span class=\"label label-$label\">$i->incidentStatus</span>",
                                   '<a href="#" data-toggle="modal" data-remote="/admin/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/admin/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
                               )

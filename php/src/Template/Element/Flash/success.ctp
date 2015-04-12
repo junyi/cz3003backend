@@ -14,7 +14,7 @@
 			animate: {
 				enter: 'animated fadeInDown',
 				exit: 'animated fadeOutUp'
-			},
+			}
 		});
 	
 </script>

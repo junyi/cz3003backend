@@ -31,17 +31,17 @@
                     <!-- Full Name -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Full Name</label>
-                      <input type="text" class="form-control" id="full_name_input" name="name" value="<?= $user['name']?>" placeholder="Enter full name">
+                      <input type="text" class="form-control" id="full_name_input" name="name" value="<?= h($user['name'])?>" placeholder="Enter full name">
                     </div>
                     <!-- Email Address -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="email_input" name="email" value="<?= $user['email']?>" placeholder="Enter email">
+                      <input type="email" class="form-control" id="email_input" name="email" value="<?= h($user['email'])?>" placeholder="Enter email">
                     </div>
                     <!-- Contact -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Contact</label>
-                      <input type="text" class="form-control" id="contact_input" name="contact" value="<?= $user['contact']?>" placeholder="Enter contact number" maxlength="8">
+                      <input type="text" class="form-control" id="contact_input" name="contact" value="<?= h($user['contact'])?>" placeholder="Enter contact number" maxlength="8">
                   </div>
                     <!-- Role: administrator, call operator -->
                     <div class="form-group">
@@ -84,17 +84,17 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputPassword1">Old Password</label>
-                      <input type="password" class="form-control" id="old_password_input" name="old_password" placeholder="Enter old password">
+                      <input type="password" maxlength="12" class="form-control" id="old_password_input" name="old_password" placeholder="Enter old password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">New Password</label>
-                      <input type="password" class="form-control" id="new_password_input" name="new_password" placeholder="Enter new password">
+                      <input type="password" maxlength="12" class="form-control" id="new_password_input" name="new_password" placeholder="Enter new password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Confirm Password</label>
-                      <input type="password" class="form-control" id="confirm_password_input" name="confirm_password" placeholder="Enter confirm password">
+                      <input type="password" maxlength="12" class="form-control" id="confirm_password_input" name="confirm_password" placeholder="Enter confirm password">
                     </div>
                     
                   
