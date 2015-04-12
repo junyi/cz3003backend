@@ -65,7 +65,7 @@
                <!-- VISIT SITE LINK-->
 	      <li class="#">
                 <a href="#">
-                  <span class="hidden-xs"><b>Call Hotline: 6777 87777</b></span>
+                  <span class="hidden-xs"><b>Call Hotline: 6777 8777</b></span>
                 </a>
               </li>
 	       
