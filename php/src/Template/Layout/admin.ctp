@@ -34,7 +34,7 @@
     <link href="../dist/css/formStyle.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
-    <link href="dist/css/maps.css" rel="stylesheet" type="text/css" />
+    <link href="../dist/css/dist/css/maps.css" rel="stylesheet" type="text/css" />
     
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -47,7 +47,7 @@
     <!-- START OF GOOGLE MAPS API -->
     <?php if ($page == "dashboard"){ ?>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization,weather&amp;signed_in=false"></script>
-      <script src="script/maps.js"></script>
+      <script src="../script/maps.js"></script>
     <?php }?>
   </head>
   <body class="skin-red">
