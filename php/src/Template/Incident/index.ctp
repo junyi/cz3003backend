@@ -18,7 +18,8 @@
         <section class="content">
           <div style="width:200px; float:right; margin-top:10px; margin-bottom:10px; ">
             <a href="/report">
-            <button class="btn btn-block btn-success" id="add_incident_btn">Report An Incident</button>
+              <button class="btn btn-block btn-success" id="add_incident_btn">Report An Incident</button>
+            </a>
           </div>
 
           <div class="row">

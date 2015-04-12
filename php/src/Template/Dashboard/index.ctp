@@ -149,11 +149,7 @@
             <div class='col-md-4'>
               <div class="box box-default">
                 <div class="box-header with-border">
-                  <h3 class="box-title">PSI INDEX <small>As of 16 Mar 1300 hours</small></h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
+                  <h3 class="box-title">PSI INDEX <small>As of 17 Apr 1100 hours</small></h3>
                 </div><!-- /.box-header -->
                 <div class="box-footer no-padding">
                   <ul class="nav nav-pills nav-stacked">
