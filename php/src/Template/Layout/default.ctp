@@ -155,11 +155,19 @@
               </a>
             </li>
 	    
-	         <!-- MANAGE SUBSCRIBE -->
+	    <!-- MANAGE SUBSCRIBE -->
             <?php if ($page == "subscribe"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
               <a href="subscribe">
                 <i class="fa fa-edit"></i>
                 <span>Subscribe</span>
+              </a>
+            </li>
+	    
+	    <!-- MANAGE FAQS -->
+            <?php if ($page == "faqs"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
+              <a href="faqs">
+                <i class="fa fa-question"></i>
+                <span>FAQS</span>
               </a>
             </li>
             
