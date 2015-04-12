@@ -34,7 +34,7 @@
     <link href="../dist/css/formStyle.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
-    <link href="../dist/css/dist/css/maps.css" rel="stylesheet" type="text/css" />
+    <link href="../dist/css/maps.css" rel="stylesheet" type="text/css" />
     
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
