@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Error\Debugger;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Static content controller
@@ -97,16 +98,38 @@ class IncidentController extends AppController
     {
 
         if ($this->request->params['_ext'] === 'json') {
+            if (isset($this->request->query['draw'])) {
+                $this->set('ajax', true);
+                $connection = ConnectionManager::get('default');
 
-            $this->getIncidents();
+                $columns = [
+                    ['db'=>'incidentTitle', 'dt'=>1],
+                    ['db'=>'incidentDateTime', 'dt'=>2],
+                    ['db'=>'address', 'dt'=>3],
+                    ['db'=>'incidentCategoryTitle', 'dt'=>4]
+                ];
+
+                $joinQuery = "FROM Incident AS c JOIN IncidentCategory AS ic ON c.incidentCategoryID=ic.incidentCategoryID";
+
+                $results = SSP::simple($this->request->query, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
+                $this->set('incidents', $results);
+
+            } else {
+
+                $this->getIncidents();
+                $this->set('ajax', false);
+
+            }
 
         } else {
 
             parent::index();
 
             $this->set('page', 'incidents');
+            $this->set('incidents', []);
 
-            $this->getIncidents();
+            // $this->getIncidents();
+
         }
 
     }

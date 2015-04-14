@@ -108,7 +108,7 @@ if ( $.fn.dataTable.Api ) {
 		};
 
 		attach(
-			$(host).empty().html('<ul class="pagination"/>').children('ul'),
+			$(host).empty().html('<ul class="pagination pull-right no-margin"/>').children('ul'),
 			buttons
 		);
 	}

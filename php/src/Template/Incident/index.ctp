@@ -29,7 +29,7 @@
                   <h3 class="box-title">Incident</h3>
                   <div class="box-tools">
                     <div class="input-group">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                      <input type="text" id="table_search" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
@@ -37,14 +37,16 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tr>
-                      <th>No.</th>
-                      <th>Incident</th>
-                      <th>Date/Time</th>
-                      <th>Location</th>
-                      <th>Category</th>
-                    </tr>
+                  <table class="table table-hover display" id="incidentTable">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Incident</th>
+                        <th>Date/Time</th>
+                        <th>Location</th>
+                        <th>Category</th>
+                      </tr>
+                    </thead>
                     <?php 
                       $num = 1;
                       foreach ($incidents as $i) {               
@@ -66,10 +68,7 @@
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">1</a></li>
-                  </ul>
+                <div id="footer" class="box-footer clearfix">
                 </div>
                 <!-- /.footer pagination -->
               </div><!-- /.box -->

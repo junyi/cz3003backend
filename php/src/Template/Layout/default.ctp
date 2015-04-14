@@ -27,6 +27,9 @@
     <!-- bootstrap-datetimepicker -->
     <link href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
     <link href="dist/css/maps.css" rel="stylesheet" type="text/css" />
+    <!-- datatables -->
+    <link href="../plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+
     
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -242,13 +245,19 @@
     <script src="../plugins/bootstrap-datetimepicker/moment.min.js"></script>
     <script src="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 
+    <!-- datatables -->
+    <script src="../plugins/datatables/jquery.dataTables.js"></script>
+    <script src="../plugins/datatables/dataTables.bootstrap.js"></script>
+
     <?php
       switch ($page) {
         case 'report_incidents':
           ?>
           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
           <script src="dist/js/jquery.geocomplete.min.js"></script>
-          <script src="script/public/incidents.js"></script><?php
+          <script src="script/public/report.js"></script><?php
+        case 'incidents':
+          ?><script src="script/public/incidents.js"></script><?php
           break;
         case 'subscribe':
           ?>

@@ -35,7 +35,7 @@
                   <table class="table table-hover">
                     <tr>
                       <th>No.</th>
-                      <th>Region</th>
+                      <th width="50%">Region</th>
                       <th>No of People Infected</th>
                       <th>Severity</th>
                       <th>Date/Time</th>
@@ -63,7 +63,7 @@
                           echo $this->Html->tableCells(
                               array(
                                   $count++,
-                                  $dengueMapping[$i->region],
+                                  $i->region,
                                   ($i->noOfPeopleInfected)." people",
                                   "<span class=\"label label-$label\">$i->severity</span>",
                                   "<div class=\"sparkbar\" data-color=\"#00a65a\" data-height=\"20\">$time</div>"

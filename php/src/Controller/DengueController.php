@@ -28,14 +28,6 @@ use Cake\Error\Debugger;
  */
 class DengueController extends AppController
 {
-	var $dengueMapping = [
-        'central' => 'Central',
-        'northeast' => 'North East',
-        'northwest' => 'North West',
-        'southeast' => 'South East',
-        'southwest' => 'South West',
-        'cluster' => 'Cluster'
-    ];
 
     public function initialize()
     {
@@ -45,9 +37,10 @@ class DengueController extends AppController
 
     private function getDengueInfo()
     {
-        $this->loadModel('DengueStat');
+        $this->loadModel('Dengue');
 
-        $query = $this->DengueStat->find('all');
+        $query = $this->Dengue->find('all')
+            ->order(['severity' => 'ASC', 'noOfPeopleInfected' => 'DESC']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
@@ -63,7 +56,6 @@ class DengueController extends AppController
         // Converting the query to an array will execute it.
         $results = $query->toArray();
 
-        $this->set('dengueMapping', $this->dengueMapping);
         $this->set('dengue', $results);
     }
 
