@@ -1,5 +1,3 @@
-     
-      <!-- ........................................COPY HERE........................................ -->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -9,8 +7,8 @@
             <small>Frequently Asked Questions</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">About</li>
+            <li><a href="index.php?pg=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">FAQS</li>
             
           </ol>
         </section>
@@ -22,18 +20,36 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body" >
-                  <h3>WHAT IS THIS WEBSITE ABOUT?</h3>
-                  <p>Time Crisis is a situation-based management system that includes clear roles and responsibilities and process related organisational requirements company-wide. The response shall include action in the following areas: Crisis prevention, crisis assessment, crisis handling and crisis termination. The aim of crisis management is to be well prepared for crisis, ensure a rapid and adequate response to the crisis, maintaining clear lines of reporting and communication in the event of crisis and agreeing rules for crisis termination.</p>
+                  <h3>How do I report an incident?</h3>
+                  <p>There are two ways that you can report an incident:
+                  <ol>
+                    <li><b>Call our hotline (6777-8777)</b> and talk to our operator</li>
+                    <li>Submit a report incident online through this website. <b>Go to Home -> Incident -> <a href="#">Report an Incident</a></b> under main navigation to access the incident report form.</li>
+                  </ol>
                   
                   <hr/>
                   
-                  <h3>WHO ARE WE?</h3>
-                  <p>Time Crisis is a situation-based management system that includes clear roles and responsibilities and process related organisational requirements company-wide. The response shall include action in the following areas: Crisis prevention, crisis assessment, crisis handling and crisis termination. The aim of crisis management is to be well prepared for crisis, ensure a rapid and adequate response to the crisis, maintaining clear lines of reporting and communication in the event of crisis and agreeing rules for crisis termination.</p>
+                  <h3>What kind of incidents can I report?</h3>
+                  <p>The types of incidents that can happen in Singapore are diverse. You can report anything and everything under the Singapore sun as long as they are legit!
+                  <br/>
+                  The most common types of incidents are:
+                  <ul>
+                    <li>Road Accidents</li>
+                    <li>Fire Outbreaks</li>
+                    <li>Floods</li>
+                    <li>Suicide</li>
+                    <li>Gas Leak</li>
+                  </ul>
                   
                   <hr/>
                   
-                  <h3>WHEN DID THIS START?</h3>
-                  <p>Time Crisis is a situation-based management system that includes clear roles and responsibilities and process related organisational requirements company-wide. The response shall include action in the following areas: Crisis prevention, crisis assessment, crisis handling and crisis termination. The aim of crisis management is to be well prepared for crisis, ensure a rapid and adequate response to the crisis, maintaining clear lines of reporting and communication in the event of crisis and agreeing rules for crisis termination.</p>
+                  <h3>Who can I talk to if I have a question or complaint on the system?</h3>
+                  <p>You can submit your feedback or enquiries via our feedback form found under <b> Home -> <a href="#">Contact</a></b>. Kindly provide us with your email address and our enquiry staff will get back to you as soon as possible.</p>
+                  
+                  <hr/>
+                  
+                  <h3>Can I call the hotline to make enquiries?</h3>
+                  <p>Our call hotline is solely used for reporting of incidents. Please refrain from calling our hotline for other reasons as there may be other people trying to get through the line to report incidents.</p>
                 </div>
               </div>
             </div>
@@ -41,10 +57,3 @@
         </section><!-- /.content -->
      
       </div><!-- /.content-wrapper -->
-
-
- 
- 
-
-
-    
