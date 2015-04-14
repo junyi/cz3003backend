@@ -18,7 +18,8 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Error\Debugger;
-
+use Cake\Datasource\ConnectionManager;
+use App\Controller\SSP;
 /**
  * Static content controller
  *
@@ -29,6 +30,12 @@ use Cake\Error\Debugger;
 class IncidentController extends AppController
 {
     public $helper = ['Time'];
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
 
     private function getIncident($id)
     {
@@ -95,12 +102,35 @@ class IncidentController extends AppController
 
     public function index()
     {
-        parent::index();
+        if ($this->request->params['_ext'] === 'json') {
 
-        $this->set('page', 'incidents');
+            if (isset($this->request->query['draw'])) {
+                $connection = ConnectionManager::get('default');
 
-        $this->getIncidents();
+                $columns = [
+                    ['db'=>'incidentID', 'dt'=>'DT_RowId'],
+                    ['db'=>'incidentTitle', 'dt'=>1],
+                    ['db'=>'incidentDateTime', 'dt'=>2],
+                    ['db'=>'address', 'dt'=>3],
+                    ['db'=>'incidentCategoryTitle', 'dt'=>4],
+                    ['db'=>'incidentStatus', 'dt'=>5]
+                ];
 
+                $joinQuery = "FROM Incident AS c JOIN IncidentCategory AS ic ON c.incidentCategoryID=ic.incidentCategoryID";
+
+                $results = SSP::simple($this->request->query, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
+                $this->set('incidents', $results);
+
+            }
+
+        } else {
+            parent::index();
+
+            $this->set('page', 'incidents');
+            $this->set('incidents', []);
+
+            // $this->getIncidents();
+        }
     }
 
     public function form()

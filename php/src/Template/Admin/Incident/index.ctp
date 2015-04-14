@@ -42,16 +42,18 @@ use Cake\Error\Debugger;
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tr>
-                      <th>No.</th>
-                      <th>Incident</th>
-                      <th>Date/Time</th>
-                      <th>Location</th>
-                      <th>Category</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
+                  <table id="incidentTable" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Incident</th>
+                        <th>Date/Time</th>
+                        <th>Location</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
                     <?php 
                       $no=1;
                       foreach ($incidents as $i) {               
@@ -89,14 +91,7 @@ use Cake\Error\Debugger;
                   </table>
                 </div><!-- /.box-body -->
                 <!-- footer pagination -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                  </ul>
+                <div id="footer" class="box-footer clearfix">
                 </div>
                 <!-- /.footer pagination -->
               </div><!-- /.box -->

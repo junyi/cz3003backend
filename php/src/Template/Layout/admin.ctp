@@ -35,7 +35,8 @@
     <link href="../plugins/formvalidation/formValidation.min.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/bootstrap-notify/animate.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/maps.css" rel="stylesheet" type="text/css" />
-    
+    <!-- datatables -->
+    <link href="../plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -272,6 +273,11 @@
     
     <!-- bootstrap-chosen -->
     <script src="../plugins/bootstrap-chosen/chosen.jquery.min.js"></script>
+
+    <!-- datatables -->
+    <script src="../plugins/datatables/jquery.dataTables.js"></script>
+    <script src="../plugins/datatables/dataTables.bootstrap.js"></script>
+
 
     <?php
       switch ($page) {
