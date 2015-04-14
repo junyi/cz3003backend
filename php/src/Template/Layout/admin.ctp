@@ -139,7 +139,6 @@
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Incidents</span>
-                <span class="label label-primary pull-right">3</span>
               </a>
               <ul class="treeview-menu">
                 <?php if ($page == "incidents"){ ?>  <li class= "active"> <?php }else{ ?> <li> <?php }?>
