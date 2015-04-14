@@ -27,6 +27,6 @@
     </div><!-- /.col -->
   </div>
 </form>
-<a href = "/admin/forgot_password" > Forgot Password </a>
+<a href = "forgot_password" > Forgot Password </a>
 
    

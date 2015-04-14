@@ -69,6 +69,6 @@
               <label>Remarks</label>
               <textarea class="form-control" name="incidentDetails" rows="3" placeholder="Enter remarks" style="resize:vertical"><?= h($incidentDetails) ?></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label">Submit</span></button>
       </form>
     </div>

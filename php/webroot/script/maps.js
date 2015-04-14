@@ -12,13 +12,13 @@ function addIncidentMarker(location, title, catID) {
     var icon;
     
     switch(catID) {
-        case 1: icon = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';
+        case 1: icon = "/dist/img/accident.png"//'http://labs.google.com/ridefinder/images/mm_20_blue.png';
             break;
-        case 2: icon = 'http://labs.google.com/ridefinder/images/mm_20_red.png';
+        case 2: icon = "/dist/img/fire.png";//'http://labs.google.com/ridefinder/images/mm_20_red.png';
             break;
-        case 3: icon = 'http://labs.google.com/ridefinder/images/mm_20_yellow.png';
+        case 3: icon = "/dist/img/flood.png";//'http://labs.google.com/ridefinder/images/mm_20_yellow.png';
             break;
-        case 4: icon = 'http://labs.google.com/ridefinder/images/mm_20_green.png';
+        case 4: icon = "/dist/img/suicide.png";//'http://labs.google.com/ridefinder/images/mm_20_green.png';
             break;
         default: icon = '';
     }
@@ -93,7 +93,7 @@ function addDengueMarkerListener(i, region, severity, numOfPeople, center) {
 
 function initializeWeatherLayer(map) {
     weatherLayer = new google.maps.weather.WeatherLayer({
-        temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+        temperatureUnits: google.maps.weather.TemperatureUnit.CELCIUS
     });
 }
 

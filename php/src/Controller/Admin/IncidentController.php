@@ -104,7 +104,7 @@ class IncidentController extends AppController
     {
         if ($this->request->params['_ext'] === 'json') {
 
-            if (($this->request->is('get') || $this->request->is('ajax')) && isset($this->request->query['draw'])) {
+            if ($this->request->is('post') && isset($this->request->data['draw'])) {
                 $connection = ConnectionManager::get('default');
 
                 $columns = [
@@ -118,7 +118,7 @@ class IncidentController extends AppController
 
                 $joinQuery = "FROM Incident AS c JOIN IncidentCategory AS ic ON c.incidentCategoryID=ic.incidentCategoryID";
 
-                $results = SSP::simple($this->request->query, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
+                $results = SSP::simple($this->request->data, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
                 $this->set('incidents', $results);
 
             } else {

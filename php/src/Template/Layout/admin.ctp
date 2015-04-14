@@ -37,6 +37,8 @@
     <link href="../dist/css/maps.css" rel="stylesheet" type="text/css" />
     <!-- datatables -->
     <link href="../plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- Ladda -->
+    <link rel="stylesheet" href="/plugins/ladda/ladda-themeless.min.css" type="text/css" />
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +58,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="/admin/dashboard" class="logo">
+        <a href="dashboard" class="logo">
             <img src="../dist/img/logo.png" width="40px" height="40px" style="margin-bottom:5px; margin-right:5px;" /><b>TIME</b>Crisis
         </a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -95,10 +97,10 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="/admin/editProfile" class="btn btn-default btn-flat">Profile</a>
+                      <a href="editProfile" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="/admin/logout" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -129,7 +131,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <?php if ($page == "dashboard"){ ?>  <li class= "active treeview"> <?php }else{ ?> <li class= "treeview"> <?php }?>
-              <a href="/admin/dashboard">
+              <a href="dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
               </a>
             </li>
@@ -277,6 +279,9 @@
     <script src="../plugins/datatables/jquery.dataTables.js"></script>
     <script src="../plugins/datatables/dataTables.bootstrap.js"></script>
 
+    <!-- Ladda -->
+    <script src="/plugins/ladda/spin.min.js"></script>
+    <script src="/plugins/ladda/ladda.min.js"></script>
 
     <?php
       switch ($page) {

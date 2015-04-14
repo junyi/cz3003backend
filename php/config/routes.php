@@ -88,8 +88,6 @@ Router::prefix('admin', function ($routes) {
     $routes->connect('/subscriber', ['controller' => 'Subscriber']);
 
     $routes->extensions(['json']);
-    $routes->resources('Incident');
-
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

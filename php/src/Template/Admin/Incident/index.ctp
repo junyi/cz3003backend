@@ -15,7 +15,7 @@ use Cake\Error\Debugger;
             <small> to add, edit, or remove incident</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Incidents</a></li>
             <li class="active">Incidents</li>
           </ol>
@@ -34,7 +34,7 @@ use Cake\Error\Debugger;
                   <h3 class="box-title">Incident</h3>
                   <div class="box-tools">
                     <div class="input-group">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                      <input type="text" id="table_search" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
@@ -45,7 +45,7 @@ use Cake\Error\Debugger;
                   <!-- <div class="dataTables_processing">
                     <i class="fa fa-refresh fa-2x fa-spin"></i>
                   </div> -->
-                  <table id="incidentTable" class="table table-hover display">
+                  <table id="incidentTable" class="table table-hover display" width="100%">
                     <thead>
                       <tr>
                         <th></th>

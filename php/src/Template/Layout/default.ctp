@@ -80,13 +80,13 @@
 
               <li class="#">
                 <a href="https://www.facebook.com/pages/Cz3003_ssad/787481631307717" target="_blank">
-                  <span class="hidden-xs"><img src="../../webroot/dist/img/facebook.png" width="16px" /></span>
+                  <span class="hidden-xs"><img src="../dist/img/facebook.png" width="16px" /></span>
                 </a>
               </li>
 	      
 	             <li class="#">
                 <a href="https://twitter.com/itest123445" target="_black">
-                  <span class="hidden-xs"><img src="../../webroot/dist/img/twitter.png" width="16px" /></span>
+                  <span class="hidden-xs"><img src="../dist/img/twitter.png" width="16px" /></span>
                 </a>
               </li>
             </ul>

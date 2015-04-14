@@ -37,7 +37,7 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover display" id="incidentTable">
+                  <table class="table table-hover display" id="incidentTable" width="100%">
                     <thead>
                       <tr>
                         <th></th>

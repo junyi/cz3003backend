@@ -6,7 +6,7 @@
             Edit Profile
           </h1>
           <ol class="breadcrumb">
-            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Edit Profile</li>
           </ol>
         </section>

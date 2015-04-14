@@ -31,6 +31,9 @@ $("#incident_modal").on('hidden.bs.modal', function () {
 });
 
 $('#incident_modal').on('loaded.bs.modal', function (e) {
+	// Ladda.bind( 'input[type=submit]' );
+	var l = Ladda.create( $('.ladda-button')[0] );
+
 	$('#incident_location_input').geocomplete({
 	  details: ".details",
 	  detailsAttribute: "data-geo",
@@ -65,6 +68,8 @@ $('#incident_modal').on('loaded.bs.modal', function (e) {
 	    .on('success.form.fv', function(e) {
             // Prevent form submission
             e.preventDefault();
+
+            l.start();
 
             var $form = $(e.target),
                 fv    = $form.data('formValidation');
@@ -121,7 +126,7 @@ $.fn.dataTable.pipeline = function ( opts ) {
         url: '',      // script url
         data: null,   // function or object with parameters to send to the server
                       // matching how `ajax.data` works in DataTables
-        method: 'GET' // Ajax HTTP method
+        method: 'POST' // Ajax HTTP method
     }, opts );
  
     // Private variables for storing the cache
@@ -190,7 +195,7 @@ $.fn.dataTable.pipeline = function ( opts ) {
  
             settings.jqXHR = $.ajax( {
                 "type":     conf.method,
-                "url":      decodeURIComponent(conf.url),
+                "url":      conf.url,
                 "data":     request,
                 "dataType": "json",
                 "cache":    false,
@@ -227,13 +232,17 @@ $.fn.dataTable.Api.register( 'clearPipeline()', function () {
 
 var oTable = $('#incidentTable').DataTable({
     searching: true,
-    dom: '<"hidden"f>tp',
+    dom: '<"hidden"f>rtp',
     processing: true,
     serverSide: true,
     ajax: $.fn.dataTable.pipeline( {
         url: "/admin/incident.json",
-        pages: 5 // number of pages to cache
+        pages: 5, // number of pages to cache
+        type: "POST"
     }),
+    language: {
+    	"processing": '<i class="fa fa-refresh fa-2x fa-spin"></i>'
+	},
     columnDefs: [
         {
             "searchable": false,
