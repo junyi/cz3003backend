@@ -42,7 +42,10 @@ use Cake\Error\Debugger;
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table id="incidentTable" class="table table-hover">
+                  <!-- <div class="dataTables_processing">
+                    <i class="fa fa-refresh fa-2x fa-spin"></i>
+                  </div> -->
+                  <table id="incidentTable" class="table table-hover display">
                     <thead>
                       <tr>
                         <th></th>
@@ -83,7 +86,7 @@ use Cake\Error\Debugger;
                                   h($i->address),
                                   h($i->incidentCategory->incidentCategoryTitle),
                                   "<span class=\"label label-$label\">$i->incidentStatus</span>",
-                                  '<a href="#" data-toggle="modal" data-remote="/admin/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/admin/incident/delete?id='.$i->incidentID.'" onclick="return confirm(\'Confirm delete?\');">Delete</a>'
+                                  '<a href="#" data-toggle="modal" data-remote="/admin/incident/form?action=edit&id='.$i->incidentID.'" data-target="#incident_modal"> Edit </a> | <a href="/admin/incident/delete?id='.$i->incidentID.'" onclick="deleteItem(event);">Delete</a>'
                               )
                           );
                       }

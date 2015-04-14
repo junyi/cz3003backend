@@ -104,7 +104,7 @@ class IncidentController extends AppController
     {
         if ($this->request->params['_ext'] === 'json') {
 
-            if (isset($this->request->query['draw'])) {
+            if (($this->request->is('get') || $this->request->is('ajax')) && isset($this->request->query['draw'])) {
                 $connection = ConnectionManager::get('default');
 
                 $columns = [
@@ -121,6 +121,8 @@ class IncidentController extends AppController
                 $results = SSP::simple($this->request->query, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
                 $this->set('incidents', $results);
 
+            } else {
+                $this->set('incidents', []);
             }
 
         } else {
@@ -170,10 +172,12 @@ class IncidentController extends AppController
             $incident->set('staffID', $user['staffID']);
             
             if ($this->Incident->save($incident)) {
-                $this->Flash->success(__('The incident has been added.'));
-                return $this->redirect(['action' => 'index']);
+                $id = $incident->incidentID;
+                $this->set('data', ["id" => $id, "message" => "The incident has been added.", "success" => true]);
+                $this->render('/Element/ajaxreturn');
             }else{
-                $this->Flash->error(__('Unable to add your incident.'));
+                $this->set('data', ["message" => "Unable to add your incident.", "success" => false]);
+                $this->render('/Element/ajaxreturn');
             }
         } else {
             return $this->redirect(['action' => 'index']);
@@ -193,11 +197,11 @@ class IncidentController extends AppController
             $incident->set('staffID', $user['staffID']);
 
             if ($this->Incident->save($incident)) {
-                $this->Flash->success(__('The incident has been edited.'));
-                return $this->redirect(['action' => 'index']);
+                $this->set('data', ["message" => "The incident has been edited.", "success" => true]);
+                $this->render('/Element/ajaxreturn');
             }else{
-                $this->Flash->error(__('Unable to edit your incident.'));
-                return $this->redirect(['action' => 'index']);
+                $this->set('data', ["message" => "Unable to edit your incident.", "success" => false]);
+                $this->render('/Element/ajaxreturn');
             }
         } else {
             return $this->redirect(['action' => 'index']);
@@ -211,10 +215,11 @@ class IncidentController extends AppController
             $id = $this->request->query['id'];
             $incident = $this->getIncident($id);
             if ($this->Incident->delete($incident)) {
-                $this->Flash->success(__('The incident has been deleted.'));
-                return $this->redirect(['action' => 'index']);
+                $this->set('data', ["id" => $id, "message" => "The incident has been deleted.", "success" => true]);
+                $this->render('/Element/ajaxreturn');
             }else{
-                $this->Flash->error(__('Unable to delete your incident.'));
+                $this->set('data', ["id" => $id, "message" => "Unable to delete your incident.", "success" => false]);
+                $this->render('/Element/ajaxreturn');
             }
         } else {
             return $this->redirect(['action' => 'index']);

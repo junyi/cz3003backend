@@ -1,2 +1,3 @@
 <?php
-	echo json_encode($incidents);
+	if ($incidents)
+		echo json_encode($incidents);
