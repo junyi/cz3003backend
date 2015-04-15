@@ -33,7 +33,7 @@
                   <hr/>
                   
                   <h3>When did this start?</h3>
-                  <p>When all 11 of us decided to take CZ3003 Software Systems Analysis and Design during AY14/15 Semester 2. For our lab project, we are tasked to work produce this system as a group, applying our knowledge on what we learn from this module such as Software Architecture Visual Notation, Data Flow Diagram, Context Diagram, Communication Diagram, and many more!</p>
+                  <p>When all 12 of us decided to take CZ3003 Software Systems Analysis and Design during AY14/15 Semester 2. For our lab project, we are tasked to work produce this system as a group, applying our knowledge on what we learn from this module such as Software Architecture Visual Notation, Data Flow Diagram, Context Diagram, Communication Diagram, and many more!</p>
                 </div>
               </div>
             </div>

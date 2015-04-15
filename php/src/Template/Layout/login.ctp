@@ -5,6 +5,7 @@
     <title>TIMECrisis | Admin Panel</title>
     <?= $this->Html->meta('icon', 'dist/img/favicon.ico'); ?>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="theme-color" content="#dd4b39">
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
