@@ -114,7 +114,7 @@ class IncidentController extends AppController
                 $results = SSP::simple($this->request->data, $connection, 'Incident', 'incidentID', $columns, $joinQuery);
                 $this->set('incidents', $results);
 
-            } else {
+            } elseif ($this->request->is('get')) {
 
                 $this->getIncidents();
                 $this->set('ajax', false);

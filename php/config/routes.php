@@ -48,14 +48,17 @@ Router::scope('/', function ($routes) {
     $routes->connect('/subscribe/subscribe', ['controller' => 'Subscribe', 'action' => 'subscribe']);
     $routes->connect('/incident', ['controller' => 'Incident']);
     $routes->connect('/report', ['controller' => 'Incident', 'action' => 'report']);
-    $routes->connect('/incident', ['controller' => 'Incident']);
     $routes->connect('/dengue', ['controller' => 'Dengue']);
     $routes->connect('/haze', ['controller' => 'Haze']);
     $routes->connect('/contact', ['controller' => 'Contact']);
     $routes->connect('/faqs', ['controller' => 'Faqs']);
 
     $routes->extensions(['json']);
-    $routes->resources('Incident');
+    $routes->resources('Incident', [
+        'only' => ['index', 'create'],
+        'actions' => ['create' => 'index']
+    ]);
+
     $routes->resources('Dengue');
     $routes->resources('Haze');
 
