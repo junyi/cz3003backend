@@ -143,7 +143,8 @@ class StaffController extends AppController
         
         $this->set('page', 'staff_account');
 
-        $query = $this->Staff->find('all');
+        $query = $this->Staff->find('all')
+            ->order(['status' => 'ASC']);
 
         // Iteration will execute the query.
         foreach ($query as $row) {
@@ -252,6 +253,25 @@ class StaffController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
         } 
+    }
+
+    public function deactivate()
+    {
+        $this->autoRender = false;
+
+        if ($this->request->is('get') && isset($this->request->query['id'])) {
+            $user = $this->Staff->get($this->request->query['id']);
+            $user->set('status', 'inactive');
+
+            if ($this->Staff->save($user)) {
+                $this->Flash->success(__('The user has been deactivated.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('Unable to deactivate the user.'));
+                return $this->redirect(['action' => 'index']);
+            }
+
+        }
     }
 
     public function add()

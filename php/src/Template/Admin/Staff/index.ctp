@@ -46,6 +46,7 @@
                       <th>Status</th>
                     </tr>
                     <?php 
+                      $count = 1;
                       foreach ($staffs as $i) {               
                           $gender = $i->gender;
                           $status = $i->status;
@@ -56,13 +57,13 @@
                           }
                           echo $this->Html->tableCells(
                               array(
-                                  $i->staffID,
+                                  $count++,
                                   '<img src="'.$avatar.'" class="img-circle" alt="User Image" width="80px" height="80px" />',
                                   $i->name,
                                   $i->email,
                                   $i->contact,
                                   $i->role,
-                                  "<span class=\"label ".($status ? "label-success\">" : "label-danger\">").$status."</span>"
+                                  "<a href=\"staff/deactivate?id=$i->staffID\" onclick=\"return confirm('Deactivate this user?');\"<span class=\"label ".($status === "active" ? "label-success\">" : "label-danger\">").$status."</span></a>"
                               )
                           );
                       }
