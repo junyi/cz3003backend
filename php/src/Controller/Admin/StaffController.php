@@ -255,19 +255,29 @@ class StaffController extends AppController
         } 
     }
 
-    public function deactivate()
+    public function toggleStatus()
     {
         $this->autoRender = false;
 
         if ($this->request->is('get') && isset($this->request->query['id'])) {
             $user = $this->Staff->get($this->request->query['id']);
-            $user->set('status', 'inactive');
+
+            $key1 = "deactivated";
+            $key2 = "deactivate";
+
+            if ($user->status === "inactive") {
+                $user->set('status', 'active');
+                $key1 = "activated";
+                $key2 = "activate";
+            } else {
+                $user->set('status', 'inactive');
+            }
 
             if ($this->Staff->save($user)) {
-                $this->Flash->success(__('The user has been deactivated.'));
+                $this->Flash->success(__("The user has been $key1."));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('Unable to deactivate the user.'));
+                $this->Flash->error(__("Unable to $key2 the user."));
                 return $this->redirect(['action' => 'index']);
             }
 

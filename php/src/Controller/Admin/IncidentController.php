@@ -176,7 +176,7 @@ class IncidentController extends AppController
                 $this->set('data', ["id" => $id, "message" => "The incident has been added.", "success" => true]);
                 $this->render('/Element/ajaxreturn');
             }else{
-                $this->set('data', ["message" => "Unable to add your incident.", "success" => false]);
+                $this->set('data', ["message" => "Unable to add the incident.", "success" => false]);
                 $this->render('/Element/ajaxreturn');
             }
         } else {
@@ -200,7 +200,7 @@ class IncidentController extends AppController
                 $this->set('data', ["message" => "The incident has been edited.", "success" => true]);
                 $this->render('/Element/ajaxreturn');
             }else{
-                $this->set('data', ["message" => "Unable to edit your incident.", "success" => false]);
+                $this->set('data', ["message" => "Unable to edit the incident.", "success" => false]);
                 $this->render('/Element/ajaxreturn');
             }
         } else {
@@ -218,11 +218,37 @@ class IncidentController extends AppController
                 $this->set('data', ["id" => $id, "message" => "The incident has been deleted.", "success" => true]);
                 $this->render('/Element/ajaxreturn');
             }else{
-                $this->set('data', ["id" => $id, "message" => "Unable to delete your incident.", "success" => false]);
+                $this->set('data', ["id" => $id, "message" => "Unable to delete the incident.", "success" => false]);
                 $this->render('/Element/ajaxreturn');
             }
         } else {
             return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    public function toggleStatus()
+    {
+        $this->autoRender = false;
+        if ($this->request->is('get') && isset($this->request->query['id'])) {
+            $id = $this->request->query['id'];
+            $incident = $this->getIncident($id);
+            $status = $incident->incidentStatus;
+
+            $newStatus = "On-going";
+
+            if ($status === "On-going") {
+                $newStatus = "Closed";
+            }
+
+            $incident->set('incidentStatus', $newStatus);
+
+            if ($this->Incident->save($incident)) {
+                $this->set('data', ["id" => $id, "message" => "The incident status has been changed to $newStatus.", "success" => true]);
+                $this->render('/Element/ajaxreturn');
+            }else{
+                $this->set('data', ["id" => $id, "message" => "Unable to update the incident.", "success" => false]);
+                $this->render('/Element/ajaxreturn');
+            }
         }
     }
 

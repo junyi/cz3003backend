@@ -97,11 +97,10 @@ $('#incident_modal').on('loaded.bs.modal', function (e) {
 })
 
 function deleteItem(e) {
-	console.log(e);
     e.preventDefault();
 
 	if (confirm('Confirm delete?')){
-		var form = $(e.target);
+		var form = $(e.currentTarget);
 		$.ajax({
 	        url: form.attr('href'),
 	        type: 'GET',
@@ -111,6 +110,24 @@ function deleteItem(e) {
 	    		oTable.clearPipeline();
         		oTable.ajax.reload(null, false);
 	    		
+	        }
+	    });
+	}
+}
+
+function toggleStatus(newStatus, e) {
+	e.preventDefault();
+
+	if (confirm('Change status to '+ newStatus +'?')){
+		var form = $(e.currentTarget);
+		$.ajax({
+	        url: form.attr('href'),
+	        type: 'GET',
+	        success: function(result) {
+	        	result = JSON.parse(result);
+	    		notify(result.message, result.success);
+	    		oTable.clearPipeline();
+        		oTable.ajax.reload(null, false);
 	        }
 	    });
 	}
@@ -284,7 +301,9 @@ var oTable = $('#incidentTable').DataTable({
 				default:
 					break;
 				}
-				return "<span class=\"label label-"+label+"\">"+data+"</span>";
+            	var id = full['DT_RowId'];
+            	var newStatus = data === "On-going" ? "Closed" : "On-going";
+				return "<a href=\"/admin/incident/toggleStatus?id="+id+"\" onclick=\"return toggleStatus('"+newStatus+"',event);\"><span class=\"label label-"+label+"\">"+data+"</span></a>";
             }
         },
         { 

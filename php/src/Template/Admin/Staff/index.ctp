@@ -55,6 +55,13 @@
                           } else {
                             $avatar = '../dist/img/avatar'.($gender === 'Male' ? '5' : '2').'.png"';
                           }
+
+                          $keyword = "Deactivate";
+
+                          if($status === "inactive") {
+                            $keyword = "Reactivate";
+                          }
+
                           echo $this->Html->tableCells(
                               array(
                                   $count++,
@@ -63,7 +70,7 @@
                                   $i->email,
                                   $i->contact,
                                   $i->role,
-                                  "<a href=\"staff/deactivate?id=$i->staffID\" onclick=\"return confirm('Deactivate this user?');\"<span class=\"label ".($status === "active" ? "label-success\">" : "label-danger\">").$status."</span></a>"
+                                  "<a href=\"staff/toggleStatus?id=$i->staffID\" onclick=\"return confirm('$keyword this user?');\"<span class=\"label ".($status === "active" ? "label-success\">" : "label-danger\">").$status."</span></a>"
                               )
                           );
                       }
